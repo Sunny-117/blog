@@ -33,6 +33,26 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
             }
         ],
     },
+    // 
+    {
+        text: '前端工具',
+        items: [
+            {
+                text: '前端 JavaScript 必会工具库合集',
+                link: '/fe-utils/js工具库',
+            },
+            {
+                text: '你的前端开发小助手',
+                link: '/fe-utils/你的前端开发小助手',
+            },
+            {
+                text: '属于专业前端工程师的浏览器收藏夹',
+                link: '/fe-utils/属于专业前端工程师的浏览器收藏夹',
+            }
+
+
+        ],
+    },
     {
         text: '前端工程化',
         collapsible: true,
