@@ -46,8 +46,8 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
                 link: '/fe-utils/你的前端开发小助手',
             },
             {
-                text: '属于专业前端工程师的浏览器收藏夹',
-                link: '/fe-utils/属于专业前端工程师的浏览器收藏夹',
+                text: '专业前端工程师的浏览器收藏夹',
+                link: '/fe-utils/专业前端工程师的浏览器收藏夹',
             }
 
 

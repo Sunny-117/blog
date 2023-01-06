@@ -1,37 +1,63 @@
 # 前端 JavaScript 必会工具库合集
 
-## 第三方库概览
+## jQuery: 让操作DOM变得更容易 
 
-### jQuery: 让操作DOM变得更容易 
-
-[https://jquery.com/](https://jquery.com/)
+官网：[https://jquery.com/](https://jquery.com/)
 
 中文网：[https://jquery.cuishifeng.cn/](https://jquery.cuishifeng.cn/) 
 
-### Lodash: 你能想到的工具函数它都帮你写了
+## Lodash: 你能想到的工具函数它都帮你写了
+
 官网：[https://lodash.com/docs](https://lodash.com/docs)
+
 中文网：[https://www.lodashjs.com/](https://www.lodashjs.com/) 
 
-### Animate.css: 常见的CSS动画效果都帮你写好了
+## Animate.css: 常见的CSS动画效果都帮你写好了
 
-官网：[https://animate.style/](https://animate.style/) |  |
-| Axios | 官网：[https://axios-http.com/zh/](https://axios-http.com/zh/) | 让网络请求变得更简单 |
-| MockJS | 官网：[http://mockjs.com/](http://mockjs.com/) | ajax拦截和模拟数据生成 |
-| Moment | 官网：[https://momentjs.com/](https://momentjs.com/)
-中文网：[http://momentjs.cn/](http://momentjs.cn/) | 让日期处理更容易 |
-| ECharts | 官网：[https://echarts.apache.org/zh](https://echarts.apache.org/zh) | 搞定所有你能想到的图表📈 |
-| animejs | 官网：[https://animejs.com/](https://animejs.com/) | 简单好用的JS动画库 |
-| editormd | 官网：[https://pandao.github.io/editor.md](https://pandao.github.io/editor.md) | markdown编辑器 |
-| validate | 官网：[http://validatejs.org/](http://validatejs.org/) | 简单好用的JS对象验证库 |
-| date-fns | 官网：[https://date-fns.org/](https://date-fns.org/) | 功能和Moment几乎相同
-支持tree shaking |
-| zepto | 官网：[https://zeptojs.com/](https://zeptojs.com/) | 功能和jQuery几乎相同
-对移动端支持更好
-包体积更小 |
-| nprogress | 官网：[https://github.com/rstacruz/nprogress](https://github.com/rstacruz/nprogress) | 简单好用的进度条插件
-YouTube就使用的是它 |
-| qs | 官网：[https://github.com/ljharb/qs](https://github.com/ljharb/qs) | 一个用于解析url的小工具 |
-|  |  |  |
+官网：[https://animate.style/](https://animate.style/)
+## Axios：让网络请求变得更简单
+
+官网：[https://axios-http.com/zh/](https://axios-http.com/zh/) 
+
+## MockJS：ajax拦截和模拟数据生成
+
+官网：[http://mockjs.com/](http://mockjs.com/) 
+
+## Moment：让日期处理更容易
+
+官网：[https://momentjs.com/](https://momentjs.com/)
+
+中文网：[http://momentjs.cn/](http://momentjs.cn/) 
+
+## ECharts：搞定所有你能想到的图表📈
+官网：[https://echarts.apache.org/zh](https://echarts.apache.org/zh) 
+## animejs：简单好用的JS动画库
+官网：[https://animejs.com/](https://animejs.com/) 
+## editormd：markdown编辑器
+
+官网：[https://pandao.github.io/editor.md](https://pandao.github.io/editor.md) |  |
+
+## validate：简单好用的JS对象验证库
+
+官网：[http://validatejs.org/](http://validatejs.org/)
+## date-fns：功能和Moment几乎相同
+
+官网：[https://date-fns.org/](https://date-fns.org/) | 
+
+支持tree shaking
+## zepto：功能和jQuery几乎相同
+
+官网：[https://zeptojs.com/](https://zeptojs.com/) 
+
+对移动端支持更好，包体积更小 
+## nprogress：简单好用的进度条插件YouTube就使用的是它 
+
+官网：[https://github.com/rstacruz/nprogress](https://github.com/rstacruz/nprogress) 
+
+## qs：一个用于解析url的小工具
+
+官网：[https://github.com/ljharb/qs](https://github.com/ljharb/qs) |  |
+  
 
 
 对于第三方库，除了下载使用，还可以通过CDN在线使用
