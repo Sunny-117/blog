@@ -1,66 +1,75 @@
 # 前端 JavaScript 必会工具库合集
 
-## jQuery: 让操作DOM变得更容易 
+## 工具库集合
+### jQuery: 让操作DOM变得更容易 
 
 官网：[https://jquery.com/](https://jquery.com/)
 
 中文网：[https://jquery.cuishifeng.cn/](https://jquery.cuishifeng.cn/) 
 
-## Lodash: 你能想到的工具函数它都帮你写了
+### Lodash: 你能想到的工具函数它都帮你写了
 
 官网：[https://lodash.com/docs](https://lodash.com/docs)
 
 中文网：[https://www.lodashjs.com/](https://www.lodashjs.com/) 
 
-## Animate.css: 常见的CSS动画效果都帮你写好了
+### Animate.css: 常见的CSS动画效果都帮你写好了
 
 官网：[https://animate.style/](https://animate.style/)
-## Axios：让网络请求变得更简单
+### Axios：让网络请求变得更简单
 
 官网：[https://axios-http.com/zh/](https://axios-http.com/zh/) 
 
-## MockJS：ajax拦截和模拟数据生成
+### MockJS：ajax拦截和模拟数据生成
 
 官网：[http://mockjs.com/](http://mockjs.com/) 
 
-## Moment：让日期处理更容易
+### Moment：让日期处理更容易
 
 官网：[https://momentjs.com/](https://momentjs.com/)
 
 中文网：[http://momentjs.cn/](http://momentjs.cn/) 
 
-## ECharts：搞定所有你能想到的图表📈
+### ECharts：搞定所有你能想到的图表📈
+
 官网：[https://echarts.apache.org/zh](https://echarts.apache.org/zh) 
-## animejs：简单好用的JS动画库
+
+### animejs：简单好用的JS动画库
+
 官网：[https://animejs.com/](https://animejs.com/) 
-## editormd：markdown编辑器
+
+### editormd：markdown编辑器
 
 官网：[https://pandao.github.io/editor.md](https://pandao.github.io/editor.md) |  |
 
-## validate：简单好用的JS对象验证库
+### validate：简单好用的JS对象验证库
 
 官网：[http://validatejs.org/](http://validatejs.org/)
-## date-fns：功能和Moment几乎相同
 
-官网：[https://date-fns.org/](https://date-fns.org/) | 
+### date-fns：功能和Moment几乎相同
+
+官网：[https://date-fns.org/](https://date-fns.org/)
 
 支持tree shaking
-## zepto：功能和jQuery几乎相同
+### zepto：功能和jQuery几乎相同
 
 官网：[https://zeptojs.com/](https://zeptojs.com/) 
 
 对移动端支持更好，包体积更小 
-## nprogress：简单好用的进度条插件YouTube就使用的是它 
+### nprogress：简单好用的进度条插件YouTube就使用的是它 
 
 官网：[https://github.com/rstacruz/nprogress](https://github.com/rstacruz/nprogress) 
 
-## qs：一个用于解析url的小工具
+### qs：一个用于解析url的小工具
 
-官网：[https://github.com/ljharb/qs](https://github.com/ljharb/qs) |  |
+官网：[https://github.com/ljharb/qs](https://github.com/ljharb/qs)
   
 
 
-对于第三方库，除了下载使用，还可以通过CDN在线使用
+
+
+## 使用方式
+### 对于第三方库，除了下载使用，还可以通过CDN在线使用
 
 > 科普知识：CDN
 >  
@@ -68,12 +77,11 @@
 >  
 > 简单来说，就是提供很多的服务器，用户访问时，自动就近选择服务器给用户提供资源
 >  
-> ![](http://mdrs.yuanjin.tech/img/20210203133956.png#crop=0&crop=0&crop=1&crop=1&id=Thf64&originHeight=666&originWidth=1401&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+> ![](../public/front-end-engineering/2023-01-06-18-09-43.png)
 
 
 国内使用广泛的免费CDN站点：[https://www.bootcdn.cn/](https://www.bootcdn.cn/)
-
-# JQuery
+### JQuery
 
 > 官网：[https://jquery.com/](https://jquery.com/)
 >  
@@ -91,7 +99,7 @@
 
 JQuery可以让上面整个过程更加轻松
 
-## jQuery函数
+#### jQuery函数
 
 jQuery提供了一个函数，名称为`jQuery`，也可以写作`$`
 
@@ -131,7 +139,7 @@ $("<a>").text("link").appendTo(".list");
 
 下面依次介绍jQuery中的核心概念，以便于文档查阅
 
-## jQuery对象和DOM对象
+#### jQuery对象和DOM对象
 
 通过jQuery得到的元素是一个jQuery对象，而不是传统的DOM
 
@@ -150,7 +158,7 @@ jQuery对象.get(索引)
 $(DOM对象)
 ```
 
-## 官网文档中的目录
+#### 官网文档中的目录
 | 目录名 | 内容 |
 | --- | --- |
 | 选择器 | 选择器是一个字符串，用于描述要选中哪些元素 |
@@ -164,7 +172,7 @@ $(DOM对象)
 |  |  |
 
 
-# Lodash
+### Lodash
 
 > 官网：[https://lodash.com/docs](https://lodash.com/docs)
 >  
@@ -182,7 +190,7 @@ Lodash提供了大量的API，弥补了ES中对象、函数、数组API不足的
 > 如果你不编写框架或通用库，一般不会用到Lodash
 
 
-# Animate.css
+### Animate.css
 
 > 官网：[https://animate.style/](https://animate.style/)
 >  
@@ -193,7 +201,7 @@ Animate.css 库提供了大量的动画效果，开发者仅需使用它提供�
 
 **注意：animate.css中的动画对行盒无效**
 
-## 基本使用
+#### 基本使用
 
 类名格式为：
 
@@ -224,7 +232,7 @@ animate__animated animate__效果名
 |  |  |
 
 
-## 工具类
+#### 工具类
 
 Animate.css 还提供了多个工具类，可以控制动画的**延时**、**重复次数**、**速度**
 
@@ -281,7 +289,7 @@ animate__faster	/* 500毫秒内完成动画 */
 </h1>
 ```
 
-# Axios
+### Axios
 
 > 官网：[https://axios-http.com/zh/](https://axios-http.com/zh/)
 >  
@@ -290,7 +298,7 @@ animate__faster	/* 500毫秒内完成动画 */
 
 axios是一个请求库，在浏览器环境中，它封装了XHR，提供更加便捷的API发送请求
 
-## 基本使用
+#### 基本使用
 
 ```javascript
 // 发送 get 请求到 https://study.duyiedu.com/api/herolist，输出响应体的内容
@@ -328,7 +336,7 @@ axios.post(url地址, [请求体对象], [请求配置]);
 axios(请求配置);
 ```
 
-## 实例
+#### 实例
 
 axios允许开发者先创建一个实例，后续通过使用实例进行请求
 
@@ -348,7 +356,7 @@ instance.get("/api/herolist").then(resp=>{
 })
 ```
 
-## 拦截器
+#### 拦截器
 
 有时，我们可能需要对所有的请求或响应做一些统一的处理
 
@@ -389,7 +397,7 @@ axios.interceptors.response.use(function (resp) {
 
 拦截器可以针对axios实例进行设置
 
-# MockJS
+### MockJS
 
 > 官网：[http://mockjs.com/](http://mockjs.com/)
 >  
@@ -407,7 +415,7 @@ MockJS有两个作用：
 
 ![](http://mdrs.yuanjin.tech/img/20210524135812.png#crop=0&crop=0&crop=1&crop=1&id=UWSXl&originHeight=460&originWidth=1150&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
-## 仅模拟数据
+#### 仅模拟数据
 
 ```javascript
 Mock.mock(数据模板)
@@ -415,7 +423,7 @@ Mock.mock(数据模板)
 
 数据模板有其特有的书写规范，具体写法见官网
 
-## 拦截+模拟数据
+#### 拦截+模拟数据
 
 ```javascript
 Mock.mock(要拦截的url, 要拦截的请求方法, 数据模板)
@@ -443,7 +451,7 @@ Mock.setup({
 })
 ```
 
-# Moment
+### Moment
 
 > 官网：[https://momentjs.com/](https://momentjs.com/)
 >  
@@ -456,9 +464,9 @@ Mock.setup({
 
 Moment提供了强大的日期处理能力
 
-## 时间基础知识
+#### 时间基础知识
 
-### 单位
+#### 单位
 | 单位 | 名称 | 换算 |
 | --- | --- | --- |
 | hour | 小时 | 1 day = 24 hours |
@@ -468,7 +476,7 @@ Moment提供了强大的日期处理能力
 | nanosecond （ns） | 纳秒 | 1 ms = 1000 ns |
 
 
-### GMT和UTC
+#### GMT和UTC
 
 世界划分为24个时区，北京在东8区，格林威治在0时区。
 
@@ -497,14 +505,14 @@ YYYY-MM-DDTHH:mm:ss.msZ
 
 **GMT、UTC、ISO 8601都表示的是零时区的时间**
 
-### Unix 时间戳
+#### Unix 时间戳
 
 > Unix 时间戳（Unix Timestamp）是Unix系统最早提出的概念
 
 
 它将UTC时间1970年1月1日凌晨作为起始时间，到指定时间经过的秒数（毫秒数）
 
-### 程序中的时间处理
+#### 程序中的时间处理
 
 **程序对时间的计算、存储务必使用UTC时间，或者时间戳**
 
@@ -521,7 +529,7 @@ YYYY-MM-DDTHH:mm:ss.msZ
 5. `北京的时间戳为0`和`格林威治的时间戳为0`，它们的时间一样吗？
 6. 一个中国用户注册时填写的生日是`1970-1-1`，它出生的UTC时间是多少？时间戳是多少？
 
-## Moment的核心用法
+#### Moment的核心用法
 
 ![](http://mdrs.yuanjin.tech/img/20200828144832.png#crop=0&crop=0&crop=1&crop=1&id=IuWsh&originHeight=544&originWidth=2010&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
@@ -529,36 +537,4 @@ Moment的使用分为两个部分：
 
 1. 获得Moment对象
 2. 针对Moment对象做各种操作
-
-# ECharts
-
-> 官网：[https://echarts.apache.org/zh](https://echarts.apache.org/zh)
->  
-> CDN：[https://cdn.bootcdn.net/ajax/libs/echarts/5.1.1/echarts.min.js](https://cdn.bootcdn.net/ajax/libs/echarts/5.1.1/echarts.min.js)
-
-
-
-
-
-
-# 工具库：
-Lodash
-[https://www.lodashjs.com/](https://www.lodashjs.com/)
-Moment
-[http://momentjs.cn/](http://momentjs.cn/)
-jQuery
-jQuery123.com
-jQuery.com
-MockJs
-[https://github.com/nuysoft/Mock/wiki/Getting-Started](https://github.com/nuysoft/Mock/wiki/Getting-Started)
-[http://mockjs.com/](http://mockjs.com/)
-
-[BOM · 语雀.pdf](https://www.yuque.com/attachments/yuque/0/2022/pdf/758572/1665846538390-32786951-7e30-4efe-9b8e-2104f50e57fb.pdf?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fpdf%2F758572%2F1665846538390-32786951-7e30-4efe-9b8e-2104f50e57fb.pdf%22%2C%22name%22%3A%22BOM%20%C2%B7%20%E8%AF%AD%E9%9B%80.pdf%22%2C%22size%22%3A854949%2C%22type%22%3A%22application%2Fpdf%22%2C%22ext%22%3A%22pdf%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u7e8f078c-ffd6-4b27-adb2-573537d8cf9%22%2C%22taskType%22%3A%22transfer%22%2C%22id%22%3A%22OjT95%22%2C%22card%22%3A%22file%22%7D)
-[https://duyiedu.yuque.com/docs/share/17c3a868-d15a-448f-ad3c-93a7cb554f4f?#qvTfj](https://duyiedu.yuque.com/docs/share/17c3a868-d15a-448f-ad3c-93a7cb554f4f?#qvTfj)
-JavaScript语法的标准化组织是ECMA（原生JS）
-DOM的标准化组织是W3C——html css
-BOM…(很尴尬)——浏览器
-
-
-[web笔记.pdf](https://www.yuque.com/attachments/yuque/0/2022/pdf/758572/1668929340365-491fef47-ca83-4f80-9c8a-2f10a4f95afd.pdf?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2022%2Fpdf%2F758572%2F1668929340365-491fef47-ca83-4f80-9c8a-2f10a4f95afd.pdf%22%2C%22name%22%3A%22web%E7%AC%94%E8%AE%B0.pdf%22%2C%22size%22%3A6489791%2C%22type%22%3A%22application%2Fpdf%22%2C%22ext%22%3A%22pdf%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22mode%22%3A%22title%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u58c40699-3123-4f08-ae27-6316d647d09%22%2C%22taskType%22%3A%22upload%22%2C%22__spacing%22%3A%22both%22%2C%22id%22%3A%22u28d67c04%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
 
