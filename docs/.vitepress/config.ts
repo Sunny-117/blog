@@ -19,6 +19,20 @@ const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   {
+    text: 'JavaScript',
+    collapsible: true,
+    items: [
+      {
+        text: 'JavaScript',
+        link: '/js/',
+      },
+      {
+        text: '异步处理',
+        link: '/js/异步处理',
+      },
+    ],
+  },
+  {
     text: 'vue',
     collapsible: true,
     items: [
@@ -45,6 +59,12 @@ export default defineConfig({
   description: 'composition api form validator for vue',
   // appearance: false,
   lastUpdated: true,
+  markdown: {
+    // TODO
+    anchor: {
+    },
+    toc: { level: [1, 2] },
+  },
   themeConfig: {
     sidebar: defaultSidebar,
     nav: [
