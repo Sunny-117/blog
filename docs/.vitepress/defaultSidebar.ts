@@ -45,7 +45,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
                 text: 'CSS工程化',
                 link: '/front-end-engineering/CSS工程化'
             },
-
+            {
+                text: 'JS 兼容性',
+                link: '/front-end-engineering/jscompatibility'
+            }
         ]
     },
     {

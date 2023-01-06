@@ -1,12 +1,13 @@
 # JS兼容性
 
-# babel的安装和使用 {ignore}
+## babel
 
 > 官网：[https://babeljs.io/](https://babeljs.io/)
-民间中文网：[https://www.babeljs.cn/](https://www.babeljs.cn/)
+>
+>民间中文网：[https://www.babeljs.cn/](https://www.babeljs.cn/)
 
 
-## babel简介
+### babel简介
 
 babel一词来自于希伯来语，直译为巴别塔
 
@@ -16,13 +17,14 @@ babel一词来自于希伯来语，直译为巴别塔
 
 babel的出现，就是用于解决这样的问题，它是一个编译器，可以把不同标准书写的语言，编译为统一的、能被各种浏览器识别的语言
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1621675063586-a2376003-f135-434a-bdef-a6338003983e.png#averageHue=%23fffffe&clientId=ua1f07be5-6e53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=80&id=u1e32c5e0&margin=%5Bobject%20Object%5D&name=image.png&originHeight=159&originWidth=1271&originalType=binary&ratio=1&rotation=0&showTitle=false&size=39007&status=done&style=none&taskId=u4b6561b3-056a-4925-9c2d-7aba8bd7ddb&title=&width=635.5)
+![](../public/front-end-engineering/2023-01-06-16-46-05.png)
 
 由于语言的转换工作灵活多样，babel的做法和postcss、webpack差不多，它本身仅提供一些分析功能，真正的转换需要依托于插件完成
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1621675071457-9f22c34d-ed16-485a-a725-a69cec2abeb4.png#averageHue=%234e4e4d&clientId=ua1f07be5-6e53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=79&id=u62d30126&margin=%5Bobject%20Object%5D&name=image.png&originHeight=158&originWidth=1347&originalType=binary&ratio=1&rotation=0&showTitle=false&size=35035&status=done&style=none&taskId=u05caae03-e335-4aff-9976-2b660bcfc55&title=&width=673.5)
 
-## babel的安装
+![](../public/front-end-engineering/2023-01-06-16-46-13.png)
+
+### babel的安装
 
 babel可以和构建工具联合使用，也可以独立使用
 
@@ -35,7 +37,7 @@ babel可以和构建工具联合使用，也可以独立使用
 npm i -D @babel/core @babel/cli
 ```
 
-## babel的使用
+### babel的使用
 
 @babel/cli的使用极其简单
 
@@ -51,7 +53,7 @@ babel 要编译的整个目录 -d 编译结果放置的目录
 npx babel js -d dist
 ```
 
-## babel的配置
+### babel的配置
 
 可以看到，babel本身没有做任何事情，真正的编译要依托于**babel插件**和**babel预设**来完成
 
@@ -66,7 +68,7 @@ npx babel js -d dist
     "plugins": []
 }
 ```
-# babel预设
+### babel预设
 
 babel有多种预设，最常见的预设是`@babel/preset-env`
 
@@ -151,11 +153,11 @@ new Promise(function (resolve) {
     ]
 }
 ```
-# babel插件
+### babel插件
 
 先安装在使用 npm i -D ...
 
-> 上节课补充：@babel/polyfill 已过时，目前被`core-js`和`generator-runtime`所取代
+> 注意：@babel/polyfill 已过时，目前被`core-js`和`generator-runtime`所取代
 
 
 除了预设可以转换代码之外，插件也可以转换代码，它们的顺序是：
@@ -164,7 +166,13 @@ new Promise(function (resolve) {
 - 插件顺序从前往后排列。
 - Preset 顺序是颠倒的（从后往前）。
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1630478532116-8e72e87b-f4f9-4fd6-aaa3-5ca629a879df.png#averageHue=%23575b55&clientId=u3d629838-a72e-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=307&id=ub0a0def0&margin=%5Bobject%20Object%5D&name=image.png&originHeight=614&originWidth=620&originalType=binary&ratio=1&rotation=0&showTitle=false&size=144885&status=done&style=none&taskId=ue93e24b5-f2fa-4895-ac2a-f5a93a576d7&title=&width=310)
+```js
+{
+  "preset": ['a','b'],
+  "plugins":['c','d']
+}
+// cdba
+```
 
 通常情况下，`@babel/preset-env`只转换那些已经形成正式标准的语法，对于某些处于早期阶段、还没有确定的语法不做转换。
 
@@ -172,7 +180,7 @@ new Promise(function (resolve) {
 
 下面随便列举一些插件
 
-## `@babel/plugin-proposal-class-properties`
+#### `@babel/plugin-proposal-class-properties`
 
 该插件可以让你在类中书写初始化字段
 
@@ -185,7 +193,7 @@ class A {
 }
 ```
 
-## `@babel/plugin-proposal-function-bind`
+#### `@babel/plugin-proposal-function-bind`
 
 该插件可以让你轻松的为某个方法绑定this
 
@@ -204,7 +212,7 @@ obj::Print(); //相当于：Print.call(obj);
 > 遗憾的是，目前vscode无法识别该语法，会在代码中报错，虽然并不会有什么实际性的危害，但是影响观感
 
 
-## `@babel/plugin-proposal-optional-chaining`
+#### `@babel/plugin-proposal-optional-chaining`
 
 ```javascript
 const obj = {
@@ -220,16 +228,17 @@ const baz = obj?.foo?.bar?.baz; // 42
 const safe = obj?.qux?.baz; // undefined
 ```
 
-## `babel-plugin-transform-remove-console`
+#### `babel-plugin-transform-remove-console`
 
 该插件会移除源码中的控制台输出语句
 
-## @babel/plugin-transform-runtime
+#### `@babel/plugin-transform-runtime`
 
 用于提供一些公共的API，这些API会帮助代码转换
 使用的时候发现依赖其他库，所以还要安装babel runtime
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1630479378888-82049a30-d5a1-4b7d-b7c5-67eb231f7aa6.png#averageHue=%23555548&clientId=u3d629838-a72e-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=72&id=u4e430a55&margin=%5Bobject%20Object%5D&name=image.png&originHeight=144&originWidth=1944&originalType=binary&ratio=1&rotation=0&showTitle=false&size=181767&status=done&style=none&taskId=u912545a0-7280-4209-bec9-1755090a733&title=&width=972)
-# ESLint
+
+
+## ESLint
 
 ESLint是一个针对JS的代码风格**检查**工具，当不满足其要求的风格时，会给予警告或错误
 
@@ -237,7 +246,7 @@ ESLint是一个针对JS的代码风格**检查**工具，当不满足其要求�
 
 民间中文网：[https://eslint.bootcss.com/](https://eslint.bootcss.com/)
 
-# 使用
+### 使用
 
 ESLint通常配合编辑器使用
 
@@ -265,16 +274,16 @@ ESLint通常配合编辑器使用
 > eslint会识别工程中的`.eslintrc.*`文件，也能够识别`package.json`中的`eslintConfig`字段
 
 
-# 配置
+### 配置
 
-## env
+### env
 
 配置代码的运行环境
 
 - browser：代码是否在浏览器环境中运行
 - es6：是否启用ES6的全局API，例如`Promise`等
 
-## parserOptions
+### parserOptions
 
 该配置指定`eslint`对哪些语法的支持
 
@@ -283,13 +292,13 @@ ESLint通常配合编辑器使用
    - script：传统脚本
    - module：模块化脚本
 
-## parser
+### parser
 
 `eslint`的工作原理是先将代码进行解析，然后按照规则进行分析
 
 `eslint` 默认使用`Espree`作为其解析器，你可以在配置文件中指定一个不同的解析器。
 
-## globals
+### globals
 
 配置可以使用的额外的全局变量
 
@@ -309,7 +318,7 @@ ESLint通常配合编辑器使用
 /* global var3:writable, var4:writable */
 ```
 
-## extends
+### extends
 
 该配置继承自哪里
 
@@ -325,7 +334,7 @@ ESLint通常配合编辑器使用
 
 表示，该配置缺失的位置，使用`eslint`推荐的规则
 
-## ignoreFiles
+### ignoreFiles
 
 排除掉某些不需要验证的文件
 
@@ -336,7 +345,7 @@ dist/**/*.js
 node_modules// 自动忽略
 ```
 
-## rules
+### rules
 
 `eslint`规则集
 
@@ -356,14 +365,13 @@ node_modules// 自动忽略
 
 > [https://eslint.bootcss.com/docs/rules/](https://eslint.bootcss.com/docs/rules/)
 > 带有🔧的可以自动修复：npx eslint --fix src/index.js
-> 也可以手动修复：![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1630668691090-33a23182-bc25-496a-a03a-07d419a86c27.png#averageHue=%235d6d7d&clientId=u1a42b5d7-acb9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=128&id=u928a1636&margin=%5Bobject%20Object%5D&name=image.png&originHeight=384&originWidth=1102&originalType=binary&ratio=1&rotation=0&showTitle=false&size=207511&status=done&style=none&taskId=ucaaa356f-e89e-49d1-9081-cdaaa368cdf&title=&width=367.3333333333333)![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1630668709309-1523ba2e-58ff-4f7b-bdc0-ba4cec5261ff.png#averageHue=%23494a44&clientId=u1a42b5d7-acb9-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=144&id=ud3888dc5&margin=%5Bobject%20Object%5D&name=image.png&originHeight=432&originWidth=858&originalType=binary&ratio=1&rotation=0&showTitle=false&size=195755&status=done&style=none&taskId=u2e7d9df6-a9fd-4e4a-a92b-b1d6130026e&title=&width=286)加上即可。
 
 > ESLint官网：[https://eslint.org/](https://eslint.org/)
 >  
 > ESLint民间中文网：[https://eslint.bootcss.com/](https://eslint.bootcss.com/)
 
 
-# ESLint的由来
+### ESLint的由来
 
 JavaScript是一个过于灵活的语言，因此在企业开发中，往往会遇到下面两个问题：
 
@@ -378,17 +386,10 @@ JavaScript是一个过于灵活的语言，因此在企业开发中，往往会�
 
 ESLint由此诞生，它是一个工具，**预先配置好各种规则**，通过这些规则来自动化的验证代码，甚至自动修复
 
-![](http://mdrs.yuanjin.tech/img/20211103145845.png#crop=0&crop=0&crop=1&crop=1&id=ba27B&originHeight=522&originWidth=1170&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![](../public/front-end-engineering/2023-01-06-16-49-52.png)
 
-# ESLint的基本使用
 
-## 安装
-
-```shell
-npm i -D eslint
-```
-
-## 如何验证
+### 如何验证
 
 ```shell
 # 验证单个文件
@@ -397,7 +398,7 @@ npx eslint 文件名
 npx eslint src/**
 ```
 
-## 配置规则
+### 配置规则
 
 eslint会自动寻找根目录中的配置文件，它支持三种配置文件：
 
@@ -436,13 +437,13 @@ module.exports = {
 - 1 或 'warn'：验证不通过提出警告
 - 2 或 'error'：验证不通过报错，退出程序
 
-## 在VSCode中及时发现问题
+### 在VSCode中及时发现问题
 
 每次都要输入命令发现问题非常麻烦
 
 可以安装VSCode插件**ESLint**，只要项目的node_modules中有eslint，它就会按照项目根目录下的规则自动检测
 
-## 使用继承
+### 使用继承
 
 ESLint的规则非常庞大，全部自定义过于麻烦
 
@@ -465,13 +466,11 @@ module.exports = {
 }
 ```
 
-## 在框架中使用
 
-一般我们使用脚手架搭建工程，在搭建工程时通常都可以直接设置eslint
 
-# 企业开发的实际情况
+## 企业开发的实际情况
 
-![](http://mdrs.yuanjin.tech/img/20211103163608.png#crop=0&crop=0&crop=1&crop=1&id=w2rLq&originHeight=740&originWidth=814&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![](../public/front-end-engineering/2023-01-06-16-50-09.png)
 
 我们要做什么？
 
