@@ -48,6 +48,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
             {
                 text: 'JS 兼容性',
                 link: '/front-end-engineering/jscompatibility'
+            },
+            {
+                text: 'webpack5',
+                link: '/front-end-engineering/webpack5'
             }
         ]
     },
