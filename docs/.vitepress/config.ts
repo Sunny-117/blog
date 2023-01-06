@@ -33,7 +33,7 @@ export default defineConfig({
       ...defaultSidebar,
     ],
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/sunny-117/mini-anything' },
+      { icon: 'github', link: 'https://github.com/Sunny-117/blog' },
     ],
     footer: {
       copyright: 'Copyright © 2022-present sunny-117',
