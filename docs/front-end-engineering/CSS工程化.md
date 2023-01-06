@@ -552,22 +552,24 @@ PostCss就是基于这样的理念出现的。
 
 PostCss类似于一个编译器，可以将样式源码编译成最终的CSS代码
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1621674913616-95019b15-754b-4a9d-b89d-716d20f39efd.png#averageHue=%23fffffe&clientId=ua1f07be5-6e53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=113&id=u962a44f6&margin=%5Bobject%20Object%5D&name=image.png&originHeight=225&originWidth=1324&originalType=binary&ratio=1&rotation=0&showTitle=false&size=50928&status=done&style=none&taskId=u638e7f1a-89c6-4172-98a5-c1a7471df59&title=&width=662)
+![](../public/front-end-engineering/2023-01-06-16-37-27.png)
 
 看上去是不是和LESS、SASS一样呢？
 
 但PostCss和LESS、SASS的思路不同，它其实只做一些代码分析之类的事情，将分析的结果交给插件，具体的代码转换操作是插件去完成的。
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1621674922316-713d3629-4e28-417b-8ea7-3cc7260e02b7.png#averageHue=%239a9a99&clientId=ua1f07be5-6e53-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=109&id=u2ca071cd&margin=%5Bobject%20Object%5D&name=image.png&originHeight=217&originWidth=1388&originalType=binary&ratio=1&rotation=0&showTitle=false&size=46002&status=done&style=none&taskId=ub3a695bb-9681-40cd-a253-3307789d6be&title=&width=694)
+
+![](../public/front-end-engineering/2023-01-06-16-37-43.png)
 
 官方的一张图更能说明postcss的处理流程：
 
-![postcss-workflow.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1621674939088-00cd0845-614f-40d0-a7b6-7ac8f7777ad8.png#averageHue=%23050100&clientId=ua1f07be5-6e53-4&crop=0&crop=0&crop=1&crop=1&from=drop&height=441&id=u186e2d3c&margin=%5Bobject%20Object%5D&name=postcss-workflow.png&originHeight=730&originWidth=512&originalType=binary&ratio=1&rotation=0&showTitle=false&size=19843&status=done&style=none&taskId=u6a57d344-5675-4453-a133-f174be00d33&title=&width=309)
+![](../public/front-end-engineering/2023-01-06-16-37-56.png)
 
 > 这一点有点像webpack，webpack本身仅做依赖分析、抽象语法树分析，其他的操作是靠插件和加载器完成的。
 
  
 官网地址：[https://postcss.org/](https://postcss.org/)
+
 github地址：[https://github.com/postcss/postcss](https://github.com/postcss/postcss)
 
 ### 安装
@@ -598,7 +600,8 @@ postcss-cli提供一个命令，它调用postcss中的api来完成编译
 ```shell
 postcss 源码文件 -o 输出文件
 ```
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1621758856558-35fbccc3-50fa-4a3d-9350-8de73ec62a8a.png#averageHue=%2322201f&clientId=ueb5cf7d4-680a-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=60&id=ue7b117cb&margin=%5Bobject%20Object%5D&name=image.png&originHeight=120&originWidth=850&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11537&status=done&style=none&taskId=u9d402f0d-5ac3-4b9d-86fc-132e8320c26&title=&width=425)
+![](../public/front-end-engineering/2023-01-06-16-38-33.png)
+
 ```javascript
 rules: [{
     test: /\.pcss$/,
@@ -975,8 +978,6 @@ body {
     background: #f4;
 }
 ```
-
-![2020-02-05-14-37-11.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1621674961752-340309b5-d7fd-4004-b4e1-94c56b74284b.png#averageHue=%230e0c0b&clientId=ua1f07be5-6e53-4&crop=0&crop=0&crop=1&crop=1&from=drop&id=ub25851dc&margin=%5Bobject%20Object%5D&name=2020-02-05-14-37-11.png&originHeight=81&originWidth=1276&originalType=binary&ratio=1&rotation=0&showTitle=false&size=8516&status=done&style=none&taskId=u51f4db6c-76ff-4835-9e46-07c8495152f&title=)
 
 发生了两处错误：
 
