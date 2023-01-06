@@ -1,57 +1,13 @@
 import { resolve } from 'path'
 import type { DefaultTheme } from 'vitepress'
 import { defineConfig } from 'vitepress'
+import { defaultSidebar } from './defaultSidebar'
 import { generateFileSidebar } from './file-sidebar'
 
 const r = (p: string) => resolve(__dirname, p)
 
 // generateFileSidebar(r('../useForm'))
 
-const defaultSidebar: DefaultTheme.Sidebar = [
-  {
-    text: 'Introduction',
-    collapsible: true,
-    items: [
-      {
-        text: 'Getting Started',
-        link: '/getting-started',
-      },
-    ],
-  },
-  {
-    text: 'JavaScript',
-    collapsible: true,
-    items: [
-      {
-        text: 'JavaScript',
-        link: '/js/',
-      },
-      {
-        text: '异步处理',
-        link: '/js/异步处理',
-      },
-    ],
-  },
-  {
-    text: 'vue',
-    collapsible: true,
-    items: [
-      {
-        text: 'vue',
-        link: '/vue/index'
-      },
-    ],
-  },
-  {
-    text: 'React',
-    items: [
-      {
-        text: 'React',
-        link: '/react/',
-      },
-    ],
-  },
-]
 
 export default defineConfig({
   base: '/blog/',
@@ -59,6 +15,7 @@ export default defineConfig({
   description: 'composition api form validator for vue',
   // appearance: false,
   lastUpdated: true,
+
   markdown: {
     // TODO
     anchor: {
@@ -66,6 +23,7 @@ export default defineConfig({
     toc: { level: [1, 2, 3] },
   },
   themeConfig: {
+    outline: [1, 3],
     sidebar: defaultSidebar,
     nav: [
       {

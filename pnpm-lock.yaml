@@ -1,11 +1,15 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/node': ^18.11.18
   vitepress: 1.0.0-alpha.33
   vue: ^3.2.45
 
+dependencies:
+  '@types/node': registry.npmmirror.com/@types/node/18.11.18
+
 devDependencies:
-  vitepress: registry.npmmirror.com/vitepress/1.0.0-alpha.33
+  vitepress: registry.npmmirror.com/vitepress/1.0.0-alpha.33_@types+node@18.11.18
   vue: registry.npmmirror.com/vue/3.2.45
 
 packages:
@@ -476,6 +480,11 @@ packages:
     dev: true
     optional: true
 
+  registry.npmmirror.com/@types/node/18.11.18:
+    resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/node/-/node-18.11.18.tgz}
+    name: '@types/node'
+    version: 18.11.18
+
   registry.npmmirror.com/@types/web-bluetooth/0.0.16:
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/web-bluetooth/-/web-bluetooth-0.0.16.tgz}
     name: '@types/web-bluetooth'
@@ -492,7 +501,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: registry.npmmirror.com/vite/4.0.3
+      vite: registry.npmmirror.com/vite/4.0.3_@types+node@18.11.18
       vue: registry.npmmirror.com/vue/3.2.45
     dev: true
 
@@ -860,8 +869,9 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  registry.npmmirror.com/vite/4.0.3:
+  registry.npmmirror.com/vite/4.0.3_@types+node@18.11.18:
     resolution: {integrity: sha512-HvuNv1RdE7deIfQb8mPk51UKjqptO/4RXZ5yXSAvurd5xOckwS/gg8h9Tky3uSbnjYTgUm0hVCet1cyhKd73ZA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite/-/vite-4.0.3.tgz}
+    id: registry.npmmirror.com/vite/4.0.3
     name: vite
     version: 4.0.3
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -887,6 +897,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': registry.npmmirror.com/@types/node/18.11.18
       esbuild: registry.npmmirror.com/esbuild/0.16.12
       postcss: registry.npmmirror.com/postcss/8.4.20
       resolve: registry.npmmirror.com/resolve/1.22.1
@@ -895,8 +906,9 @@ packages:
       fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
 
-  registry.npmmirror.com/vitepress/1.0.0-alpha.33:
+  registry.npmmirror.com/vitepress/1.0.0-alpha.33_@types+node@18.11.18:
     resolution: {integrity: sha512-EhMDqWLllYr5mXqAz4GCQ1o/bu5umQ6C2d8voiSaTHMkYCxsGc31ETykflM6NOhGx6yccwXygrYIIeN1l6BUEA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vitepress/-/vitepress-1.0.0-alpha.33.tgz}
+    id: registry.npmmirror.com/vitepress/1.0.0-alpha.33
     name: vitepress
     version: 1.0.0-alpha.33
     hasBin: true
@@ -908,7 +920,7 @@ packages:
       '@vueuse/core': registry.npmmirror.com/@vueuse/core/9.9.0_vue@3.2.45
       body-scroll-lock: registry.npmmirror.com/body-scroll-lock/4.0.0-beta.0
       shiki: registry.npmmirror.com/shiki/0.12.1
-      vite: registry.npmmirror.com/vite/4.0.3
+      vite: registry.npmmirror.com/vite/4.0.3_@types+node@18.11.18
       vue: registry.npmmirror.com/vue/3.2.45
     transitivePeerDependencies:
       - '@algolia/client-search'
