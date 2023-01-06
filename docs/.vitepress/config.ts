@@ -39,7 +39,7 @@ export default defineConfig({
       copyright: 'Copyright © 2022-present sunny-117',
     },
     editLink: {
-      pattern: 'https://github.com/sunny-117/mini-anything',
+      pattern: 'https://github.com/Sunny-117/blog',
       text: 'Edit this page on Gitlab',
     },
     lastUpdatedText: 'Last Updated',
