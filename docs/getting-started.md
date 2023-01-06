@@ -8,10 +8,41 @@ next: ./vue-core/index
 
 ## 做过的项目（不是）
 
+### js-challenges
+
 https://github.com/Sunny-117/js-challenges
 
 集锦前端JavaScript编程题，Not just for interviews
 
 ![](../public/front-end-engineering/2023-01-06-21-59-00.png)
+
+### mini-anythings
+
+文档地址：https://sunny-117.github.io/mini-anything-docs/
+
+还在爆肝中！！！
+
+### Native-project
+
+https://github.com/Sunny-117/Native-project
+
+原生JS项目集合(github最全（不是）)
+
+
+### shooks
+
+一个 react hooks 库
+
+https://github.com/Sunny-117/shooks
+
+
+### BOSScript
+
+https://github.com/Sunny-117/BOSScript
+
+boss直聘投递、关闭，一条龙服务的油猴脚本，让你海投简历，只需要2分钟
+
+
+
 
 
