@@ -40,7 +40,12 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
             {
                 text: 'webpack常用拓展',
                 link: '/front-end-engineering/webpack常用拓展'
-            }
+            },
+            {
+                text: 'CSS工程化',
+                link: '/front-end-engineering/CSS工程化'
+            },
+
         ]
     },
     {
