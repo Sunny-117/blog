@@ -52,7 +52,13 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
             {
                 text: 'webpack5',
                 link: '/front-end-engineering/webpack5'
+            },
+            {
+                text: 'pnpm原理',
+                link: '/front-end-engineering/pnpm原理'
             }
+
+
         ]
     },
     {
