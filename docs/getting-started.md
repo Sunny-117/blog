@@ -6,6 +6,9 @@ next: ./vue-core/index
 
 这里就放一些自我介绍吧，先占个坑
 
+
+
+
 ## 做过的项目（不是）
 
 ### js-challenges
@@ -14,13 +17,15 @@ https://github.com/Sunny-117/js-challenges
 
 集锦前端JavaScript编程题，Not just for interviews
 
-![](../public/front-end-engineering/2023-01-06-21-59-00.png)
+![](./public/js-c.png)
 
 ### mini-anythings
 
 文档地址：https://sunny-117.github.io/mini-anything-docs/
 
-还在爆肝中！！！
+还在爆肝中！！！还没开源，再等等我，我一定尽快
+
+![](./public/mini-any.png)
 
 ### Native-project
 
