@@ -34,6 +34,16 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         ],
     },
     {
+        text: '前端工程化',
+        collapsible: true,
+        items: [
+            {
+                text: 'webpack常用拓展',
+                link: '/front-end-engineering/webpack常用拓展'
+            }
+        ]
+    },
+    {
         text: 'vue',
         collapsible: true,
         items: [
