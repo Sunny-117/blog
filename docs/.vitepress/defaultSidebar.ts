@@ -50,7 +50,6 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
                 link: '/fe-utils/专业前端工程师的浏览器收藏夹',
             }
 
-
         ],
     },
     {
@@ -80,6 +79,16 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
 
 
         ]
+    },
+    {
+        text: 'interview',
+        collapsible: true,
+        items: [
+            {
+                text: '面试官：你还有问题要问我吗',
+                link: '/interview/面试官：你还有问题要问我吗'
+            },
+        ],
     },
     {
         text: 'vue',
