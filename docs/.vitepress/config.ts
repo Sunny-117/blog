@@ -63,7 +63,7 @@ export default defineConfig({
     // TODO
     anchor: {
     },
-    toc: { level: [1, 2] },
+    toc: { level: [1, 2, 3] },
   },
   themeConfig: {
     sidebar: defaultSidebar,
