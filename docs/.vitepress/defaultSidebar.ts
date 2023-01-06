@@ -26,6 +26,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
             {
                 text: '代理与反射',
                 link: '/js/代理与反射',
+            },
+            {
+                text: '迭代器和生成器',
+                link: '/js/迭代器和生成器',
             }
         ],
     },
