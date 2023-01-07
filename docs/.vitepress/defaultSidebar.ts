@@ -88,6 +88,11 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
                 text: '面试官：你还有问题要问我吗',
                 link: '/interview/面试官：你还有问题要问我吗'
             },
+            {
+                text: '算法笔试',
+                link: '/interview/算法笔试'
+            },
+
         ],
     },
     {
