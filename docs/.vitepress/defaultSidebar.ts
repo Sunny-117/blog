@@ -96,6 +96,17 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         ],
     },
     {
+        text: 'algorithm',
+        collapsible: true,
+        items: [
+            {
+                text: '🔥刷题之探索最优解',
+                link: '/algorithm/🔥刷题之探索最优解'
+            },
+        ],
+
+    },
+    {
         text: 'vue',
         collapsible: true,
         items: [
