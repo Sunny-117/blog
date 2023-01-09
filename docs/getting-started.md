@@ -6,9 +6,6 @@ next: ./vue-core/index
 
 这里就放一些自我介绍吧，先占个坑
 
-
-
-
 ## 做过的项目（不是）
 
 ### js-challenges
