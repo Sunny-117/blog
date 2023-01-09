@@ -7,8 +7,6 @@ import { generateFileSidebar } from './file-sidebar'
 const r = (p: string) => resolve(__dirname, p)
 
 // generateFileSidebar(r('../useForm'))
-
-
 export default defineConfig({
   base: '/blog/',
   title: 'blog',
