@@ -20,7 +20,9 @@ https://github.com/Sunny-117/js-challenges
 
 文档地址：https://sunny-117.github.io/mini-anything-docs/
 
-还在爆肝中！！！还没开源，再等等我，我一定尽快
+🚀 mini-anything 是一个集合了前端领域的各种迷你版本的库，方便前端学习者学习，探索前端源码。里面的库是原库的超级迷你版本，只包含原库的主流程，不包含边界case，所以建议仅学习使用，请勿用于生产环境
+
+
 
 ![](./public/mini-any.png)
 
