@@ -24,10 +24,10 @@ export default defineConfig({
     outline: [1, 3],
     sidebar: defaultSidebar,
     nav: [
-      {
-        text: 'Playground',
-        link: 'https://mini-anything-play.netlify.app/',
-      },
+      // {
+      //   text: 'Playground',
+      //   link: 'https://mini-anything-play.netlify.app/',
+      // },
       ...defaultSidebar,
     ],
     socialLinks: [
