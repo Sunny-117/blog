@@ -6,13 +6,13 @@ next: ./vue-core/index
 
 这里就放一些自我介绍吧，先占个坑 github Action Test
 
-## 做过的项目（不是）
+## My Frontend Projects
 
 ### js-challenges
 
 https://github.com/Sunny-117/js-challenges
 
-集锦前端JavaScript编程题，Not just for interviews
+✨✨✨ 集锦 2022-2023年 前端JavaScript 手写题，编程题，Not just for interviews
 
 ![](./public/js-c.png)
 
@@ -22,20 +22,24 @@ https://github.com/Sunny-117/js-challenges
 
 🚀 mini-anything 是一个集合了前端领域的各种迷你版本的库，方便前端学习者学习，探索前端源码。里面的库是原库的超级迷你版本，只包含原库的主流程，不包含边界case，所以建议仅学习使用，请勿用于生产环境
 
-
-
 ![](./public/mini-any.png)
+
+### lodash-ts
+
+https://github.com/Sunny-117/lodash-ts
+
+🎉🎉🎉 lodash-ts 是一个一致性、模块化、高性能的 JavaScript 实用工具库。本仓库完成 lodash 的 typescript 版本，只实现 lodash 中漂亮的函数
 
 ### Native-project
 
 https://github.com/Sunny-117/Native-project
 
-原生JS项目集合(github最全（不是）)
+🔧 原生 JavaScript 项目集合，github 中国区最全版
 
 
 ### shooks
 
-一个 react hooks 库
+📦️ A high-quality & reliable React Hooks library.
 
 https://github.com/Sunny-117/shooks
 
