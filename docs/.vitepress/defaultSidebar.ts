@@ -117,6 +117,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "Vuejs 组件通信概览",
         link: "/vue/component-communication",
       },
+      {
+        text: "探索 v-model 原理",
+        link: "/vue/v-model",
+      },
     ],
   },
   {
