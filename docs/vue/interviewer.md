@@ -56,6 +56,8 @@
 
 ## 如何理解虚拟 DOM?
 
-对虚拟 dom 和 diff 算法中的一些细节理解[https://github.com/livoras/blog/issues/13](https://github.com/livoras/blog/issues/13)
+对虚拟 dom 和 diff 算法中的一些细节理解
+
+[https://github.com/livoras/blog/issues/13](https://github.com/livoras/blog/issues/13)
 
 **要求：写出 diff 算法的核心部分**

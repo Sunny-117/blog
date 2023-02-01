@@ -1,5 +1,5 @@
 {
     "editor.cursorSmoothCaretAnimation": false,
     // "pasteImage.path": "${currentFileDir}",
-    "pasteImage.path": "${currentFileDir}/../public/vue",
+    "pasteImage.path": "${currentFileDir}/../public/react",
 }

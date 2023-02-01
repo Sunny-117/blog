@@ -138,7 +138,7 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     text: "React",
     items: [
       {
-        text: "React",
+        text: "React onePage",
         link: "/react/",
       },
     ],
