@@ -129,6 +129,8 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       { text: "一篇精通 slot", link: "/vue/slot" },
       { text: "Vue SSR 服务端渲染", link: "/vue/SSR" },
       { text: "Vue 指令篇", link: "/vue/directive" },
+      { text: "VueRouter 路由从使用到源码", link: "/vue/vue-router" },
+      { text: "Vuex 思想和源码", link: "/vue/vuex" },
     ],
   },
   {
