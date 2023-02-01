@@ -34,23 +34,7 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   //
-  {
-    text: "前端工具",
-    items: [
-      {
-        text: "前端 JavaScript 必会工具库合集",
-        link: "/fe-utils/js工具库",
-      },
-      {
-        text: "你的前端开发小助手",
-        link: "/fe-utils/你的前端开发小助手",
-      },
-      {
-        text: "专业前端工程师的浏览器收藏夹",
-        link: "/fe-utils/专业前端工程师的浏览器收藏夹",
-      },
-    ],
-  },
+
   {
     text: "前端工程化",
     collapsible: true,
@@ -77,20 +61,7 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       },
     ],
   },
-  {
-    text: "interview",
-    collapsible: true,
-    items: [
-      {
-        text: "面试官：你还有问题要问我吗",
-        link: "/interview/面试官：你还有问题要问我吗",
-      },
-      {
-        text: "算法笔试",
-        link: "/interview/算法笔试",
-      },
-    ],
-  },
+
   {
     text: "algorithm",
     collapsible: true,
@@ -121,6 +92,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "探索 v-model 原理",
         link: "/vue/v-model",
       },
+      {
+        text: "Vue2 数据响应原理",
+        link: "/vue/reactive",
+      },
     ],
   },
   {
@@ -129,6 +104,37 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       {
         text: "React",
         link: "/react/",
+      },
+    ],
+  },
+  {
+    text: "前端工具",
+    items: [
+      {
+        text: "前端 JavaScript 必会工具库合集",
+        link: "/fe-utils/js工具库",
+      },
+      {
+        text: "你的前端开发小助手",
+        link: "/fe-utils/你的前端开发小助手",
+      },
+      {
+        text: "专业前端工程师的浏览器收藏夹",
+        link: "/fe-utils/专业前端工程师的浏览器收藏夹",
+      },
+    ],
+  },
+  {
+    text: "interview",
+    collapsible: true,
+    items: [
+      {
+        text: "面试官：你还有问题要问我吗",
+        link: "/interview/面试官：你还有问题要问我吗",
+      },
+      {
+        text: "算法笔试",
+        link: "/interview/算法笔试",
       },
     ],
   },
