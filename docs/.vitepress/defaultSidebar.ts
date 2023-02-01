@@ -100,6 +100,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "Vue2 diff算法原理",
         link: "/vue/diff",
       },
+      {
+        text: "Vue 生命周期",
+        link: "/vue/lifecycle",
+      },
     ],
   },
   {
