@@ -133,3 +133,54 @@ _DOM_ 渲染是在 _mounted_ 阶段完成，此阶段真实的 _DOM_ 挂载完�
 - 父组件更新过程：父 _beforeUpdate_ -> 父 _updated_
 
 - 销毁过程：父*beforeDestroy*->子*beforeDestroy*->子*destroyed*->父 destroyed
+
+## **你的接口请求一般放在哪个生命周期中？为什么要这样做？**
+
+> 接口请求可以放在钩子函数 _created、beforeMount、mounted_ 中进行调用，因为在这三个钩子函数中，_data_ 已经创建，可以将服务端端返回的数据进行赋值。
+>
+> 但是推荐在 _created_ 钩子函数中调用异步请求，因为在 _created_ 钩子函数中调用异步请求有以下优点：
+>
+> - 能更快获取到服务端数据，减少页面 _loading_ 时间
+> - _SSR_ 不支持 _beforeMount 、mounted_ 钩子函数，所以放在 _created_ 中有助于代码的一致性
+> - _created_ 是在模板渲染成 _html_ 前调用，即通常初始化某些属性值，然后再渲染成视图。如果在 _mounted_ 钩子函数中请求数据可能导致页面闪屏问题
+
+## Vue 子组件和父组件执行顺序
+
+**加载渲染过程：**
+
+1. 父组件 beforeCreate
+2. 父组件 created
+3. 父组件 beforeMount
+4. 子组件 beforeCreate
+5. 子组件 created
+6. 子组件 beforeMount
+7. 子组件 mounted
+8. 父组件 mounted
+
+**更新过程：**
+
+1. 父组件 beforeUpdate
+2. 子组件 beforeUpdate
+3. 子组件 updated
+4. 父组件 updated
+
+**销毁过程：**
+
+1. 父组件 beforeDestroy
+2. 子组件 beforeDestroy
+3. 子组件 destroyed
+4. 父组件 destoryed
+
+## created 和 mounted 的区别
+
+- created:在模板渲染成 html 前调用，即通常初始化某些属性值，然后再渲染成视图。
+- mounted:在模板渲染成 html 后调用，通常是初始化页面完成后，再对 html 的 dom 节点进行一些需要的操作。
+
+## 一般在哪个生命周期请求异步数据
+
+我们可以在钩子函数 created、beforeMount、mounted 中进行调用，因为在这三个钩子函数中，data 已经创建，可以将服务端端返回的数据进行赋值。
+
+推荐在 created 钩子函数中调用异步请求，因为在 created 钩子函数中调用异步请求有以下优点：
+
+- 能更快获取到服务端数据，减少页面加载时间，用户体验更好；
+- SSR 不支持 beforeMount 、mounted 钩子函数，放在 created 中有助于一致性。

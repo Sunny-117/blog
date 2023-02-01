@@ -63,16 +63,6 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
   },
 
   {
-    text: "algorithm",
-    collapsible: true,
-    items: [
-      {
-        text: "🔥刷题之探索最优解",
-        link: "/algorithm/🔥刷题之探索最优解",
-      },
-    ],
-  },
-  {
     text: "vue",
     collapsible: true,
     items: [
@@ -117,6 +107,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "Vue3 onePage",
         link: "/vue/vue3-onepage",
       },
+      {
+        text: "那些年，被问烂了的 Vuejs 面试题",
+        link: "/vue/vue-interview",
+      },
     ],
   },
   {
@@ -142,6 +136,17 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       {
         text: "专业前端工程师的浏览器收藏夹",
         link: "/fe-utils/专业前端工程师的浏览器收藏夹",
+      },
+    ],
+  },
+
+  {
+    text: "algorithm",
+    collapsible: true,
+    items: [
+      {
+        text: "🔥刷题之探索最优解",
+        link: "/algorithm/🔥刷题之探索最优解",
       },
     ],
   },

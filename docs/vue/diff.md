@@ -207,3 +207,69 @@ function sameVnode(a, b) {
 - 在对比其子节点数组时，vue 对每个子节点数组使用了两个指针，分别指向头尾，然后不断向中间靠拢来进行对比，这样做的目的是**尽量复用真实 dom，尽量少的销毁和创建真实 dom**。如果发现相同，则进入和根节点一样的对比流程，如果发现不同，则移动真实 dom 到合适的位置。
 
 这样一直递归的遍历下去，直到整棵树完成对比。
+
+## **_Vue_ 中的 _Key_ 的作用是什么？**
+
+> **_key_ 的作用主要是为了高效的更新虚拟 _DOM_**。另外 _vue_ 中在使用相同标签名元素的过渡切换时，也会使用到 _key_ 属性，其目的也是为了让 _vue_ 可以区分它们，否则 _vue_ 只会替换其内部属性而不会触发过渡效果。
+
+> 解析：
+>
+> 其实不只是 _vue_，_react_ 中在执行列表渲染时也会要求给每个组件添加上 _key_ 这个属性。
+>
+> 要解释 _key_ 的作用，不得不先介绍一下虚拟 _DOM_ 的 _Diff_ 算法了。
+>
+> 我们知道，_vue_ 和 _react_ 都实现了一套虚拟 _DOM_，使我们可以不直接操作 _DOM_ 元素，只操作数据便可以重新渲染页面。而隐藏在背后的原理便是其高效的 _Diff_ 算法。
+>
+> _vue_ 和 _react_ 的虚拟 _DOM_ 的 _Diff_ 算法大致相同，其核心有以下两点：
+>
+> - 两个相同的组件产生类似的 _DOM_ 结构，不同的组件产生不同的 _DOM_ 结构。
+> - 同一层级的一组节点，他们可以通过唯一的 _id_ 进行区分。
+
+> 基于以上这两点，使得虚拟 _DOM_ 的 _Diff_ 算法的复杂度从 _O(n^3)_ 降到了 _O(n)_。
+> ![](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2021-08-21-062058.png#id=bVUCY&originHeight=442&originWidth=838&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+> 当页面的数据发生变化时，_Diff_ 算法只会比较同一层级的节点：
+>
+> - 如果节点类型不同，直接干掉前面的节点，再创建并插入新的节点，不会再比较这个节点以后的子节点了。
+> - 如果节点类型相同，则会重新设置该节点的属性，从而实现节点的更新。
+
+> 当某一层有很多相同的节点时，也就是列表节点时，_Diff_ 算法的更新过程默认情况下也是遵循以上原则。
+>
+> 比如一下这个情况：
+>
+> ![](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2021-08-21-062225.jpg#id=dsSLU&originHeight=191&originWidth=477&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+>
+> 我们希望可以在 _B_ 和 _C_ 之间加一个 _F_，_Diff_ 算法默认执行起来是这样的：
+>
+> ![](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2021-08-21-062244.jpg#id=NOakL&originHeight=215&originWidth=572&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+>
+> 即把 _C_ 更新成 _F_，_D_ 更新成 _C_，_E_ 更新成 _D_，最后再插入 _E_
+>
+> 是不是很没有效率？
+>
+> 所以我们需要使用 _key_ 来给每个节点做一个唯一标识，_Diff_ 算法就可以正确的识别此节点，找到正确的位置区插入新的节点。
+>
+> ![](https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2021-08-21-062321.jpg#id=KcYpP&originHeight=130&originWidth=452&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+## **在给 _vue_ 中的元素设置 _key_ 值时可以使用 _Math_ 的 _random_ 方法么？**
+
+> _random_ 是生成随机数，有一定概率多个 _item_ 会生成相同的值，不能保证唯一。
+>
+> 如果是根据数据来生成 _item_，数据具有 _id_ 属性，那么就可以使用 _id_ 来作为 _key_。
+>
+> 如果不是根据数据生成 _item_，那么最好的方式就是使用时间戳来作为 _key_。或者使用诸如 _uuid_ 之类的库来生成唯一的 _id_。
+
+## Vue 中 key 的作用
+
+vue 中 key 值的作用可以分为两种情况来考虑：
+
+- 第一种情况是 v-if 中使用 key。由于 Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染。因此当使用 v-if 来实现元素切换的时候，如果切换前后含有相同类型的元素，那么这个元素就会被复用。如果是相同的 input 元素，那么切换前后用户的输入不会被清除掉，这样是不符合需求的。因此可以通过使用 key 来唯一的标识一个元素，这个情况下，使用 key 的元素不会被复用。这个时候 key 的作用是用来标识一个独立的元素。
+- 第二种情况是 v-for 中使用 key。用 v-for 更新已渲染过的元素列表时，它默认使用“就地复用”的策略。如果数据项的顺序发生了改变，Vue 不会移动 DOM 元素来匹配数据项的顺序，而是简单复用此处的每个元素。因此通过为每个列表项提供一个 key 值，来以便 Vue 跟踪元素的身份，从而高效的实现复用。这个时候 key 的作用是为了高效的更新渲染虚拟 DOM。
+
+key 是为 Vue 中 vnode 的唯一标记，通过这个 key，diff 操作可以更准确、更快速
+
+- 更准确：因为带 key 就不是就地复用了，在 sameNode 函数 a.key === b.key 对比中可以避免就地复用的情况。所以会更加准确。
+- 更快速：利用 key 的唯一性生成 map 对象来获取对应节点，比遍历方式更快
+
+## 为什么不建议用 index 作为 key?
+
+使用 index 作为 key 和没写基本上没区别，因为不管数组的顺序怎么颠倒，index 都是 0, 1, 2...这样排列，导致 Vue 会复用错误的旧子节点，做很多额外的工作。
