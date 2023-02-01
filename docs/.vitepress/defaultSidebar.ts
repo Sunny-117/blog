@@ -113,6 +113,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "虚拟DOM详解",
         link: "/vue/vdom",
       },
+      {
+        text: "Vuejs 组件通信概览",
+        link: "/vue/component-communication",
+      },
     ],
   },
   {
