@@ -96,6 +96,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "Vue2 数据响应原理",
         link: "/vue/reactive",
       },
+      {
+        text: "Vue2 diff算法原理",
+        link: "/vue/diff",
+      },
     ],
   },
   {
