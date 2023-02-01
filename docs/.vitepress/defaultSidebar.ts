@@ -131,6 +131,7 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       { text: "Vue 指令篇", link: "/vue/directive" },
       { text: "VueRouter 路由从使用到源码", link: "/vue/vue-router" },
       { text: "Vuex 思想和源码", link: "/vue/vuex" },
+      { text: "今天我是面试官", link: "/vue/interviewer" },
     ],
   },
   {
