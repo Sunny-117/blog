@@ -1,6 +1,6 @@
 export default [
   {
-    text: "vue",
+    text: "Vuejs OnePage",
     link: "/vue/index",
   },
   {
