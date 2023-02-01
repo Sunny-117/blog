@@ -104,6 +104,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "Vue 生命周期",
         link: "/vue/lifecycle",
       },
+      {
+        text: "你不知道的 computed Vue2",
+        link: "/vue/computed",
+      },
     ],
   },
   {
