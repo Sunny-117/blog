@@ -2,6 +2,7 @@ import { DefaultTheme } from "vitepress";
 import vueConfig from "./vue";
 import engineerConfig from "./engineer";
 import reactConfig from "./react";
+import hcConfig from "./hc";
 export const defaultSidebar: DefaultTheme.Sidebar = [
   {
     text: "Introduction",
@@ -10,42 +11,6 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       {
         text: "Getting Started",
         link: "/getting-started",
-      },
-    ],
-  },
-  {
-    text: "HTML-CSS",
-    collapsible: true,
-    items: [
-      {
-        text: "HTML5 OnePage",
-        link: "/html-css/HTML",
-      },
-      {
-        text: "CSS3 OnePage",
-        link: "/html-css/CSS",
-      },
-      {
-        text: "Canvas 和 svg",
-        link: "/html-css/canvas-svg",
-      },
-      {
-        text: "CSS3动画",
-        link: "/html-css/animation",
-      },
-
-      {
-        text: "CSS3选择器",
-        link: "/html-css/selector",
-      },
-
-      {
-        text: "显示器的成像原理",
-        link: "/html-css/principle",
-      },
-      {
-        text: "拖拽 API",
-        link: "/html-css/drag",
       },
     ],
   },
@@ -131,5 +96,11 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         link: "/interview/算法笔试",
       },
     ],
+  },
+  {
+    text: `HTML-CSS ${hcConfig.length}篇`,
+    collapsed: true,
+    collapsible: true,
+    items: hcConfig,
   },
 ];
