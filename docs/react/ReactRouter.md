@@ -333,7 +333,6 @@ CSSTransition：用于为内部的 DOM 元素添加类样式，通过 in 属性�
   React
 </NavLink>;
 // <a href='/react' className='hurray'>React</a>
-复制代码;
 ```
 
 当我们想强制导航时，可以渲染一个`<Redirect>`，当一个`<Redirect>`渲染时，它将使用它的 to 属性进行定向。
@@ -400,14 +399,12 @@ let domArr = document.getElementsByTagName('a')
 ```javascript
 import { useHistory } from "react-router-dom";
 let history = useHistory();
-复制代码;
 ```
 
 2.使用 this.props.history 获取历史对象
 
 ```javascript
 let history = this.props.history;
-复制代码;
 ```
 
 ### React-Router 4 怎样在路由变化时重新渲染同一个组件？
@@ -433,7 +430,7 @@ class NewsList extends Component {
     ...
   }
 }
-复制代码
+
 ```
 
 利用生命周期 componentWillReceiveProps，进行重新 render 的预处理操作。
@@ -456,7 +453,6 @@ React-Router 支持使用 hash（对应 HashRouter）和 browser（对应 Browse
   getUserConfirmation={func}
   keyLength={number}
 />;
-复制代码;
 ```
 
 **其中的属性如下：**
@@ -467,14 +463,12 @@ React-Router 支持使用 hash（对应 HashRouter）和 browser（对应 Browse
 <BrowserRouter basename="/calendar">
   <Link to="/today" />
 </BrowserRouter>;
-复制代码;
 ```
 
 等同于
 
 ```javascript
 <a href="/calendar/today" />;
-复制代码;
 ```
 
 - forceRefresh 如果为 true，在导航的过程中整个页面将会刷新。一般情况下，只有在不支持 HTML5 history API 的浏览器中使用此功能；
@@ -487,7 +481,6 @@ const getConfirmation = (message, callback) => {
   callback(allowTransition);
 };
 <BrowserRouter getUserConfirmation={getConfirmation} />;
-复制代码;
 ```
 
 > 需要配合`<Prompt>` 一起使用。
@@ -500,7 +493,6 @@ const getConfirmation = (message, callback) => {
 
 ```javascript
 <HashRouter basename={string} getUserConfirmation={func} hashType={string} />;
-复制代码;
 ```
 
 **其参数如下**：
@@ -522,7 +514,7 @@ import { Route } from 'react-router-dom'
 
 <Route path="/" component={Home}></Route>
 <Route path="/login" component={Login}></Route>
-复制代码
+
 ```
 
 Route 组件的 path 属性用于匹配路径，因为需要匹配 `/` 到 `Home`，匹配 `/login` 到 `Login`，所以需要两个 Route，但是不能这么写。这样写的话，当 URL 的 path 为 “/login” 时，`<Route path="/" />`和`<Route path="/login" />` 都会被匹配，因此页面会展示 Home 和 Login 两个组件。这时就需要借助 `<Switch>` 来做到只显示一个匹配组件：
@@ -534,7 +526,6 @@ import { Switch, Route } from "react-router-dom";
   <Route path="/" component={Home}></Route>
   <Route path="/login" component={Login}></Route>
 </Switch>;
-复制代码;
 ```
 
 此时，再访问 “/login” 路径时，却只显示了 Home 组件。这是就用到了 exact 属性，它的作用就是精确匹配路径，经常与`<Switch>` 联合使用。只有当 URL 和该 `<Route>` 的 path 属性完全一致的情况下才能匹配上：
@@ -546,7 +537,6 @@ import { Switch, Route } from "react-router-dom";
   <Route exact path="/" component={Home}></Route>
   <Route exact path="/login" component={Login}></Route>
 </Switch>;
-复制代码;
 ```
 
 ## Redux
@@ -633,7 +623,7 @@ export default function createStore(reducer, initialState, middleFunc) {
         subscribe
     }
 }
-复制代码
+
 ```
 
 **（2）工作流程**
@@ -687,7 +677,6 @@ const enhancer = composeEnhancers(applyMiddleware(thunk));
 const store = createStore(reducer, enhancer);
 
 export default store;
-复制代码;
 ```
 
 - 添加一个返回函数的 actionCreator，将异步请求逻辑放在里面
@@ -706,7 +695,6 @@ export const getHttpAction = (url, func) => (dispatch) => {
     dispatch(action);
   });
 };
-复制代码;
 ```
 
 - 生成 action，并发送 action
@@ -717,7 +705,7 @@ componentDidMount(){
     // 发送函数类型的action时，该action的函数体会自动执行
     store.dispatch(action)
 }
-复制代码
+
 ```
 
 **（2）使用 redux-saga 中间件**
@@ -759,7 +747,6 @@ const store = createStore(reducer, enhancer);
 sagaMiddleware.run(TodoListSaga);
 
 export default store;
-复制代码;
 ```
 
 - 将异步请求放在 sagas.js 中
@@ -788,7 +775,6 @@ function* mySaga() {
 }
 
 export default mySaga;
-复制代码;
 ```
 
 - 发送 action
@@ -901,7 +887,6 @@ const takeEvery = (pattern, saga, ...args) =>
       yield fork(saga, ...args.concat(action));
     }
   });
-复制代码;
 ```
 
 - **takeLatest**
@@ -922,7 +907,6 @@ const takeLatest = (pattern, saga, ...args) =>
       lastTask = yield fork(saga, ...args.concat(action));
     }
   });
-复制代码;
 ```
 
 ### Redux 状态管理器和变量挂载到 window 中有什么区别

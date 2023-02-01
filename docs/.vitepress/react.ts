@@ -24,6 +24,10 @@ export default [
     link: "/react/lifecycle",
   },
   {
+    text: "React 事件机制",
+    link: "/react/event",
+  },
+  {
     text: "React 渲染原理",
     link: "/react/render",
   },
@@ -56,5 +60,9 @@ export default [
   {
     text: "React 调试工具",
     link: "/react/utils",
+  },
+  {
+    text: "Fiber",
+    link: "/react/Fiber",
   },
 ];

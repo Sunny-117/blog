@@ -79,7 +79,6 @@ o2.student.count = "00000";
 this.setState({
   obj: o2,
 });
-复制代码;
 ```
 
 （2）使用 JSON.parse(JSON.stringfy())进行深拷贝，但是遇到数据为 undefined 和函数时就会错。
@@ -90,7 +89,6 @@ o2.student.count = "00000";
 this.setState({
   obj: o2,
 });
-复制代码;
 ```
 
 **React 如何判断什么时候重新渲染组件？**

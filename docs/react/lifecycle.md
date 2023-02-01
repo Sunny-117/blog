@@ -122,7 +122,6 @@ class App extends React.Component {
     );
   }
 }
-复制代码;
 ```
 
 ##### （3）render
@@ -164,7 +163,6 @@ class App extends React.Component {
     return <div className="counter">counter值: {this.state.counter}</div>;
   }
 }
-复制代码;
 ```
 
 #### 组件更新阶段
@@ -203,7 +201,6 @@ this.setState({ number: this.state.number });
 
 ```javascript
 getSnapshotBeforeUpdate(prevProps, prevState);
-复制代码;
 ```
 
 这个方法在 `render` 之后，`componentDidUpdate` 之前调用，有两个参数 `prevProps` 和 `prevState`，表示更新之前的 `props` 和 `state`，这个函数必须要和 `componentDidUpdate` 一起使用，并且要有一个返回值，默认是 `null`，这个返回值作为第三个参数传给 `componentDidUpdate`。
@@ -217,7 +214,7 @@ componentDidUpdate() 会在更新后会被立即调用，首次渲染不会执�
 
 ```javascript
 componentDidUpdate(prevProps, prevState, snapshot){}
-复制代码
+
 ```
 
 该方法有三个参数：
@@ -320,7 +317,6 @@ class ScrollingList extends React.Component {
     return <div ref={this.listRef}>{/* ...contents... */}</div>;
   }
 }
-复制代码;
 ```
 
 ### React 16.X 中 props 改变后在哪个生命周期中处理
@@ -345,7 +341,7 @@ static getDerivedStateFromProps(nextProps, prevState) {
     // 否则，对于state不进行任何操作
     return null;
 }
-复制代码
+
 ```
 
 ### state 和 props 触发更新的生命周期分别有什么区别？
