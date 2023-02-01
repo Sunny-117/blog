@@ -4,12 +4,24 @@ export default [
     link: "/react/",
   },
   {
+    text: "那些年，被问烂了的 React 面试题",
+    link: "/react/react-interview",
+  },
+  {
     text: "React Hooks",
     link: "/react/hooks",
   },
   {
+    text: "React 组件通信",
+    link: "/react/component-communication",
+  },
+  {
     text: "React Context",
     link: "/react/context",
+  },
+  {
+    text: "React 生命周期",
+    link: "/react/lifecycle",
   },
   {
     text: "React 渲染原理",

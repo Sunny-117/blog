@@ -43,12 +43,15 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
   },
 
   {
-    text: "vue",
+    text: `Vuejs ${vueConfig.length}篇`,
+    collapsed: true,
     collapsible: true,
     items: vueConfig,
   },
   {
-    text: "React",
+    text: `React ${reactConfig.length}篇`,
+    collapsible: true,
+    collapsed: true,
     items: reactConfig,
   },
   {
