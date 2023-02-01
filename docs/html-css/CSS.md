@@ -139,7 +139,9 @@ border-bottom-right-radius: 30px 30px;
 border-bottom-left-radius: 40px 40px;
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/758572/1625880221030-fc75f12c-fb89-47cf-8a30-d2d6cc7715e6.png#clientId=ude349fd5-ab5b-4&errorMessage=unknown%20error&from=paste&height=187&id=ud6702e31&name=image.png&originHeight=373&originWidth=386&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17975&status=error&style=none&taskId=ud5644c1e-c804-48c1-89b1-03291e621d9&title=&width=193)半径小于长方形的长度
+![](../public/css/2023-02-01-21-02-59.png)
+
+半径小于长方形的长度
 
 1/4 圆
 
