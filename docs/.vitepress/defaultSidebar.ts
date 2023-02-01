@@ -108,6 +108,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "你不知道的 computed Vue2",
         link: "/vue/computed",
       },
+      {
+        text: "Vue3 onePage",
+        link: "/vue/vue3-onepage",
+      },
     ],
   },
   {
