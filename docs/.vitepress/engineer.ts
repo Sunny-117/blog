@@ -23,4 +23,12 @@ export default [
     text: "pnpm原理",
     link: "/front-end-engineering/pnpm原理",
   },
+  {
+    text: "模块化",
+    link: "/front-end-engineering/modularization",
+  },
+  {
+    text: "包管理器",
+    link: "/front-end-engineering/PackageManager",
+  },
 ];

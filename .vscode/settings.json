@@ -1,5 +1,5 @@
 {
     "editor.cursorSmoothCaretAnimation": false,
     // "pasteImage.path": "${currentFileDir}",
-    "pasteImage.path": "${currentFileDir}/../public/css",
+    "pasteImage.path": "${currentFileDir}/../public/front-end-engineering",
 }
