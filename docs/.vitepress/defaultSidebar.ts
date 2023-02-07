@@ -36,6 +36,15 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       },
     ],
   },
+  {
+    text: "TypeScript",
+    items: [
+      {
+        text: "TypeScript OnePage",
+        link: "/ts/TypeScript-onePage",
+      },
+    ],
+  },
 
   {
     text: "前端工程化",
