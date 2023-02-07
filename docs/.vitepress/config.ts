@@ -18,6 +18,11 @@ export default defineConfig({
     // TODO
     anchor: {},
     toc: { level: [1, 2, 3] },
+    theme: {
+      light: "min-dark",
+      dark: "one-dark-pro",
+    },
+    lineNumbers: true,
   },
   themeConfig: {
     outline: [1, 3],
