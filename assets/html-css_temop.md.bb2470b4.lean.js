@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as a}from"./app.8207ecbb.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"html-css/temop.md","lastUpdated":1675259332000}'),s={name:"html-css/temop.md"};function o(r,c,n,p,m,d){return a(),e("div")}const l=t(s,[["render",o]]);export{i as __pageData,l as default};
