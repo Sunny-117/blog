@@ -1,7 +1,7 @@
 # webpack常用拓展
 
 
-## 清楚输出目录
+## 清除输出目录
 
 clean-webpack-plugin
 当文件内容变化，重新打包，会自动删除原来打包的文件
@@ -116,7 +116,7 @@ module.exports = {
 
 1. 内部执行webpack命令，传递命令参数
 2. 开启watch
-3. 注册hooks：类似于plugin，webpack-dev-server会向webpack中注册一些钩子函数，主要功能如下： 
+3. 注册hooks：类似于plugin，webpack-dev-server会向webpack中注册一些钩子函数，主要功能如下：
    - 将资源列表（aseets）保存起来
    - 禁止webpack输出文件
 4. 用express开启一个服务器，监听某个端口，当请求到达后，根据请求的路径，给予相应的资源内容
