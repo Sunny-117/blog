@@ -61,4 +61,6 @@ export default [
   { text: "VueRouter 路由从使用到源码", link: "/vue/vue-router" },
   { text: "Vuex 思想和源码", link: "/vue/vuex" },
   { text: "今天我是面试官", link: "/vue/interviewer" },
+  { text: "vue 手写篇", link: "/vue/challages" },
+
 ];

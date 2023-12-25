@@ -8,7 +8,7 @@
 ```javascript
 function getUserName() {
   if (Math.random() < 0.5) {
-    return "袁进";
+    return "sunny-117";
   }
   return 404;
 }
