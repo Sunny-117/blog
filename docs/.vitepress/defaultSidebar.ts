@@ -90,6 +90,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "🔥刷题之探索最优解",
         link: "/algorithm/🔥刷题之探索最优解",
       },
+      {
+        text: "js-challanges",
+        link: "/js-challanges/index.md",
+      },
     ],
   },
   {
