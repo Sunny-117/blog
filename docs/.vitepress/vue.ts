@@ -1,9 +1,5 @@
 export default [
   {
-    text: "Vuejs OnePage",
-    link: "/vue/index",
-  },
-  {
     text: "那些年，被问烂了的 Vuejs 面试题",
     link: "/vue/vue-interview",
   },
@@ -20,12 +16,8 @@ export default [
     link: "/vue/v-model",
   },
   {
-    text: "Vue2 数据响应原理",
+    text: "Vuejs 数据响应原理",
     link: "/vue/reactive",
-  },
-  {
-    text: "Vue3 数据响应原理",
-    link: "/vue/reactive-v3",
   },
 
   {
