@@ -76,21 +76,6 @@ new Vue(vnode.componentOptions);
 
 ![](../public/vue/2023-02-01-14-22-04.png)
 
-## 解释一下对 _Vue_ 生命周期的理解
-
-### **什么是 _vue_ 生命周期**
-
-对于 _vue_ 来讲，生命周期就是一个 _vue_ 实例从创建到销毁的过程。
-
-### **_vue_ 生命周期的作用是什么**
-
-在生命周期的过程中会运行着一些叫做生命周期的函数，给予了开发者在不同的生命周期阶段添加业务代码的能力。
-
-其实和回调是一个概念，当系统执行到某处时，检查是否有 _hook_(钩子)，有的话就会执行回调。
-
-通俗的说，_hook_ 就是在程序运行中，在某个特定的位置，框架的开发者设计好了一个钩子来告诉我们当前程序已经运行到特定的位置了，会触发一个回调函数，并提供给我们，让我们可以在生命周期的特定阶段进行相关业务代码的编写。
-
-### **_vue_ 生命周期有几个阶段**
 
 它可以总共分为 _8_ 个阶段：创建前/后, 载入前/后,更新前/后,销毁前/销毁后。
 
@@ -101,6 +86,11 @@ new Vue(vnode.componentOptions);
 - _beforeMount_：发生在挂载之前，在这之前 _template_ 模板已导入渲染函数编译。而当前阶段虚拟 _DOM_ 已经创建完成，即将开始渲染。在此时也可以对数据进行更改，不会触发 _updated_。
 
 - _mounted_：在挂载完成后发生，在当前阶段，真实的 _DOM_ 挂载完毕，数据完成双向绑定，可以访问到 _DOM_ 节点，使用 _$refs_ 属性对 _DOM_ 进行操作。
+
+> 注意：
+> - created:在模板渲染成 html 前调用，即通常初始化某些属性值，然后再渲染成视图。
+> - mounted:在模板渲染成 html 后调用，通常是初始化页面完成后，再对 html 的 dom 节点进行一些需要的操作。
+
 
 - _beforeUpdate_：发生在更新之前，也就是响应式数据发生更新，虚拟 _DOM_ 重新渲染之前被触发，你可以在当前阶段进行更改数据，不会造成重渲染。
 
@@ -114,27 +104,9 @@ new Vue(vnode.componentOptions);
 
 - **deactivated** keep-alive 专属，组件被销毁时调用
 
-### **第一次页面加载会触发哪几个钩子**
+## 常见问题
 
-会触发 _4_ 个钩子，分别是：_beforeCreate、created、beforeMount、mounted_
-
-- **_DOM_ 渲染在哪个周期就已经完成**
-
-_DOM_ 渲染是在 _mounted_ 阶段完成，此阶段真实的 _DOM_ 挂载完毕，数据完成双向绑定，可以访问到 _DOM_ 节点。
-
-### **多组件（父子组件）中生命周期的调用顺序说一下**
-
-组件的调用顺序都是先父后子，渲染完成的顺序是先子后父。组件的销毁操作是先父后子，销毁完成的顺序是先子后父。
-
-- 加载渲染过程：父*beforeCreate*->父*created*->父*beforeMount*->子*beforeCreate*->子*created*->子*beforeMount*- >子*mounted*->父*mounted*
-
-- 子组件更新过程：父*beforeUpdate*->子*beforeUpdate*->子*updated*->父*updated*
-
-- 父组件更新过程：父 _beforeUpdate_ -> 父 _updated_
-
-- 销毁过程：父*beforeDestroy*->子*beforeDestroy*->子*destroyed*->父 destroyed
-
-## **你的接口请求一般放在哪个生命周期中？为什么要这样做？**
+### **接口请求一般放在哪个生命周期中?**
 
 > 接口请求可以放在钩子函数 _created、beforeMount、mounted_ 中进行调用，因为在这三个钩子函数中，_data_ 已经创建，可以将服务端端返回的数据进行赋值。
 >
@@ -144,7 +116,9 @@ _DOM_ 渲染是在 _mounted_ 阶段完成，此阶段真实的 _DOM_ 挂载完�
 > - _SSR_ 不支持 _beforeMount 、mounted_ 钩子函数，所以放在 _created_ 中有助于代码的一致性
 > - _created_ 是在模板渲染成 _html_ 前调用，即通常初始化某些属性值，然后再渲染成视图。如果在 _mounted_ 钩子函数中请求数据可能导致页面闪屏问题
 
-## Vue 子组件和父组件执行顺序
+
+
+### Vue 子组件和父组件执行顺序
 
 **加载渲染过程：**
 
@@ -170,17 +144,3 @@ _DOM_ 渲染是在 _mounted_ 阶段完成，此阶段真实的 _DOM_ 挂载完�
 2. 子组件 beforeDestroy
 3. 子组件 destroyed
 4. 父组件 destoryed
-
-## created 和 mounted 的区别
-
-- created:在模板渲染成 html 前调用，即通常初始化某些属性值，然后再渲染成视图。
-- mounted:在模板渲染成 html 后调用，通常是初始化页面完成后，再对 html 的 dom 节点进行一些需要的操作。
-
-## 一般在哪个生命周期请求异步数据
-
-我们可以在钩子函数 created、beforeMount、mounted 中进行调用，因为在这三个钩子函数中，data 已经创建，可以将服务端端返回的数据进行赋值。
-
-推荐在 created 钩子函数中调用异步请求，因为在 created 钩子函数中调用异步请求有以下优点：
-
-- 能更快获取到服务端数据，减少页面加载时间，用户体验更好；
-- SSR 不支持 beforeMount 、mounted 钩子函数，放在 created 中有助于一致性。

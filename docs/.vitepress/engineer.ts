@@ -1,6 +1,6 @@
 export default [
   {
-    text: "这一定是你见过最全的性能优化方法论",
+    text: "前端性能优化方法论",
     link: "/front-end-engineering/performance",
   },
   {

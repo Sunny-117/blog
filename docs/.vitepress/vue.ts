@@ -29,7 +29,7 @@ export default [
     link: "/vue/lifecycle",
   },
   {
-    text: "你不知道的 computed Vue2",
+    text: "computed",
     link: "/vue/computed",
   },
   {
@@ -37,7 +37,7 @@ export default [
     link: "/vue/keep-alive-LRU",
   },
   {
-    text: "Vue3 onePage",
+    text: "Vue3 新特性",
     link: "/vue/vue3-onepage",
   },
   {

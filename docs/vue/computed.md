@@ -1,14 +1,4 @@
-# 你不知道的 computed Vue2
-
-## 从一道面试题说起
-
-:::tip computed 和 methods 有什么区别?
-
-1. 在使用时，computed 当做属性使用，而 methods 则当做方法调用
-2. computed 可以具有 getter 和 setter，因此可以赋值，而 methods 不行
-3. computed 无法接收多个参数，而 methods 可以
-4. computed 具有缓存，而 methods 没有
-   :::
+# computed
 
 ## Vue2 中 computed 源码解读
 
@@ -43,14 +33,28 @@ vue 对 methods 的处理比较简单，只需要遍历 methods 配置中的每�
 
 而对于计算属性的 setter，则极其简单，当设置计算属性时，直接运行 setter 即可
 
-## Vue3 中的 computed
+## Vue3 中 computed 源码解读
 
 TODO
 
-## **说一下 _watch_ 与 _computed_ 的区别是什么？以及他们的使用场景分别是什么？**
 
-> 区别：
->
+
+## 常见问题
+
+### 面试官：computed 和 methods 有什么区别?
+
+我：
+> 1. 在使用时，computed 当做属性使用，而 methods 则当做方法调用
+> 2. computed 可以具有 getter 和 setter，因此可以赋值，而 methods 不行
+> 3. computed 无法接收多个参数，而 methods 可以
+> 4. computed 具有缓存，而 methods 没有
+
+面试官：回去等通知吧！
+
+更深入的回答：↑
+
+### watch 与 computed 的区别是什么？
+
 > 1. 都是观察数据变化的（相同）
 > 2. 计算属性将会混入到 vue 的实例中，所以需要监听自定义变量；watch 监听 data 、props 里面数据的变化；
 > 3. computed 有缓存，它依赖的值变了才会重新计算，watch 没有；
@@ -59,10 +63,7 @@ TODO
 > 6. watch 监听函数接收两个参数，第一个是最新值，第二个是输入之前的值；
 > 7. computed 属性是函数时，都有 get 和 set 方法，默认走 get 方法，get 必须有返回值（return）
 
-> watch 的 参数：
->
-> - deep：深度监听
-> - immediate ：组件加载立即触发回调函数执行
+> watch 的 参数：deep：深度监听；immediate ：组件加载立即触发回调函数执行
 
 **对于 Computed：**
 
@@ -93,6 +94,8 @@ TODO
 - 当需要进行数值计算,并且依赖于其它数据时，应该使用 computed，因为可以利用 computed 的缓存特性，避免每次获取值时都要重新计算。
 - 当需要在数据变化时执行异步或开销较大的操作时，应该使用 watch，使用 watch 选项允许执行异步操作 ( 访问一个 API )，限制执行该操作的频率，并在得到最终结果前，设置中间状态。这些都是计算属性无法做到的。
 
-## **在 _Vue_ 中要获取当前时间你会放到 _computed_ 还是 _methods_ 里？**
+### **在 _Vue_ 中要获取当前时间你会放到 _computed_ 还是 _methods_ 里？**
 
 > 放在 _computed_ 里面。因为 _computed_ 只有在它的相关依赖发生改变时才会重新求值。相比而言，方法只要发生重新渲染，_methods_ 调用总会执行所有函数。
+
+
