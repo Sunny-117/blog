@@ -406,6 +406,60 @@ module.exports = {
 1. 使用非常繁琐
 2. 如果第三方库中包含重复代码，则效果不太理想
 
+**详解dllPlugin**
+
+
+DllPlugin 可以将特定的类库提前打包然后引入。这种方式可以极大的减少打包类库的次数，只有当类库更新版本才有需要重新打包，并且也实现了将公共代码抽离成单独文件的优化方案。DllPlugin的使用方法如下：
+
+```js
+// 单独配置在一个文件中
+// webpack.dll.conf.js
+const path = require('path')
+const webpack = require('webpack')
+module.exports = {
+  entry: {
+    // 想统一打包的类库
+    vendor: ['react']
+  },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].dll.js',
+    library: '[name]-[hash]'
+  },
+  plugins: [
+    new webpack.DllPlugin({
+      // name 必须和 output.library 一致
+      name: '[name]-[hash]',
+      // 该属性需要与 DllReferencePlugin 中一致
+      context: __dirname,
+      path: path.join(__dirname, 'dist', '[name]-manifest.json')
+    })
+  ]
+}
+```
+
+然后需要执行这个配置文件生成依赖文件，接下来需要使用 DllReferencePlugin 将依赖文件引入项目中
+
+```js
+// webpack.conf.js
+module.exports = {
+  // ...省略其他配置
+  plugins: [
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      // manifest 就是之前打包出来的 json 文件
+      manifest: require('./dist/vendor-manifest.json'),
+    })
+  ]
+}
+```
+
+可以通过一些小的优化点来加快打包速度
+
+- resolve.extensions：用来表明文件后缀列表，默认查找顺序是 ['.js', '.json']，如果你的导入文件没有添加后缀就会按照这个顺序查找文件。我们应该尽可能减少后缀列表长度，然后将出现频率高的后缀排在前面
+- resolve.alias：可以通过别名的方式来映射一个路径，能让 Webpack 更快找到路径
+- module.noParse：如果你确定一个文件下没有其他依赖，就可以使用该属性让 Webpack 不扫描该文件，这种方式对于大型的类库很有帮助
+
 #### 2.2 自动分包（会降低构建效率，开发效率提升，新的模块不需要手动处理了）
 
 1. 基本原理
@@ -843,96 +897,866 @@ plugins: [
 
 #### 2.7 按需加载 
 
-#### 2.8 DllPlugin
+在开发 SPA 项目的时候，项目中都会存在很多路由页面。如果将这些页面全部打包进一个 JS 文件的话，虽然将多个请求合并了，但是同样也加载了很多并不需要的代码，耗费了更长的时间。那么为了首页能更快地呈现给用户，希望首页能加载的文件体积越小越好，这时候就可以使用按需加载，将每个路由页面单独打包为一个文件。当然不仅仅路由可以按需加载，对于 lodash 这种大型类库同样可以使用这个功能。
+ 
+按需加载的代码实现这里就不详细展开了，因为鉴于用的框架不同，实现起来都是不一样的。当然了，虽然他们的用法可能不同，但是底层的机制都是一样的。都是当使用的时候再去下载对应文件，返回一个 Promise，当 Promise 成功以后去执行回调。
 
-#### 2.9 其他
 
+#### 2.8 其他
 
+- 压缩代码：删除多余的代码、注释、简化代码的写法等等⽅式。可以利⽤webpack的 UglifyJsPlugin 和 ParallelUglifyPlugin 来压缩JS⽂件， 利⽤ cssnano （css-loader?minimize）来压缩css
+- 利⽤CDN加速: 在构建过程中，将引⽤的静态资源路径修改为CDN上对应的路径。可以利⽤webpack对于 output 参数和各loader的 publicPath 参数来修改资源路径
+- Code Splitting: 将代码按路由维度或者组件分块(chunk),这样做到按需加载,同时可以充分利⽤浏览器缓存
+- 提取公共第三⽅库: SplitChunksPlugin插件来进⾏公共模块抽取,利⽤浏览器缓存可以⻓期缓存这些⽆需频繁变动的公共代码
 
+提取第三方库 vendor： 
+这是也是 webpack 大法的 code splitting，提取一些第三方的库，从而减小 app.js 的大小。 
+代码层面做好懒加载，网络层面把 CDN、本地缓存用好，前端页面问题基本解决一大半了。剩下主要就是接口层面和“视觉上的快”的优化了，骨架屏先搞起，渲染一个“假页面”占位；接口该合并的合并，该拆分的拆分，如果是可滚动的长页面，就分批次请求
 
+**总结：如果有一个工程打包特别大-如何进行优化？**
+1. CDN 如果工程中使用了一些知名的第三方库，可以考虑使用 CDN，而不进行打包 
+2. 抽离公共模块 如果工程中用到了一些大的公共库，可以考虑将其分割出来单独打包 
+3. 异步加载 对于那些不需要在一开始就执行的模块，可以考虑使用动态导入的方式异步加载它们，以尽量减少主包的体积 
+4. 压缩、混淆 
+5. tree shaking 尽量使用 ESM 语法进行导入导出，充分利用 tree shaking 去除无用代码 
+6. gzip 开启 gzip 压缩，进一步减少包体积 
+7. 环境适配 有些打包结果中包含了大量兼容性处理的代码，但在新版本浏览器中这些代码毫无意义。因此，可以把浏览器分为多个层次，为不同层次的浏览器给予不同的打包结果。 
 
 
+### 3. 运行性能
 
+运行性能是指，JS代码在浏览器端的运行速度，它主要取决于我们如何书写高性能的代码
 
+永远不要过早的关注于性能，因为你在开发的时候，无法完全预知最终的运行性能，过早的关注性能会极大的降低开发效率
+性能优化主要从上面三个维度入手，性能优化没有完美的解决方案，需要具体情况具体分析
 
+### 4. webpack5 内置优化
 
+1. **[webpack scope hoisting](https://webpack.docschina.org/plugins/module-concatenation-plugin/)**
 
 
+scope hoisting 是 webpack 的内置优化，它是针对模块的优化，在生产环境打包时会自动开启。
 
+在未开启scope hoisting时，webpack 会将每个模块的代码放置在一个独立的函数环境中，这样是为了保证模块的作用域互不干扰。
 
+而 scope hoisting 的作用恰恰相反，是把多个模块的代码合并到一个函数环境中执行。在这一过程中，webpack 会按照顺序正确的合并模块代码，同时对涉及的标识符做适当处理以避免重名。
 
+这样做的好处是减少了函数调用，对运行效率有一定提升，同时也降低了打包体积。
 
+但 scope hoisting 的启用是有前提的，如果遇到某些模块多次被其他模块引用，或者使用了动态导入的模块，或者是非 ESM 的模块，都不会有 scope hoisting。
 
 
+2. 清除输出目录
 
+`webpack5`清除输出目录开箱可用，无须安装`clean-webpack-plugin`，具体做法如下：
 
+```javascript
+module.exports = {
+  output: {
+    clean: true
+  }
+}
+```
 
+3. top-level-await
 
+`webpack5`现在允许在模块的顶级代码中直接使用`await`
 
+```javascript
+// src/index.js
+const resp = await fetch("http://www.baidu.com");
+const jsonBody = await resp.json();
+export default jsonBody;
+```
 
+目前，`top-level-await`还未成为正式标准，因此，对于`webpack5`而言，该功能是作为`experiments`发布的，需要在`webpack.config.js`中配置开启
 
+```javascript
+// webpack.config.js
+module.exports = {
+  experiments: {
+    topLevelAwait: true,
+  },
+};
+```
 
+4. 打包体积优化
 
+`webpack5`对模块的合并、作用域提升、`tree shaking`等处理更加智能
 
+```javascript
+// webpack.config.js
+module.exports = {
+  mode: "production",
+  devtool: "source-map",
+  entry: {
+    index1: "./src/index1.js",
+    index2: "./src/index2.js",
+  },
+};
+
+```
+
+![](../public/front-end-engineering/2024-01-28-17-09-16.png)
+
+![](../public/front-end-engineering/2024-01-28-17-09-22.png)
+
+5. 打包缓存开箱即用
+
+在`webpack4`中，需要使用`cache-loader`缓存打包结果以优化之后的打包性能
+
+而在`webpack5`中，默认就已经开启了打包缓存，无须再安装`cache-loader`
+
+默认情况下，`webpack5`是将模块的打包结果缓存到**内存**中，可以通过`cache`配置进行更改
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  mode: 'development',
+  devtool: 'source-map',
+  entry: './src/index.js',
+  cache: {
+    type: 'filesystem', // 缓存类型，支持：memory、filesystem
+    cacheDirectory: path.resolve(__dirname, 'node_modules/.cache/webpack'), // 缓存目录，仅类型为 filesystem 有效
+    // 更多配置参考：https://webpack.docschina.org/configuration/other-options/#cache
+  },
+};
+
+```
+
+> 关于`cache`的更多配置参考：[https://webpack.docschina.org/configuration/other-options/#cache](https://webpack.docschina.org/configuration/other-options/#cache)
+
+
+6. 资源模块
+
+在`webpack4`中，针对资源型文件我们通常使用`file-loader`、`url-loader`、`raw-loader`进行处理
+
+由于大部分前端项目都会用到资源型文件，因此`webpack5`原生支持了资源型模块
+
+详见：[https://webpack.docschina.org/guides/asset-modules/](https://webpack.docschina.org/guides/asset-modules/)
+
+```javascript
+// index.js
+import bigPic from './assets/big-pic.png'; // 期望得到路径
+import smallPic from './assets/small-pic.jpg'; // 期望得到base64
+import yueyunpeng from './assets/yueyunpeng.gif'; // 期望根据文件大小决定是路径还是base64
+import raw from './assets/raw.txt'; // 期望得到原始文件内容
+
+console.log('big-pic.png', bigPic);
+console.log('small-pic.jpg', smallPic);
+console.log('yueyunpeng.gif', yueyunpeng);
+console.log('raw.txt', raw);
+
+```
+
+```javascript
+// webpack.config.js
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+  mode: 'development',
+  devtool: 'source-map',
+  entry: './src/index.js',
+  devServer: {
+    port: 8080,
+  },
+  plugins: [new HtmlWebpackPlugin()],
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'assets/[hash:5][ext]', // 在这里自定义资源文件保存的文件名
+  },
+  module: {
+    rules: [
+      {
+        test: /\.png/,
+        type: 'asset/resource', // 作用类似于 file-loader
+      },
+      {
+        test: /\.jpg/,
+        type: 'asset/inline', // 作用类似于 url-loader 文件大小不足的场景
+      },
+      {
+        test: /\.txt/,
+        type: 'asset/source', // 作用类似于 raw-loader
+      },
+      {
+        test: /\.gif/,
+        type: 'asset', // 作用类似于 url-loader。在导出一个 data uri 和发送一个单独的文件之间自动选择
+        generator: {
+          filename: 'gif/[hash:5][ext]', // 这里的配置会覆盖 assetModuleFilename
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024, // 4kb以下使用 data uri
+            // 4kb以上就是文件
+          },
+        },
+      },
+    ],
+  },
+};
+
+```
+
+### 字节跳动面试题：说一下项目里有做过哪些 webpack 上的优化 
+
+1. 对传输性能的优化 
+  -  压缩和混淆 使用 Uglifyjs 或其他类似工具对打包结果进行压缩、混淆，可以有效的减少包体积 
+  -  tree shaking 项目中尽量使用 ESM，可以有效利用 tree shaking 优化，降低包体积 
+  -  抽离公共模块 将一些公共代码单独打包，这样可以充分利用浏览器缓存，其他代码变动后，不影响公共代码，浏览器可以直接从缓存中找到公共代码。 具体方式有多种，比如 dll、splitChunks 
+  -  异步加载 对一些可以延迟执行的模块可以使用动态导入的方式异步加载它们，这样在打包结果中，它们会形成单独的包，同时，在页面一开始解析时并不需要加载它们，而是页面解析完成后，执行 JS 的过程中去加载它们。 这样可以显著提高页面的响应速度，在单页应用中尤其有用。 
+  -  CDN 对一些知名的库使用 CDN，不仅可以节省打包时间，还可以显著提升库的加载速度 
+  -  gzip 目前浏览器普遍支持 gzip 格式，因此可以将静态文件均使用 gzip 进行压缩 
+  -  环境适配 有些打包结果中包含了大量兼容性处理的代码，但在新版本浏览器中这些代码毫无意义。因此，可以把浏览器分为多个层次，为不同层次的浏览器给予不同的打包结果。 
+ 
+2. 对打包过程的优化 
+  -  noParse 很多第三方库本身就是已经打包好的代码，对于这种代码无须再进行解析，可以使用 noParse 配置排除掉这些第三方库 
+  -  externals 对于一些知名的第三方库可以使用 CDN，这部分库可以通过 externals 配置不进行打包 
+  -  限制 loader 的范围 在使用 loader 的时候，可以通过 exclude 排除掉一些不必要的编译，比如 babel-loader 对于那些已经完成打包的第三方库没有必要再降级一次，可以排除掉 
+  -  开启 loader 缓存 可以利用cache-loader缓存 loader 的编译结果，避免在源码没有变动时反复编译 
+  -  开启多线程编译 可以利用thread-loader开启多线程编译，提升编译效率 
+  -  动态链接库 对于某些需要打包的第三方库，可以使用 dll 的方式单独对其打包，然后 DLLPlugin 将其整合到当前项目中，这样就避免了在开发中频繁去打包这些库 
+ 
+3. 对开发体验的优化 
+  -  lint 使用 eslint、stylelint 等工具保证团队代码风格一致 
+  -  HMR 使用热替换避免页面刷新导致的状态丢失，提升开发体验 
+
+
+## CSS
+
+:::tip
+CSS 渲染性能优化
+:::
+
+1. 使用 id selector 非常的高效。在使用 id selector 的时候需要注意一点：因为 id 是唯一的，所以不需要既指定 id 又指定 tagName：
+
+```css
+/* Bad  */
+p#id1 {color:red;}  
+
+/* Good  */
+#id1 {color:red;}
+```
+
+2. 不要使用 attribute selector，如：p[att1=”val1”]。这样的匹配非常慢。更不要这样写：p[id="id1"]。这样将 id selector 退化成 attribute selector。
+
+```css
+/* Bad  */
+p[id="jartto"]{color:red;}  
+p[class="blog"]{color:red;}  
+/* Good  */
+#jartto{color:red;}  
+.blog{color:red;}
+```
+3. 通常将浏览器前缀置于前面，将标准样式属性置于最后，类似：
+
+```css
+.foo {
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+```
+这里推荐参阅 CSS 规范-优化方案：http://nec.netease.com/standard/css-optimize.html
+
+4. 遵守 CSSLint 规则
+
+font-faces        　　　　  　　　不能使用超过5个web字体
+
+import        　　　　　　　 　　  禁止使用@import
+
+regex-selectors        　　　　  禁止使用属性选择器中的正则表达式选择器
+
+universal-selector    　　 　　  禁止使用通用选择器*
 
+unqualified-attributes    　　　禁止使用不规范的属性选择器
 
+zero-units            　　 　　　0后面不要加单位
 
+overqualified-elements    　　　使用相邻选择器时，不要使用不必要的选择器
 
+shorthand        　　　　　　　　 简写样式属性
 
+duplicate-background-images    相同的url在样式表中不超过一次
 
+更多的 CSSLint 规则可以参阅：https://github.com/CSSLint/csslint
 
+5. 不要使用 @import
 
+使用 @import 引入 CSS 会影响浏览器的并行下载。使用 @import 引用的 CSS 文件只有在引用它的那个 CSS 文件被下载、解析之后，浏览器才会知道还有另外一个 CSS 需要下载，这时才去下载，然后下载后开始解析、构建 Render Tree 等一系列操作。
 
+多个 @import 会导致下载顺序紊乱。在 IE 中，@import 会引发资源文件的下载顺序被打乱，即排列在 @import 后面的 JS 文件先于 @import 下载，并且打乱甚至破坏 @import 自身的并行下载。
 
+6. 避免过分重排（Reflow）
 
+所谓重排就是浏览器重新计算布局位置与大小。常见的重排元素：
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
+width
+height 
+padding 
+margin 
+display 
+border-width 
+border 
+top 
+position 
+font-size 
+float 
+text-align 
+overflow-y 
+font-weight 
+overflow 
+left 
+font-family 
+line-height 
+vertical-align 
+right 
+clear 
+white-space 
+bottom 
+min-height
+```
+
+7. 依赖继承。如果某些属性可以继承，那么自然没有必要在写一遍。
+
+8. 其他：使用 id 选择器非常高效，因为 id 是唯一的；使用渐进增强的方案；值缩写；避免耗性能的属性；背景图优化合并；文件压缩
+
+
+## 网络层面
+
+### 总结
+
+- 优化打包体积：利用一些工具压缩、混淆最终打包代码，减少包体积
+- 多目标打包：利用一些打包插件，针对不同的浏览器打包出不同的兼容性版本，这样一来，每个版本中的兼容性代码就会大大减少，从而减少包体积
+- 压缩：现代浏览器普遍支持压缩格式，因此服务端的各种文件可以压缩后再响应给客户端，只要解压时间小于优化的传输时间，压缩就是可行的
+- CDN：利用 CDN 可以大幅缩减静态资源的访问时间，特别是对于公共库的访问，可以使用知名的 CDN 资源，这样可以实现跨越站点的缓存
+- 缓存：对于除 HTML 外的所有静态资源均可以开启协商缓存，利用构建工具打包产生的文件 hash 值来置换缓存
+- http2：开启 http2 后，利用其多路复用、头部压缩等特点，充分利用带宽传递大量的文件数据
+- 雪碧图：对于不使用 HTTP2 的场景，可以将多个图片合并为雪碧图，以达到减少文件的目的
+- defer、async：通过 defer 和 async 属性，可以让页面尽早加载 js 文件
+- prefetch、preload：通过 prefetch 属性，可以让页面在空闲时预先下载其他页面可能要用到的资源；通过 preload 属性，可以让页面预先下载本页面可能要用到的资源
+- 多个静态资源域：对于不使用 HTTP2 的场景，将相对独立的静态资源分到多个域中保存，可以让浏览器同时开启多个 TCP 连接，并行下载 （http2之前，浏览器开多个tcp，同一个域下最大数6个，为了多，静态资源分多个域存储，突破6个的限制）
+
+
+### CDN
+
+CDN（Content Delivery Network，内容分发网络）是指一种通过互联网互相连接的电脑网络系统，利用最靠近每位用户的服务器，更快、更可靠地将音乐、图片、视频、应用程序及其他文件发送给用户，来提供高性能、可扩展性及低成本的网络内容传递给用户。
+
+典型的CDN系统构成：
+- 分发服务系统： 最基本的工作单元就是Cache设备，cache（边缘cache）负责直接响应最终用户的访问请求，把缓存在本地的内容快速地提供给用户。同时cache还负责与源站点进行内容同步，把更新的内容以及本地没有的内容从源站点获取并保存在本地。Cache设备的数量、规模、总服务能力是衡量一个CDN系统服务能力的最基本的指标。
+
+- 负载均衡系统： 主要功能是负责对所有发起服务请求的用户进行访问调度，确定提供给用户的最终实际访问地址。两级调度体系分为全局负载均衡（GSLB）和本地负载均衡（SLB）。全局负载均衡主要根据用户就近性原则，通过对每个服务节点进行“最优”判断，确定向用户提供服务的cache的物理位置。本地负载均衡主要负责节点内部的设备负载均衡
+
+- 运营管理系统： 运营管理系统分为运营管理和网络管理子系统，负责处理业务层面的与外界系统交互所必须的收集、整理、交付工作，包含客户管理、产品管理、计费管理、统计分析等功能。
+
+#### 作用
+
+
+CDN一般会用来托管Web资源（包括文本、图片和脚本等），可供下载的资源（媒体文件、软件、文档等），应用程序（门户网站等）。使用CDN来加速这些资源的访问。
+
+（1）在性能方面，引入CDN的作用在于：
+
+- 用户收到的内容来自最近的数据中心，延迟更低，内容加载更快
+- 部分资源请求分配给了CDN，减少了服务器的负载 
+
+（2）在安全方面，CDN有助于防御DDoS、MITM等网络攻击：
+
+- 针对DDoS：通过监控分析异常流量，限制其请求频率
+- 针对MITM：从源服务器到 CDN 节点到 ISP（Internet Service Provider），全链路 HTTPS 通信 
+
+除此之外，CDN作为一种基础的云服务，同样具有资源托管、按需扩展（能够应对流量高峰）等方面的优势。
+CDN还会把文件最小化或者压缩文档的优化
+
+
+#### 原理
+
+它的基本原理是：**架设多台服务器，这些服务器定期从源站拿取资源保存本地，到让不同地域的用户能够通过访问最近的服务器获得资源**
+
+CDN和DNS有着密不可分的联系，先来看一下DNS的解析域名过程，在浏览器输入 www.test.com 的解析过程如下： 
+
+1. 检查浏览器缓存 
+2. 检查操作系统缓存，常见的如hosts文件
+3. 检查路由器缓存 
+4. 如果前几步都没没找到，会向ISP(网络服务提供商)的LDNS服务器查询 
+5. 如果LDNS服务器没找到，会向根域名服务器(Root Server)请求解析，分为以下几步：
+ 
+- 根服务器返回顶级域名(TLD)服务器如.com，.cn，.org等的地址，该例子中会返回.com的地址
+- 接着向顶级域名服务器发送请求，然后会返回次级域名(SLD)服务器的地址，本例子会返回.test的地址
+- 接着向次级域名服务器发送请求，然后会返回通过域名查询到的目标IP，本例子会返回www.test.com的地址
+- Local DNS Server会缓存结果，并返回给用户，缓存在系统中
+
+
+CDN的工作原理：
+
+1. 用户未使用CDN缓存资源的过程：
+2. 浏览器通过DNS对域名进行解析（就是上面的DNS解析过程），依次得到此域名对应的IP地址
+3. 浏览器根据得到的IP地址，向域名的服务主机发送数据请求
+4. 服务器向浏览器返回响应数据
+ 
+（2）用户使用CDN缓存资源的过程：
+ 
+1. 对于点击的数据的URL，经过本地DNS系统的解析，发现该URL对应的是一个CDN专用的DNS服务器，DNS系统就会将域名解析权交给CNAME指向的CDN专用的DNS服务器。
+2. CND专用DNS服务器将CND的全局负载均衡设备IP地址返回给用户
+3. 用户向CDN的全局负载均衡设备发起数据请求
+4. CDN的全局负载均衡设备根据用户的IP地址，以及用户请求的内容URL，选择一台用户所属区域的区域负载均衡设备，告诉用户向这台设备发起请求
+5. 区域负载均衡设备选择一台合适的缓存服务器来提供服务，将该缓存服务器的IP地址返回给全局负载均衡设备
+6. 全局负载均衡设备把服务器的IP地址返回给用户
+7. 用户向该缓存服务器发起请求，缓存服务器响应用户的请求，将用户所需内容发送至用户终端。
+ 
+如果缓存服务器没有用户想要的内容，那么缓存服务器就会向它的上一级缓存服务器请求内容，以此类推，直到获取到需要的资源。最后如果还是没有，就会回到自己的服务器去获取资源。
+ 
+CNAME（意为：别名）：在域名解析中，实际上解析出来的指定域名对应的IP地址，或者该域名的一个CNAME，然后再根据这个CNAME来查找对应的IP地址。
+#### 使用场景
+
+- 使用第三方的CDN服务：如果想要开源一些项目，可以使用第三方的CDN服务
+- 使用CDN进行静态资源的缓存：将自己网站的静态资源放在CDN上，比如js、css、图片等。可以将整个项目放在CDN上，完成一键部署。
+- 直播传送：直播本质上是使用流媒体进行传送，CDN也是支持流媒体传送的，所以直播完全可以使用CDN来提高访问速度。CDN在处理流媒体的时候与处理普通静态文件有所不同，普通文件如果在边缘节点没有找到的话，就会去上一层接着寻找，但是流媒体本身数据量就非常大，如果使用回源的方式，必然会带来性能问题，所以流媒体一般采用的都是主动推送的方式来进行。
+
+TODO：cdn加速原理，没有缓存到哪里拿，CDN回源策略 
+
+**分发的内容**
+ 
+静态内容：即使是静态内容也不是一直保存在cdn，源服务器发送文件给CDN的时候就可以利用HTTP头部的cache-control可以设置文件的缓存形式，cdn就知道哪些内容可以保存no-cache，那些不能no-store，那些保存多久max-age
+
+动态内容：
+ 
+工作流程：
+ 
+静态内容：源服务器把静态内容提前备份给cdn(push)，世界各地访问的时候就进的cdn服务器会把静态内容提供给用户，不需要每次劳烦源服务器。如果没有提前备份，cdn问源服务器要(pull)，然后cdn备份，其他请球的用户可以马上拿到。
+ 
+动态内容：源服务器很难做到提前预测到每个用户的动态内容提前给到cdn，如果等到用户索取动态内容cdn再向源服务器获取，这样cdn提供不了加速服务。但是有些是可以提供动态服务的：时间，有些cdn会提供可以运行在cdn上的接口，让源服务器用这些cdn接口，而不是源服务器自己的代码，用户就可以直接从cdn获取时间
+ 
+问：cdn用什么方式来转移流量实现负载均衡？
+ 
+和DNS域名解析根服务器的做法相似：任播通信：服务器对外都拥有同一个ip地址，如果收到了请求，请求就会由距离用户最近的服务器响应，任播技术把流量转移给没超载的服务器可以缓解。CDN还会用TLS/SSL证书对网站进行保护。
+我们可以把项目中的所有静态资源都放到CDN上（收费），也可以利用现成免费的CDN获取公共库的资源
+
+![](../public/front-end-engineering/2024-01-28-17-18-12.png)
+
+```js
+ 
+首先，我们需要告诉webpack不要对公共库进行打包
+// vue.config.js
+module.exports = {
+  configureWebpack: {
+    externals: {
+      vue: "Vue",
+      vuex: "Vuex",
+      "vue-router": "VueRouter",
+    }
+  },
+};
+然后，在页面中手动加入cdn链接，这里使用bootcn
+对于vuex和vue-router，使用这种传统的方式引入的话会自动成为Vue的插件，因此需要去掉Vue.use(xxx)
+ 
+我们可以使用下面的代码来进行兼容
+// store.js
+import Vue from "vue";
+import Vuex from "vuex";
+
+if(!window.Vuex){
+  // 没有使用传统的方式引入Vuex
+  Vue.use(Vuex);
+}
+
+// router.js
+import VueRouter from "vue-router";
+import Vue from "vue";
+
+if(!window.VueRouter){
+  // 没有使用传统的方式引入VueRouter
+  Vue.use(VueRouter);
+}
+```
+
+### 增加带宽
+
+增加带宽可以提高资源的访问速度，从而提高首批的加载速度，我司项目带宽由 2M 升级到 5M，效果明显。
+
+
+### http内置优化
+
+- Http2 
+  - 头部压缩：专门的 HPACK 压缩算法 
+    - 索引表：客户端和服务器共同维护的一张表，表的内容分为 61 位的静态表（保存常用信息，例如：host/content-type）和动态表
+    - 霍夫曼编码
+- 链路复用 
+  - Http1 建立起 Tcp 连接，发送请求之后，服务器在处理请求的等待期间，这个期间又没有数据去发送，称为空挡期。链接断开是在服务器响应回溯之后 
+    - keep-alive 链接保持一段时间
+    - HTTP2 可以利用空档期
+    - 不需要再重复建立链接
+- 二进制帧 
+  - Http1.1 文本字符分割的数据流，解析慢且容易出错
+  - 二进制帧：帧长度、帧类型、帧标识
+补充：采用 Http2 之后，可以减少资源合并的操作，因为首部压缩已经减少了多请求传输的数据量
+ 
+
+### 数据传输层面
+
+- 缓存：浏览器缓存
+  - 强缓存 
+    - cache-contorl: max-age=30
+    - expires: Wed, 21 Oct 2021 07:28:00 GMT
+- 协商缓存
+  - etag
+  - last-modified
+  - if-modified-since
+  - if-none-match
+- 压缩
+  - 数据压缩：gzip
+  - 代码文件压缩：HTML/CSS/JS 中的注释、空格、长变量等
+  - 静态资源：字体图标，去除元数据，缩小尺寸以及分辨率
+  - 头与报文 
+    - http1.1 中减少不必要的头
+    - 减少 cookie 数据量
 
 
 ## Vue
 
-### **如何实现 _vue_ 项目中的性能优化？**
+### Vue 开发优化
+
+#### 使用key
+ 
+对于通过循环生成的列表，应给每个列表项一个稳定且唯一的key，这有利于在列表变动时，尽量少的删除、新增、改动元素
+
+#### 使用冻结的对象
+
+冻结的对象不会被响应化
+
+#### 使用函数式组件
+
+参见[函数式组件](https://v2.cn.vuejs.org/v2/guide/render-function.html#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6)
+
+#### 使用计算属性
+
+如果模板中某个数据会使用多次，并且该数据是通过计算得到的，使用计算属性以缓存它们
+
+#### 非实时绑定的表单项
+
+当使用v-model绑定一个表单项时，当用户改变表单项的状态时，也会随之改变数据，从而导致vue发生重渲染（rerender），这会带来一些性能的开销。
+ 
+特别是当用户改变表单项时，页面有一些动画正在进行中，由于JS执行线程和浏览器渲染线程是互斥的，最终会导致动画出现卡顿。
+ 
+我们可以通过使用lazy或不使用v-model的方式解决该问题，但要注意，这样可能会导致在某一个时间段内数据和表单项的值是不一致的。
+
+
+#### 保持对象引用稳定
+
+在绝大部分情况下，vue触发rerender的时机是其依赖的数据发生变化
+ 
+若数据没有发生变化，哪怕给数据重新赋值了，vue也是不会做出任何处理的
+ 
+下面是vue判断数据没有变化的源码
+ 
+```js
+// value 为旧值， newVal 为新值
+if (newVal === value || (newVal !== newVal && value !== value)) {//NaN
+  return
+}
+```
+ 
+因此，如果需要，只要能保证组件的依赖数据不发生变化，组件就不会重新渲染。
+ 
+对于原始数据类型，保持其值不变即可
+ 
+对于对象类型，保持其引用不变即可
+ 
+从另一方面来说，由于可以通过保持属性引用稳定来避免子组件的重渲染，那么我们应该细分组件来尽量避免多余的渲染
+
+#### 使用v-show替代v-if
+
+对于频繁切换显示状态的元素，使用v-show可以保证虚拟dom树的稳定，避免频繁的新增和删除元素，特别是对于那些内部包含大量dom元素的节点，这一点极其重要
+ 
+关键字：频繁切换显示状态、内部包含大量dom元素
+
+#### 使用延迟装载（defer）
+
+首页白屏时间主要受到两个因素的影响：
+ 
+-  打包体积过大 巨型包需要消耗大量的传输时间，导致JS传输完成前页面只有一个`<div>`，没有可显示的内容
+`<div id="app">好看的东西<div>`
+ 
+-  需要立即渲染的内容太多 JS传输完成后，浏览器开始执行JS构造页面。 但可能一开始要渲染的组件太多，不仅JS执行的时间很长，而且执行完后浏览器要渲染的元素过多，从而导致页面白屏 
+ 
+打包体积过大需要自行优化打包体积，本节不予讨论
+ 
+可以进行分包
+ 
+本节仅讨论渲染内容太多的问题。
+ 
+一个可行的办法就是延迟装载组件，让组件按照指定的先后顺序依次一个一个渲染出来
+ 
+延迟装载是一个思路，本质上就是利用requestAnimationFrame事件分批渲染内容，它的具体实现多种多样
+ 
+#### 使用keep-alive
+
+keep-alive组件是vue的内置组件，用于缓存内部组件实例。这样做的目的在于，keep-alive内部的组件切回时，不用重新创建组件实例，而直接使用缓存中的实例，一方面能够避免创建组件带来的开销，另一方面可以保留组件的状态（不仅是数据的保留，还要真实dom的保留）。
+ 
+keep-alive具有include和exclude属性，通过它们可以控制哪些组件进入缓存。另外它还提供了max属性，通过它可以设置最大缓存数，当缓存的实例超过该数时，vue会移除最久没有使用的组件缓存。
+ 
+受keep-alive的影响，其内部所有嵌套的组件都具有两个生命周期钩子函数，分别是activated和deactivated，它们分别在组件激活和失活时触发。第一次activated触发是在mounted之后
+
+原理
+在具体的实现上，keep-alive在内部维护了一个key数组和一个缓存对象
+```js
+// keep-alive 内部的声明周期函数
+created () {
+  this.cache = Object.create(null)
+  this.keys = []
+}
+ 
+```
+key数组记录目前缓存的组件key值，如果组件没有指定key值，则会为其自动生成一个唯一的key值
+cache对象以key值为键，vnode为值，用于缓存组件对应的虚拟DOM
+
+在keep-alive的渲染函数中，其基本逻辑是判断当前渲染的vnode是否有对应的缓存，如果有，从缓存中读取到对应的组件实例；如果没有则将其缓存。
+当缓存数量超过max数值时，keep-alive会移除掉key数组的第一个元素
+
+```js
+render(){
+  const slot = this.$slots.default; // 获取默认插槽
+  const vnode = getFirstComponentChild(slot); // 得到插槽中的第一个组件的vnode
+  const name = getComponentName(vnode.componentOptions); //获取组件名字
+  const { cache, keys } = this; // 获取当前的缓存对象和key数组
+  const key = ...; // 获取组件的key值，若没有，会按照规则自动生成
+  if (cache[key]) {
+    // 有缓存
+    // 重用组件实例
+    vnode.componentInstance = cache[key].componentInstance
+    remove(keys, key); // 删除key
+    // 将key加入到数组末尾，这样是为了保证最近使用的组件在数组中靠后，反之靠前
+    keys.push(key); 
+  } else {
+    // 无缓存，进行缓存
+    cache[key] = vnode
+    keys.push(key)
+    if (this.max && keys.length > parseInt(this.max)) {
+      // 超过最大缓存数量，移除第一个key对应的缓存
+      pruneCacheEntry(cache, keys[0], keys, this._vnode)
+    }
+  }
+  return vnode;
+}
+```
+
+#### 长列表优化
+
+`vue-virtual-scroller`
+
+首先这个库在使用上是很方便的，就是它提供了一个标签，相当于是对div标签的一个修改，可以实现列表的渲染等等功能
+
+
+#### 异步组件
+
+在代码层面，vue组件本质上是一个配置对象
+ 
+```js
+var comp = {
+  props: xxx,
+  data: xxx,
+  computed: xxx,
+  methods: xxx
+}
+```
+ 
+但有的时候，要得到某个组件配置对象需要一个异步的加载过程，比如：
+ 
+- 需要使用ajax获得某个数据之后才能加载该组件
+- 为了合理的分包，组件配置对象需要通过import(xxx)动态加载
+ 
+如果一个组件需要通过异步的方式得到组件配置对象，该组件可以把它做成一个异步组件
+ 
+```js
+/**
+ * 异步组件本质上是一个函数
+ * 该函数调用后返回一个Promise，Promise成功的结果是一个组件配置对象
+ */
+const AsyncComponent = () => import("./MyComp")
+
+var App = {
+  components: {
+    /**
+     * 你可以把该函数当做一个组件使用（异步组件）
+     * Vue会调用该函数，并等待Promise完成，完成之前该组件位置什么也不渲染
+     */
+    AsyncComponent 
+  }
+}
+```
+ 
+异步组件的函数不仅可以返回一个Promise，还支持返回一个对象
+ 
+
+应用：异步组件通常应用在路由懒加载中，以达到更好的分包；为了提高用户体验，可以在组件配置对象加载完成之前给用户显示一些提示信息
+ 
+```js
+var routes = [
+  { path: "/", component: async () => {
+    console.log("组件开始加载"); 
+    const HomeComp = await import("./Views/Home.vue");
+    console.log("组件加载完毕");
+    return HomeComp;
+  } }
+]
+```
+
+### Vue3 内置优化
+
+#### 静态提升
+
+下面的静态节点会被提升
+- 元素节点
+- 没有绑定动态内容
+
+```js
+
+// vue2 的静态节点
+render(){
+  createVNode("h1", null, "Hello World")
+  // ...
+}
+
+// vue3 的静态节点
+const hoisted = createVNode("h1", null, "Hello World")//这个节点永远创建一次
+function render(){
+  // 直接使用 hoisted 即可
+}
+```
+
+**静态属性会被提升**
+
+```js
+<div class="user">
+  {{user.name}}
+</div>
+ 
+const hoisted = { class: "user" }
+
+function render(){
+  createVNode("div", hoisted, user.name)
+  // ...
+}
+```
+
+#### 预字符串化
+
+```js
+
+<div class="menu-bar-container">
+  <div class="logo">
+    <h1>logo</h1>
+  </div>
+  <ul class="nav">
+    <li><a href="">menu</a></li>
+    <li><a href="">menu</a></li>
+    <li><a href="">menu</a></li>
+    <li><a href="">menu</a></li>
+    <li><a href="">menu</a></li>
+  </ul>
+  <div class="user">
+    <span>{{ user.name }}</span>
+  </div>
+</div>
+```
+
+当编译器遇到大量连续（少量则不会，目前是至少20个连续节点）的静态内容，会直接将其编译为一个普通字符串节点
+
+```js
+const _hoisted_2 = _createStaticVNode("<div class=\"logo\"><h1>logo</h1></div><ul class=\"nav\"><li><a href=\"\">menu</a></li><li><a href=\"\">menu</a></li><li><a href=\"\">menu</a></li><li><a href=\"\">menu</a></li><li><a href=\"\">menu</a></li></ul>")
+```
+
+![](../public/front-end-engineering/2024-01-28-17-28-28.png)
+
+对ssr的作用非常明显
+
+#### 缓存事件处理函数
+
+```js
+<button @click="count++">plus</button>
+ 
+// vue2
+render(ctx){
+  return createVNode("button", {
+    onClick: function($event){
+      ctx.count++;
+    }
+  })
+}
+
+// vue3
+render(ctx, _cache){
+  return createVNode("button", {//事件处理函数不变，可以缓存一下，保证事件处理函数只生成一次
+    onClick: cache[0] || (cache[0] = ($event) => (ctx.count++))//有的话，缓存；没有，count++
+  })
+}
+ 
+```
+
+
+#### Block Tree
+
+vue2在对比新旧树的时候，并不知道哪些节点是静态的，哪些是动态的，因此只能一层一层比较，这就浪费了大部分时间在比对静态节点上
+
+Block节点记录了那些是动态的节点，对比的时候只对比动态节点
+
+```html
+<form>
+  <div>
+    <label>账号：</label>
+    <input v-model="user.loginId" />
+  </div>
+  <div>
+    <label>密码：</label>
+    <input v-model="user.loginPwd" />
+  </div>
+</form>
+
+```
+
+![](../public/front-end-engineering/2024-01-28-17-29-13.png)
+
+编译器 会把所有的动态节点标记，存到到根节点的数组中 ，到时候对比的时候只对比block动态节点。如果树不稳定，会有其他方案。
+
+#### PatchFlag
+
+
+依托于vue3强大的编译器。vue2在对比每一个节点时，并不知道这个节点哪些相关信息会发生变化，因此只能将所有信息依次比对
+ 
+```js
+<div class="user" data-id="1" title="user name">
+  {{user.name}}
+</div>
+```
+
+![](../public/front-end-engineering/2024-01-28-17-30-23.png)
+
+标识：
+- 标识1:代表元素内容是动态的
+- 标识2:Class
+- 标识3:class+text
+
+#### 启用现代模式
+
+为了兼容各种浏览器，vue-cli在内部使用了@babel/present-env对代码进行降级，你可以通过.browserlistrc配置来设置需要兼容的目标浏览器
+ 
+这是一种比较偷懒的办法，因为对于那些使用现代浏览器的用户，它们也被迫使用了降级之后的代码，而降低的代码中包含了大量的polyfill，从而提升了包的体积
+
+因此，我们希望提供两种打包结果：
+ 
+1. 降级后的包（大），提供给旧浏览器用户使用
+2. 未降级的包（小），提供给现代浏览器用户使用
+ 
+除了应用webpack进行多次打包外，还可以利用vue-cli给我们提供的命令：
+
+```shell
+vue-cli-service build --modern
+```
+
+### 问题梳理
+
+#### **如何实现 _vue_ 项目中的性能优化？**
 
 > **编码阶段**
 >
@@ -969,7 +1793,7 @@ plugins: [
 
 > 还可以使用缓存(客户端缓存、服务端缓存)优化、服务端开启 _gzip_ 压缩等。
 
-### **_vue_ 中的 _spa_ 应用如何优化首屏加载速度?**
+#### **_vue_ 中的 _spa_ 应用如何优化首屏加载速度?**
 
 > 优化首屏加载可以从这几个方面开始：
 >
@@ -989,7 +1813,8 @@ plugins: [
 
 ## React
 
-# 性能优化
+
+### 总结
 
 shouldComponentUpdate 提供了两个参数 nextProps 和 nextState，表示下一次 props 和一次 state 的值，当函数返回 false 时候，render()方法不执行，组件也就不会渲染，返回 true 时，组件照常重渲染。此方法就是拿当前 props 中值和下一次 props 中的值进行对比，数据相等时，返回 false，反之返回 true。
 
@@ -1036,3 +1861,292 @@ React 基于虚拟 DOM 和高效 Diff 算法的完美配合，实现了对 DOM �
 - **使用 React.memo**
 
 React.memo 是 React 16.6 新的一个 API，用来缓存组件的渲染，避免不必要的更新，其实也是一个高阶组件，与 PureComponent 十分类似，但不同的是， React.memo 只能用于函数组件。
+
+
+https://juejin.cn/post/6935584878071119885
+
+
+## 高性能JavaScript
+
+### 开发注意
+
+遵循严格模式："use strict"
+
+将 JavaScript 本放在页面底部，加快渲染页面
+
+将 JavaScript 脚本将脚本成组打包，减少请求
+
+使用非阻塞方式下载 JavaScript 脚本
+
+尽量使用局部变量来保存全局变量
+
+尽量减少使用闭包
+
+使用 window 对象属性方法时，省略 window
+
+尽量减少对象成员嵌套
+
+缓存 DOM 节点的访问
+
+通过避免使用 eval() 和 Function() 构造器
+
+给 setTimeout() 和 setInterval() 传递函数而不是字符串作为参数
+
+尽量使用直接量创建对象和数组
+
+最小化重绘 (repaint) 和回流 (reflow)
+
+### 懒加载
+
+**懒加载的概念**
+
+懒加载也叫做延迟加载、按需加载，指的是在长网页中延迟加载图片数据，是一种较好的网页性能优化的方式。
+如果使用图片的懒加载就可以解决以上问题。在滚动屏幕之前，可视化区域之外的图片不会进行加载，在滚动屏幕时才加载。这样使得网页的加载速度更快，减少了服务器的负载。懒加载适用于图片较多，页面列表较长（长列表）的场景中。
+
+**懒加载的特点**
+
+- 减少无用资源的加载：使用懒加载明显减少了服务器的压力和流量，同时也减小了浏览器的负担。
+- 提升用户体验: 如果同时加载较多图片，可能需要等待的时间较长，这样影响了用户体验，而使用懒加载就能大大的提高用户体验。
+- 防止加载过多图片而影响其他资源文件的加载 ：会影响网站应用的正常使用。
+
+**懒加载的实现原理**
+
+图片的加载是由src引起的，当对src赋值时，浏览器就会请求图片资源。根据这个原理，我们使用HTML5 的data-xxx属性来储存图片的路径，在需要加载图片的时候，将data-xxx中图片的路径赋值给src，这样就实现了图片的按需加载，即懒加载。
+
+注意：data-xxx 中的xxx可以自定义，这里我们使用data-src来定义。
+懒加载的实现重点在于确定用户需要加载哪张图片，在浏览器中，可视区域内的资源就是用户需要的资源。所以当图片出现在可视区域时，获取图片的真实地址并赋值给图片即可。
+
+使用原生JavaScript实现懒加载
+
+0. IntersectionObserver api
+1. window.innerHeight 是浏览器可视区的高度 
+2. document.body.scrollTop || document.documentElement.scrollTop 是浏览器滚动的过的距离
+3. imgs.offsetTop 是元素顶部距离文档顶部的高度（包括滚动条的距离）
+4. 图片加载条件：img.offsetTop < window.innerHeight + document.body.scrollTop;
+
+```html
+<div class="container">
+  <img src="loading.gif"  data-src="pic.png">
+  <img src="loading.gif"  data-src="pic.png">
+  <img src="loading.gif"  data-src="pic.png">
+  <img src="loading.gif"  data-src="pic.png">
+  <img src="loading.gif"  data-src="pic.png">
+  <img src="loading.gif"  data-src="pic.png">
+</div>
+<script>
+  var imgs = document.querySelectorAll('img');
+  function lozyLoad(){
+    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    var winHeight= window.innerHeight;
+    for(var i=0;i < imgs.length;i++){
+      if(imgs[i].offsetTop < scrollTop + winHeight ){
+        imgs[i].src = imgs[i].getAttribute('data-src');
+      }
+    }
+  }
+  window.onscroll = lozyLoad();
+</script>
+```
+
+**懒加载与预加载的区别**
+
+这两种方式都是提高网页性能的方式，两者主要区别是一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力 
+
+- 懒加载也叫延迟加载，指的是在长网页中延迟加载图片的时机，当用户需要访问时，再去加载，这样可以提高网站的首屏加载速度，提升用户的体验，并且可以减少服务器的压力。它适用于图片很多，页面很长的电商网站的场景。懒加载的实现原理是，将页面上的图片的 src 属性设置为空字符串，将图片的真实路径保存在一个自定义属性中，当页面滚动的时候，进行判断，如果图片进入页面可视区域内，则从自定义属性中取出真实路径赋值给图片的 src 属性，以此来实现图片的延迟加载。
+- 预加载指的是将所需的资源提前请求加载到本地，这样后面在需要用到时就直接从缓存取资源。 通过预加载能够减少用户的等待时间，提高用户的体验。我了解的预加载的最常用的方式是使用 js 中的 image 对象，通过为 image 对象来设置 scr 属性，来实现图片的预加载。
+
+参考：https://juejin.cn/post/6844903455048335368#heading-5
+
+
+### 回流与重绘
+
+
+#### 回流（重排）
+
+当渲染树中部分或者全部元素的尺寸、结构或者属性发生变化时，浏览器会重新渲染部分或者全部文档的过程就称为回流。
+下面这些操作会导致回流：
+- 页面的首次渲染
+- 浏览器的窗口大小发生变化
+- 元素的内容发生变化
+- 元素的尺寸或者位置发生变化
+- 元素的字体大小发生变化
+- 激活CSS伪类
+- 查询某些属性或者调用某些方法
+- 添加或者删除可见的DOM元素、
+- 操作class属性
+- 设置style属性：.style....style...----->.class{}
+ 
+在触发回流（重排）的时候，由于浏览器渲染页面是基于流式布局的，所以当触发回流时，会导致周围的DOM元素重新排列，它的影响范围有两种：
+ 
+- 全局范围：从根节点开始，对整个渲染树进行重新布局
+- 局部范围：对渲染树的某部分或者一个渲染对象进行重新布局
+ 
+#### 重绘
+ 
+当页面中某些元素的样式发生变化，但是不会影响其在文档流中的位置时，浏览器就会对元素进行重新绘制，这个过程就是重绘。
+ 
+下面这些操作会导致回流：
+ 
+- color、background 相关属性：background-color、background-image 等
+- outline 相关属性：outline-color、outline-width 、text-decoration
+- border-radius、visibility、box-shadow
+ 
+注意： 当触发回流时，一定会触发重绘，但是重绘不一定会引发回流。
+ 
+#### 如何避免回流与重绘？
+ 
+减少回流与重绘的措施：
+ 
+- 操作DOM时，尽量在低层级的DOM节点进行操作
+- 不要使用table布局， 一个小的改动可能会使整个table进行重新布局
+- 使用CSS的表达式
+- 不要频繁操作元素的样式，对于静态页面，可以修改类名，而不是样式。
+- 使用absolute或者fixed，使元素脱离文档流，这样他们发生变化就不会影响其他元素
+- 避免频繁操作DOM，可以创建一个文档片段documentFragment，在它上面应用所有DOM操作，最后再把它添加到文档中
+- 将元素先设置display: none，操作结束后再把它显示出来。因为在display属性为none的元素上进行的DOM操作不会引发回流和重绘。
+- 将DOM的多个读操作（或者写操作）放在一起，而不是读写操作穿插着写。这得益于浏览器的渲染队列机制。
+ 
+浏览器针对页面的回流与重绘，进行了自身的优化——渲染队列
+ 
+浏览器会将所有的回流、重绘的操作放在一个队列中，当队列中的操作到了一定的数量或者到了一定的时间间隔，浏览器就会对队列进行批处理。这样就会让多次的回流、重绘变成一次回流重绘。
+ 
+上面，将多个读操作（或者写操作）放在一起，就会等所有的读操作进入队列之后执行，这样，原本应该是触发多次回流，变成了只触发一次回流。
+ 
+如何优化动画？
+ 
+对于如何优化动画，我们知道，一般情况下，动画需要频繁的操作DOM，就就会导致页面的性能问题，我们可以将动画的position属性设置为absolute或者fixed，将动画脱离文档流，这样他的回流就不会影响到页面了。
+ 
+CPU中央处理器，擅长逻辑运算
+ 
+GPU显卡，擅长图片绘制，高精度的浮点数运算。{家用，专业}，尽量少复杂动画，即少了GPU，烧性能。
+ 
+在gpu层面上操作：改变opacity或者 transform：translate3d()/translatez();
+ 
+最好添加translatez(0); 小hack告诉浏览器告诉浏览器另起一个层
+ 
+css 1、使用transform 替代top 2、使用visibility 替换display:none ，因为前者只会引起重绘，后者会引发回流(改变了布局 3、避免使用table布局，可能很小的一个小改动会造成整个table的重新布局。 4、尽可能在DOM树的最末端改变class,回流是不可避免的，但可以减少其影响。尽可能在DOM树的最末端改变class，可以限制了回流的范围，使其影响尽可能少的节点。 5、避免设置多层内联样式，CSS选择符从右往左匹配查找,避免节点层级过多。 CSS3硬件加速(GPU加速)，使用css3硬件加速，可以让transform、opacity、filters这些动画不会引起回流重绘。但是对于动画的其它属性，比如background-color这些，还是会引起回流重绘的，不过它还是可以提升这些动画的性能。 js 1、避免频繁操作样式,最好一次性重写style属性,或者将样式列表定义为class并一次性更改class属性。 2、避免频繁操作DOM,创建一个documentFragment,在它上面应用所有DOM操作，最后再把它添加到文档中。 3、避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。 4、对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流。
+ 
+新方法：`will-change:transform;`专门处理GPU加速问题
+ 
+应用：hover上去后才告诉浏览器要开启新层，点击才触发，总之提前一刻告诉就行
+ 
+```css
+div{
+  width: 100px;
+  height: 100px;
+}
+div.hover{
+  will-change: transform;
+}
+div.active{
+  transform: scale(2, 3);
+}
+
+```
+ 
+浏览器刷新页面的频率1s 60s
+ 
+每16.7mm刷新一次
+ 
+gpu 可以再一帧里渲染好页面，那么当你改动页面的元素或者实现动画的时候，将会非常流畅
+ 
+documentFragment 是什么？用它跟直接操作 DOM 的区别是什么？
+ 
+MDN中对documentFragment的解释：
+ 
+DocumentFragment，文档片段接口，一个没有父对象的最小文档对象。它被作为一个轻量版的 Document使用，就像标准的document一样，存储由节点（nodes）组成的文档结构。与document相比，最大的区别是DocumentFragment不是真实 DOM 树的一部分，它的变化不会触发 DOM 树的重新渲染，且不会导致性能等问题。
+ 
+当我们把一个 DocumentFragment 节点插入文档树时，插入的不是 DocumentFragment 自身，而是它的所有子孙节点。在频繁的DOM操作时，我们就可以将DOM元素插入DocumentFragment，之后一次性的将所有的子孙节点插入文档中。和直接操作DOM相比，将DocumentFragment 节点插入DOM树时，不会触发页面的重绘，这样就大大提高了页面的性能。
+
+#### 防抖函数
+
+- 按钮提交场景：防⽌多次提交按钮，只执⾏最后提交的⼀次
+- 服务端验证场景：表单验证需要服务端配合，只执⾏⼀段连续的输⼊事件的最后⼀次，还有搜索联想词功能类似⽣存环境请⽤lodash.debounce
+节流函数的适⽤场景：
+- 拖拽场景：固定时间内只执⾏⼀次，防⽌超⾼频次触发位置变动
+- 缩放场景：监控浏览器resize
+- 动画场景：避免短时间内多次触发动画引起性能问题
+
+### 如何对项目中的图片进行优化？
+ 
+1. 不用图片。很多时候会使用到很多修饰类图片，其实这类修饰图片完全可以用 CSS 去代替。
+2. 对于移动端来说，屏幕宽度就那么点，完全没有必要去加载原图浪费带宽。一般图片都用 CDN 加载，可以计算出适配屏幕的宽度，然后去请求相应裁剪好的图片。
+3. 小图使用 base64 格式
+4. 将多个图标文件整合到一张图片中（雪碧图）
+5. 选择正确的图片格式： 
+  - 对于能够显示 WebP 格式的浏览器尽量使用 WebP 格式。因为 WebP 格式具有更好的图像数据压缩算法，能带来更小的图片体积，而且拥有肉眼识别无差异的图像质量，缺点就是兼容性并不好
+  - 小图使用 PNG，其实对于大部分图标这类图片，完全可以使用 SVG 代替
+  - 照片使用 JPEG
+
+**常见的图片格式及使用场景**
+ 
+（1）BMP，是无损的、既支持索引色也支持直接色的点阵图。这种图片格式几乎没有对数据进行压缩，所以BMP格式的图片通常是较大的文件。
+ 
+（2）GIF是无损的、采用索引色的点阵图。采用LZW压缩算法进行编码。文件小，是GIF格式的优点，同时，GIF格式还具有支持动画以及透明的优点。但是GIF格式仅支持8bit的索引色，所以GIF格式适用于对色彩要求不高同时需要文件体积较小的场景。
+ 
+（3）JPEG是有损的、采用直接色的点阵图。JPEG的图片的优点是采用了直接色，得益于更丰富的色彩，JPEG非常适合用来存储照片，与GIF相比，JPEG不适合用来存储企业Logo、线框类的图。因为有损压缩会导致图片模糊，而直接色的选用，又会导致图片文件较GIF更大。
+ 
+（4）PNG-8是无损的、使用索引色的点阵图。PNG是一种比较新的图片格式，PNG-8是非常好的GIF格式替代者，在可能的情况下，应该尽可能的使用PNG-8而不是GIF，因为在相同的图片效果下，PNG-8具有更小的文件体积。除此之外，PNG-8还支持透明度的调节，而GIF并不支持。除非需要动画的支持，否则没有理由使用GIF而不是PNG-8。
+ 
+（5）PNG-24是无损的、使用直接色的点阵图。PNG-24的优点在于它压缩了图片的数据，使得同样效果的图片，PNG-24格式的文件大小要比BMP小得多。当然，PNG24的图片还是要比JPEG、GIF、PNG-8大得多。
+ 
+（6）SVG是无损的矢量图。SVG是矢量图意味着SVG图片由直线和曲线以及绘制它们的方法组成。当放大SVG图片时，看到的还是线和曲线，而不会出现像素点。这意味着SVG图片在放大时，不会失真，所以它非常适合用来绘制Logo、Icon等。
+ 
+（7）WebP是谷歌开发的一种新图片格式，WebP是同时支持有损和无损压缩的、使用直接色的点阵图。从名字就可以看出来它是为Web而生的，什么叫为Web而生呢？就是说相同质量的图片，WebP具有更小的文件体积。现在网站上充满了大量的图片，如果能够降低每一个图片的文件大小，那么将大大减少浏览器和服务器之间的数据传输量，进而降低访问延迟，提升访问体验。目前只有Chrome浏览器和Opera浏览器支持WebP格式，兼容性不太好。WebP图片格式支持图片透明度，一个无损压缩的WebP图片，如果要支持透明度只需要22%的格外文件大小。
+
+
+## 优化首屏响应
+
+### 觉得快
+
+#### loading
+vue页面需要通过js构建，因此在js下载到本地之前，页面上什么也没有
+一个非常简单有效的办法，即在页面中先渲染一个小的加载中效果，等到js下载到本地并运行后，即会自动替换
+
+#### nprogress
+源码分析地址:https://blog.csdn.net/qq_31968791/article/details/106790179
+使用到的库是什么
+nprogress
+进度条的实现原理知道吗
+Nprogress的原理非常简单，就是页面启动的时候，构建一个方法，创建一个div，然后这个div靠近最顶部，用fixed定位住，至于样式就是按照自个或者默认走了。
+怎么使用这个库的
+主要采用的两个方法是nprogress.start和nprogress.done
+如何使用:
+在请求拦截器中调用nprogress.start
+在响应拦截器中调用nprogress.done
+#### betterScroll
+https://blog.csdn.net/weixin_37719279/article/details/82084342
+使用的库是什么：better-scroll
+
+#### 骨架屏
+
+骨架屏的原理：https://blog.csdn.net/csdn_yudong/article/details/103909178
+
+你能说说为啥使用骨架屏吗?
+
+现在的前端开发领域，都是前后端分离，前端框架主流的都是 SPA，MPA；这就意味着，页面渲染以及等待的白屏时间，成为我们需要解决的问题点；而且大项目，这个问题尤为突出。
+webpack 可以实现按需加载，减小我们首屏需要加载的代码体积；再配合上 CDN 以及一些静态代码（框架，组件库等等…）缓存技术，可以很好的缓解这个加载渲染的时间过长的问题。
+但即便如此，首屏的加载依然还是存在这个加载以及渲染的等待时间问题；
+现在的前端开发领域，都是前后端分离，前端框架主流的都是 SPA，MPA；这就意味着，页面渲染以及等待的白屏时间，成为我们需要解决的问题点；而且大项目，这个问题尤为突出。
+webpack 可以实现按需加载，减小我们首屏需要加载的代码体积；再配合上 CDN 以及一些静态代码（框架，组件库等等…）缓存技术，可以很好的缓解这个加载渲染的时间过长的问题。
+目前主流，常见的解决方案是使用骨架屏技术，包括很多原生的APP，在页面渲染时，也会使用骨架屏。（下图中，红圈中的部分，即为骨架屏在内容还没有出现之前的页面骨架填充，以免留白）
+
+骨架屏的要怎么使用呢?骨架屏的原理知道吗?
+1. 在 index.html 中的 div#app 中来实现骨架屏，程序渲染后就会替换掉 index.html 里面的 div#app 骨架屏内容；
+2. 使用一个Base64的图片来作为骨架屏
+
+使用图片作为骨架屏； 简单暴力，让UI同学花点功夫吧；小米商城的移动端页面采用的就是这个方法，它是使用了一个Base64的图片来作为骨架屏。
+按照方案一的方案，将这个 Base64 的图片写在我们的 index.html 模块中的 div#app 里面。
+
+3. 使用 .vue 文件来完成骨架屏
+
+### 真实快
+
+webpack 怎么进行首屏加载的优化？ 
+1.  CDN 如果工程中使用了一些知名的第三方库，可以考虑使用 CDN，而不进行打包 
+2.  抽离公共模块 如果工程中用到了一些大的公共库，可以考虑将其分割出来单独打包 
+3.  异步加载 对于那些不需要在一开始就执行的模块，可以考虑使用动态导入的方式异步加载它们，以尽量减少主包的体积 
+4.  压缩、混淆 
+5.  tree shaking 尽量使用 ESM 语法进行导入导出，充分利用 tree shaking 去除无用代码 
+6.  gzip 开启 gzip 压缩，进一步减少包体积 
+7.  环境适配 有些打包结果中包含了大量兼容性处理的代码，但在新版本浏览器中这些代码毫无意义。因此，可以把浏览器分为多个层次，为不同层次的浏览器给予不同的打包结果。 
