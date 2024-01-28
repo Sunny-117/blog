@@ -15,6 +15,31 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   {
+    text: "前端工程化",
+    collapsible: true,
+    items: engineerConfig,
+  },
+
+  {
+    text: `Vuejs ${vueConfig.length}篇`,
+    collapsible: true,
+    items: vueConfig,
+  },
+  {
+    text: `React ${reactConfig.length}篇`,
+    collapsible: true,
+    items: reactConfig,
+  },
+  {
+    text: "TypeScript",
+    items: [
+      {
+        text: "TypeScript OnePage",
+        link: "/ts/TypeScript-onePage",
+      },
+    ],
+  },
+  {
     text: "前端三件套",
     collapsible: true,
     items: [
@@ -34,52 +59,21 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   {
-    text: "前端工程化",
-    collapsible: true,
-    items: engineerConfig,
-  },
-
-  {
-    text: `Vuejs ${vueConfig.length}篇`,
-    collapsed: true,
-    collapsible: true,
-    items: vueConfig,
-  },
-  {
-    text: `React ${reactConfig.length}篇`,
-    collapsible: true,
-    collapsed: true,
-    items: reactConfig,
-  },
-  {
-    text: "TypeScript",
-    items: [
-      {
-        text: "TypeScript OnePage",
-        link: "/ts/TypeScript-onePage",
-      },
-    ],
-  },
-  {
     text: "前端工具",
     items: [
       {
+        text: "Git",
+        link: "/fe-utils/git",
+      },
+      {
         text: "前端 JavaScript 必会工具库合集",
         link: "/fe-utils/js工具库",
-      },
-      {
-        text: "你的前端开发小助手",
-        link: "/fe-utils/你的前端开发小助手",
-      },
-      {
-        text: "专业前端工程师的浏览器收藏夹",
-        link: "/fe-utils/专业前端工程师的浏览器收藏夹",
-      },
+      }
     ],
   },
 
   {
-    text: "algorithm",
+    text: "算法",
     collapsible: true,
     items: [
       {
@@ -89,7 +83,7 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   {
-    text: "interview",
+    text: "面试系列",
     collapsible: true,
     items: [
       {

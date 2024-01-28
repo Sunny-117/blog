@@ -4,10 +4,6 @@ export default [
     link: "/front-end-engineering/performance",
   },
   {
-    text: "Git",
-    link: "/front-end-engineering/git",
-  },
-  {
     text: "webpack常用拓展",
     link: "/front-end-engineering/webpack常用拓展",
   },
@@ -20,8 +16,8 @@ export default [
     link: "/front-end-engineering/jscompatibility",
   },
   {
-    text: "webpack5",
-    link: "/front-end-engineering/webpack5",
+    text: "webpack5 模块联邦",
+    link: "/front-end-engineering/webpack5-mf",
   },
   {
     text: "pnpm原理",

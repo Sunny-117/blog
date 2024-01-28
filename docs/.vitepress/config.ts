@@ -9,15 +9,14 @@ const r = (p: string) => resolve(__dirname, p);
 // generateFileSidebar(r('../useForm'))
 export default defineConfig({
   base: "/blog/",
-  title: "blog",
+  title: "Sunny's blog",
   description: "composition api form validator for vue",
   // appearance: false,
   lastUpdated: true,
 
   markdown: {
-    // TODO
     anchor: {},
-    toc: { level: [1, 2, 3] },
+    toc: { level: [1, 2, 3, 4] },
     theme: {
       light: "min-dark",
       dark: "one-dark-pro",

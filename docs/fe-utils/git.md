@@ -554,14 +554,6 @@ $ git stash pop
 
 ## 参考资料
 
-[https://git-scm.com/](https://git-scm.com/) Git 官网
-
-[https://duyiedu.yuque.com/docs/share/1bd59630-97ac-478a-b903-8a51f3008113?#](https://duyiedu.yuque.com/docs/share/1bd59630-97ac-478a-b903-8a51f3008113?#)  《初识 Git》
-
-[https://duyiedu.yuque.com/docs/share/a3d4320e-065c-4149-a872-9462525577bd?#](https://duyiedu.yuque.com/docs/share/a3d4320e-065c-4149-a872-9462525577bd?#) 《访问 github 慢，该咋整？》
-
-[https://duyiedu.yuque.com/docs/share/76a98dd5-0b69-415a-a5fb-703745d8999b?#](https://duyiedu.yuque.com/docs/share/76a98dd5-0b69-415a-a5fb-703745d8999b?#)（密码：qqre）《Add SSH Key 公钥添加》
-
 local（每一个人的计算机上面也有一个项目仓库）
 
 配置用户名
