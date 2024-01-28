@@ -28,10 +28,6 @@ export default defineConfig({
     outline: [1, 3],
     sidebar: defaultSidebar,
     nav: [
-      // {
-      //   text: 'Playground',
-      //   link: 'https://mini-anything-play.netlify.app/',
-      // },
       ...defaultSidebar.slice(1, 5),
     ],
     socialLinks: [
@@ -44,10 +40,6 @@ export default defineConfig({
       pattern: "https://github.com/Sunny-117/blog",
       text: "Edit this page on Gitlab",
     },
-    lastUpdatedText: "Last Updated",
-    localeLinks: {
-      text: "English",
-      items: [{ text: "简体中文", link: "https://netlify.app" }],
-    },
+    lastUpdatedText: "Last Updated"
   },
 });

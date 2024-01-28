@@ -228,8 +228,8 @@ new webpack.BannerPlugin({
   hash:[hash]
   chunkhash:[chunkhash]
   name:[name]
-  author:yuanjin
-  corporation:duyi
+  author:sunny-117
+  corporation:sunny
   `
 })
 ```

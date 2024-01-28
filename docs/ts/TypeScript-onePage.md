@@ -1101,11 +1101,11 @@ function nameToUpperCase<T extends hasNameProperty>(obj: T): T {
   return obj;
 }
 const o = {
-  name: "kevin yuan",
+  name: "kevin",
   age: 19,
 };
 const newO = nameToUpperCase(o);
-console.log(newO.name); //Kevin Yuan
+console.log(newO.name);
 ```
 
 ## 多泛型

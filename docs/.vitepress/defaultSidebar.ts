@@ -15,13 +15,9 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   {
-    text: "JavaScript",
+    text: "前端三件套",
     collapsible: true,
     items: [
-      {
-        text: "JavaScript",
-        link: "/js/",
-      },
       {
         text: "异步处理",
         link: "/js/异步处理",
@@ -34,18 +30,9 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "迭代器和生成器",
         link: "/js/迭代器和生成器",
       },
+      ...hcConfig
     ],
   },
-  {
-    text: "TypeScript",
-    items: [
-      {
-        text: "TypeScript OnePage",
-        link: "/ts/TypeScript-onePage",
-      },
-    ],
-  },
-
   {
     text: "前端工程化",
     collapsible: true,
@@ -63,6 +50,15 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     collapsible: true,
     collapsed: true,
     items: reactConfig,
+  },
+  {
+    text: "TypeScript",
+    items: [
+      {
+        text: "TypeScript OnePage",
+        link: "/ts/TypeScript-onePage",
+      },
+    ],
   },
   {
     text: "前端工具",
@@ -89,11 +85,7 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       {
         text: "🔥刷题之探索最优解",
         link: "/algorithm/🔥刷题之探索最优解",
-      },
-      {
-        text: "js-challanges",
-        link: "/js-challanges/index.md",
-      },
+      }
     ],
   },
   {
@@ -109,11 +101,5 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         link: "/interview/算法笔试",
       },
     ],
-  },
-  {
-    text: `HTML-CSS ${hcConfig.length}篇`,
-    collapsed: true,
-    collapsible: true,
-    items: hcConfig,
-  },
+  }
 ];
