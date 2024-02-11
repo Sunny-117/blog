@@ -1,5 +1,9 @@
 # 常用命令
 
+## git merge 和 git rebase 
+
+## git pull 和 git fetch
+
 ## 创建 SSH Key
 
 ```shell
