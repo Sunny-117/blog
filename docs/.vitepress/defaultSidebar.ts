@@ -59,7 +59,7 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   {
-    text: "前端工具",
+    text: "前端杂文",
     items: [
       {
         text: "Git",
@@ -68,6 +68,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       {
         text: "前端 JavaScript 必会工具库合集",
         link: "/fe-utils/js工具库",
+      },
+      {
+          text: "一站式-后台前端解决方案",
+          link: "/article/cms",
       }
     ],
   },
