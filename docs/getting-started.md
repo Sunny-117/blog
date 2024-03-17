@@ -1,4 +1,4 @@
-# Projects
+# My Projects
 
 > TODO：分类
 
@@ -83,6 +83,83 @@ Native JavaScript project collection, Github China latest version
 https://github.com/Sunny-117/shooks
 
 📦️ A high-quality & reliable React Hooks library.
+
+### mini-webpack
+
+https://github.com/Sunny-117/mini-webpack
+
+手写一个简易版的webpack
+
+### ts-lib-vite
+
+https://github.com/Sunny-117/ts-lib-vite
+
+A foundation for developing front-end utility libraries using Vite and TypeScript.
+
+### esbuild-plugins
+
+https://github.com/Sunny-117/esbuild-plugins
+
+packages of esbuild plugins
+
+### tiny-vite
+
+https://github.com/Sunny-117/tiny-vite
+
+⚡️ a lightweight frontend build tool designed to deliver swift development experiences and efficient build processes
+
+### vite-plugins
+
+https://github.com/Sunny-117/vite-plugins
+
+### tiny-complier
+
+实现超级 mini 的编译器 | codegen&compiler 生成代码 | 只需要 200 行代码 | 前端编译原理
+
+https://github.com/Sunny-117/tiny-complier
+
+### keep-everyday
+
+https://github.com/Sunny-117/keep-everyday
+
+使用 Github Actions 来完成自动创建 issues 任务
+
+### text-image
+
+https://github.com/Sunny-117/text-image
+
+🐛🐛🐛 text-image 可以将文字、图片、视频进行「文本化」，只需要通过简单的配置即可使用
+
+### jsx-compilation
+
+https://github.com/Sunny-117/jsx-compilation
+
+🍻 实现 JSX 语法转成 JS 语法的编译器
+
+### awesome-native
+
+https://github.com/Sunny-117/awesome-native
+
+🔧 Collection of native JavaScript projects
+
+### vsc-delete-func
+
+https://github.com/Sunny-117/vsc-delete-func
+
+🍻🍻🍻 vscode plugins
+
+### eslint-plugin-reviewget
+
+https://github.com/Sunny-117/eslint-plugin-reviewget
+
+🚀当用户使用 getXXX get开头的函数的时候 如果不返回值的话 那么就会报错 🐛可以 fix 🎉用户可以自行配置是否 fix
+
+### babel-plugin-dev-debug
+
+https://github.com/Sunny-117/babel-plugin-dev-debug
+
+an babel plugin that for dev debug
+
 
 ### webpack-expand-lib
 
