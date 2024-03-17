@@ -72,6 +72,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       {
           text: "一站式-后台前端解决方案",
           link: "/article/cms",
+      },
+      {
+        text: "涌现出来的新tools",
+        link: "/fe-utils/tool",
       }
     ],
   },
