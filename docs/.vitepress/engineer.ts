@@ -1,5 +1,9 @@
 export default [
   {
+    text: "前端工程化 OnePage",
+    link: "/front-end-engineering/engineering-onepage",
+  },
+  {
     text: "前端性能优化方法论",
     link: "/front-end-engineering/performance",
   },
