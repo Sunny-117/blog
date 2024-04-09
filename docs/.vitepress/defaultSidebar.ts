@@ -55,15 +55,19 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "迭代器和生成器",
         link: "/js/迭代器和生成器",
       },
-      ...hcConfig
+      ...hcConfig,
     ],
   },
   {
     text: "知识碎片",
     items: [
       {
+        text: "🔥 微内核架构在前端的实现及其应用",
+        link: "/fragment/微内核架构",
+      },
+      {
         text: "如何实现准时的setTimeout",
-        link: "/fe-utils/setTimeout",
+        link: "/fragment/setTimeout",
       },
       {
         text: "Git",
@@ -74,13 +78,13 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         link: "/fe-utils/js工具库",
       },
       {
-          text: "一站式-后台前端解决方案",
-          link: "/article/cms",
+        text: "一站式-后台前端解决方案",
+        link: "/article/cms",
       },
       {
         text: "涌现出来的新tools",
         link: "/fe-utils/tool",
-      }
+      },
     ],
   },
 
@@ -91,7 +95,7 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       {
         text: "🔥刷题之探索最优解",
         link: "/algorithm/🔥刷题之探索最优解",
-      }
+      },
     ],
   },
   {
@@ -107,5 +111,5 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         link: "/interview/算法笔试",
       },
     ],
-  }
+  },
 ];
