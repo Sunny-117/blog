@@ -59,8 +59,12 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   {
-    text: "前端杂文",
+    text: "知识碎片",
     items: [
+      {
+        text: "如何实现准时的setTimeout",
+        link: "/fe-utils/setTimeout",
+      },
       {
         text: "Git",
         link: "/fe-utils/git",
