@@ -15,6 +15,43 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   {
+    text: "知识碎片（部分文章转载）",
+    items: [
+      {
+        text: "手撕babel插件-消灭console！",
+        link: "/fragment/babel-console",
+      },
+      {
+        text: "Monorepo",
+        link: "/fragment/Monorepo",
+      },
+      {
+        text: "🔥 微内核架构在前端的实现及其应用",
+        link: "/fragment/微内核架构",
+      },
+      {
+        text: "如何实现准时的setTimeout",
+        link: "/fragment/setTimeout",
+      },
+      {
+        text: "Git",
+        link: "/fe-utils/git",
+      },
+      {
+        text: "前端 JavaScript 必会工具库合集",
+        link: "/fe-utils/js工具库",
+      },
+      {
+        text: "一站式-后台前端解决方案",
+        link: "/article/cms",
+      },
+      {
+        text: "涌现出来的新tools",
+        link: "/fe-utils/tool",
+      },
+    ],
+  },
+  {
     text: "前端工程化",
     collapsible: true,
     items: engineerConfig,
@@ -56,35 +93,6 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         link: "/js/迭代器和生成器",
       },
       ...hcConfig,
-    ],
-  },
-  {
-    text: "知识碎片",
-    items: [
-      {
-        text: "🔥 微内核架构在前端的实现及其应用",
-        link: "/fragment/微内核架构",
-      },
-      {
-        text: "如何实现准时的setTimeout",
-        link: "/fragment/setTimeout",
-      },
-      {
-        text: "Git",
-        link: "/fe-utils/git",
-      },
-      {
-        text: "前端 JavaScript 必会工具库合集",
-        link: "/fe-utils/js工具库",
-      },
-      {
-        text: "一站式-后台前端解决方案",
-        link: "/article/cms",
-      },
-      {
-        text: "涌现出来的新tools",
-        link: "/fe-utils/tool",
-      },
     ],
   },
 
