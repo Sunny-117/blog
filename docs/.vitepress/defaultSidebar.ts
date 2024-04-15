@@ -18,6 +18,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     text: "知识碎片（部分文章转载）",
     items: [
       {
+        text: "前端录制回放系统初体验",
+        link: "/fragment/video",
+      },
+      {
         text: "面试官问我JS中forEach能不能跳出循环",
         link: "/fragment/forEach",
       },
