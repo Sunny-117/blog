@@ -18,6 +18,14 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     text: "知识碎片（部分文章转载）",
     items: [
       {
+        text: "react函数组件中使用useState改变值后立刻获取最新值 ",
+        link: "/fragment/react-useState",
+      },
+      {
+        text: "一行代码，让网页变为黑白配色",
+        link: "/fragment/黑白",
+      },
+      {
         text: "手撕babel插件-消灭console！",
         link: "/fragment/babel-console",
       },
