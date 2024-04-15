@@ -1,5 +1,9 @@
 export default [
   {
+    text: "输入 npm run xxx 后发生了什么？",
+    link: "/fragment/npm-scripts",
+  },
+  {
     text: "vue nextTick实现原理，必拿下! ",
     link: "/fragment/nextTick",
   },

@@ -70,6 +70,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     collapsible: true,
     items: [
       {
+        text: "如何在 10 亿数中找出前 1000 大的数",
+        link: "https://juejin.cn/post/6844903880208171015",
+      },
+      {
         text: "🔥刷题之探索最优解",
         link: "/algorithm/🔥刷题之探索最优解",
       },
