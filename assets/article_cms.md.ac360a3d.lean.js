@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as a,a as p}from"./app.2c413b5c.js";const l=JSON.parse('{"title":"一站式-后台前端解决方案调研","description":"","frontmatter":{},"headers":[],"relativePath":"article/cms.md","lastUpdated":1710671959000}'),i={name:"article/cms.md"},n=p("",29),r=[n];function o(s,m,u,d,c,h){return t(),a("div",null,r)}const v=e(i,[["render",o]]);export{l as __pageData,v as default};
