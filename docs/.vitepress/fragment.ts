@@ -1,5 +1,9 @@
 export default [
   {
+    text: "JS中数据类型检测四种方式的优缺点",
+    link: "https://juejin.cn/post/6844904115097567239",
+  },
+  {
     text: "如何在 ES5 环境下实现一个const ？ ",
     link: "/fragment/const",
   },

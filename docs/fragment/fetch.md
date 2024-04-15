@@ -77,3 +77,5 @@ function abortableFetch(request, opts) {
 ```
 
 说实话，我对取消 Fetch 的方法并不感到兴奋。在理想的世界中，通过 Fetch 返回的 Promise 中的 .cancel() 会很酷，但是也会带来一些问题。无论如何，我为能够取消 Fetch 调用而感到高兴，你也应该如此！
+
+## [[译] 如何取消你的 Promise？](https://juejin.cn/post/6844903533393772557)
