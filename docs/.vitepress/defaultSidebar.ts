@@ -18,6 +18,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     text: "知识碎片（部分文章转载）",
     items: [
       {
+        text: "使用 react 的 hook 实现一个 useRequest",
+        link: "/fragment/useRequest",
+      },
+      {
         text: "前端录制回放系统初体验",
         link: "/fragment/video",
       },
