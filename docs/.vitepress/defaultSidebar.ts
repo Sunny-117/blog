@@ -17,6 +17,7 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
   },
   {
     text: "知识碎片（部分文章转载）",
+    collapsible: true,
     items: fragment,
   },
   {
