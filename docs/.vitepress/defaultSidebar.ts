@@ -18,6 +18,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     text: "知识碎片（部分文章转载）",
     items: [
       {
+        text: "如何取消 Fetch 请求",
+        link: "/fragment/fetch",
+      },
+      {
         text: "react函数组件中使用useState改变值后立刻获取最新值 ",
         link: "/fragment/react-useState",
       },
