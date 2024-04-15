@@ -18,6 +18,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     text: "知识碎片（部分文章转载）",
     items: [
       {
+        text: "React Hooks实现倒计时及避坑",
+        link: "/fragment/react-hooks-timer",
+      },
+      {
         text: "使用 react 的 hook 实现一个 useRequest",
         link: "/fragment/useRequest",
       },
