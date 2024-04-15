@@ -18,6 +18,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     text: "知识碎片（部分文章转载）",
     items: [
       {
+        text: "请设计一个不能操作DOM和调接口的环境",
+        link: "/fragment/沙盒",
+      },
+      {
         text: "如何取消 Fetch 请求",
         link: "/fragment/fetch",
       },
