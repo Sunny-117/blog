@@ -1,0 +1,1 @@
+import{_ as s,o as n,c as a,a as l}from"./app.86ffd82f.js";const b=JSON.parse('{"title":"如何取消 Fetch 请求","description":"","frontmatter":{},"headers":[],"relativePath":"fragment/fetch.md","lastUpdated":1713161360000}'),p={name:"fragment/fetch.md"},o=l("",12),e=[o];function c(r,t,B,y,F,i){return n(),a("div",null,e)}const u=s(p,[["render",c]]);export{b as __pageData,u as default};
