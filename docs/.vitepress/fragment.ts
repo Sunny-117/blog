@@ -52,6 +52,10 @@ export default [
     link: "/fragment/沙盒",
   },
   {
+    text: "前端接口防止重复请求实现方案",
+    link: "/fragment/api-no-repeat",
+  },
+  {
     text: "面试官：能不能给 Promise 增加取消功能和进度通知功能... 我：？",
     link: "/fragment/promise-cancel",
   },
