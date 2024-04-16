@@ -1,5 +1,9 @@
 export default [
   {
+    text: "前端中 JS 发起的请求可以暂停吗?",
+    link: "/fragment/fetch-pause",
+  },
+  {
     text: "面试官：tree-shaking的原理是什么？",
     link: "/fragment/tree-shaking",
   },
