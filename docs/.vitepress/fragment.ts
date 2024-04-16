@@ -1,9 +1,5 @@
 export default [
   {
-    text: "前端中 JS 发起的请求可以暂停吗?",
-    link: "/fragment/fetch-pause",
-  },
-  {
     text: "面试官：tree-shaking的原理是什么？",
     link: "/fragment/tree-shaking",
   },
@@ -54,6 +50,14 @@ export default [
   {
     text: "请设计一个不能操作DOM和调接口的环境",
     link: "/fragment/沙盒",
+  },
+  {
+    text: "面试官：能不能给 Promise 增加取消功能和进度通知功能... 我：？",
+    link: "/fragment/promise-cancel",
+  },
+  {
+    text: "前端中 JS 发起的请求可以暂停吗?",
+    link: "/fragment/fetch-pause",
   },
   {
     text: "如何取消 Fetch 请求",
