@@ -1,5 +1,9 @@
 export default [
   {
+    text: "禁止别人调试自己的前端页面代码",
+    link: "/fragment/disable-debugger",
+  },
+  {
     text: "如何给所有的async函数添加try/catch？",
     link: "/fragment/auto-try-catch",
   },
