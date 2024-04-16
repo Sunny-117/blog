@@ -1,5 +1,9 @@
 export default [
   {
+    text: "面试官：tree-shaking的原理是什么？",
+    link: "/fragment/tree-shaking",
+  },
+  {
     text: "禁止别人调试自己的前端页面代码",
     link: "/fragment/disable-debugger",
   },
