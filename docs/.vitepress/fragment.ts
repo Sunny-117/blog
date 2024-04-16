@@ -1,5 +1,9 @@
 export default [
   {
+    text: "如何给所有的async函数添加try/catch？",
+    link: "/fragment/auto-try-catch",
+  },
+  {
     text: "输入 npm run xxx 后发生了什么？",
     link: "/fragment/npm-scripts",
   },

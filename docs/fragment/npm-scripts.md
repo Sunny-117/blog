@@ -52,3 +52,5 @@ node app.js
 .bin 目录下的文件，是一个个的软链接，打开文件可以看到文件顶部写着 #!/bin/sh ，表示这是一个脚本，可由 node 来执行。当使用 npm run xxx 执行 sss 时，虽然没有安装 sss 的全局命令，但是 npm 会到 ./node_modules/.bin 中找到 sss 文件作为脚本来执行，则相当于执行了 ./node_modules/.bin/sss。
 
 即： **运行 npm run xxx 的时候，npm 会先在当前目录的 node_modules/.bin 查找要执行的程序，如果找到则运行；没有找到则从全局的 node_modules/.bin 中查找； 全局目录还是没找到，就会从 window 的 path 环境变量中查找有没有其他同名的可执行程序。**
+
+## [浅析 npm install 机制阅读](https://juejin.cn/post/7206998548343504956)
