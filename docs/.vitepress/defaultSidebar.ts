@@ -93,4 +93,14 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       },
     ],
   },
+  {
+    text: "技术之外",
+    collapsible: true,
+    items: [
+      {
+        text: "关于写作，这是我目前能想到最全的",
+        link: "https://mp.weixin.qq.com/s/EAU3u7iVnyK5Gi00mgewLw",
+      },
+    ],
+  },
 ];
