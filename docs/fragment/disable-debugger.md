@@ -109,7 +109,7 @@ eval(
 ## 🎈 终极增强防调试代码
 
 - 为了让自己写出来的代码更加的晦涩难懂，需要对上面的代码再优化一下
-- 将 Function('debugger').call() 改成 (function(){return false;})['constructor']('debugger')['call']();
+- 将 `Function('debugger').call()` 改成 `(function(){return false;})['constructor']('debugger')['call']()`;
 - 并且添加条件，当窗口外部宽高和内部宽高的差值大于一定的值 ，我把 body 里的内容换成指定内容
 - 当然使用的时候，为了更加的安全，最好加密后再使用
 
