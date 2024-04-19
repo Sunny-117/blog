@@ -1,5 +1,13 @@
 export default [
   {
+    text: "面试官：你知道websocket的心跳机制吗？ ",
+    link: "/fragment/websocket-heart",
+  },
+  {
+    text: "前端基建的未来？带你入门开发 Rust 前端工具链！",
+    link: "https://juejin.cn/post/7270152997165432871",
+  },
+  {
     text: "面试官：tree-shaking的原理是什么？",
     link: "/fragment/tree-shaking",
   },
