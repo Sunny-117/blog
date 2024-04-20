@@ -8,6 +8,10 @@ export default [
     link: "/fragment/websocket-heart",
   },
   {
+    text: "字节面试官：“Rust在前端工具链里有什么性能优势？” 候选人： “你说得对，但Rust是一门…”",
+    link: "https://rapidsu.cn/articles/4997",
+  },
+  {
     text: "前端基建的未来？带你入门开发 Rust 前端工具链！",
     link: "https://juejin.cn/post/7270152997165432871",
   },
