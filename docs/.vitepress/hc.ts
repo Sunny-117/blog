@@ -41,4 +41,8 @@ export default [
     text: "CSS 实现多行文本“展开收起”",
     link: "https://juejin.cn/post/6963904955262435336",
   },
+  {
+    text: "钉钉官网首页的炫酷动效” 被我用css新特性轻松破解啦～",
+    link: "https://juejin.cn/post/7274149231367798803",
+  },
 ];

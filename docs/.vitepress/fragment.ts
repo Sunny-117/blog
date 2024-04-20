@@ -1,5 +1,9 @@
 export default [
   {
+    text: "解决npm link本地代码后 react库存在多份实例的问题",
+    link: "/fragment/react-duplicate",
+  },
+  {
     text: "面试官：你知道websocket的心跳机制吗？ ",
     link: "/fragment/websocket-heart",
   },
