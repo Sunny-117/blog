@@ -4,6 +4,10 @@ export default [
     link: "/front-end-engineering/engineering-onepage",
   },
   {
+    text: "Rspack 基于 Rust 的高性能 Web 构建工具",
+    link: "/front-end-engineering/Rspack",
+  },
+  {
     text: "前端性能优化方法论",
     link: "/front-end-engineering/performance",
   },
