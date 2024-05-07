@@ -1,0 +1,27 @@
+@import "a.css";
+@import "b.css";
+
+.a {
+    color: red;
+
+    &.b {
+        color: green;
+        transform: translate(100px);
+    }
+
+    &>.b {
+        color: blue;
+    }
+
+    &:hover {
+        color: #000;
+    }
+}
+
+.container {
+    font-size: 20px;
+}
+
+p {
+    color: red;
+}

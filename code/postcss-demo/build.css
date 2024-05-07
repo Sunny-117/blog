@@ -1,0 +1,16 @@
+body {
+    background-color: beige;
+    font-size: 16px;
+}
+
+.box1 {
+    -webkit-transform: translate(100px);
+        -ms-transform: translate(100px);
+            transform: translate(100px);
+}
+
+.box2{
+    -webkit-transform: translate(200px);
+        -ms-transform: translate(200px);
+            transform: translate(200px);
+}

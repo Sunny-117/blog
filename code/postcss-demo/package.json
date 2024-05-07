@@ -1,0 +1,11 @@
+{
+  "name": "postcss-demo",
+  "scripts": {
+    "build": "postcss src/index.css -o ./build.css"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0"
+  }
+}

@@ -1,0 +1,12 @@
+body {
+    background-color: beige;
+    font-size: 16px;
+}
+
+.box1 {
+    transform: translate(100px);
+}
+
+.box2{
+    transform: translate(200px);
+}

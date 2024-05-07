@@ -1,0 +1,79 @@
+$containerSize: 150px;
+$translateZDistance: 75px;
+$hoverTranslateZDistance: 200px;
+$imageCount: 6;
+$routateArr: rotate(0deg), rotateX(-180deg), rotateX(90deg), rotateX(-90deg), rotateY(90deg), rotateY(-90deg);
+
+@mixin layerOne($i, $rotation, $bgImg) {
+    .container div:nth-child(#{$i}) {
+        transform: #{$rotation} translateZ($translateZDistance);
+        background: url("./images/#{$bgImg}.jpg") white no-repeat center/cover;
+    }
+}
+
+@mixin layerTwo($i, $rotation, $bgImg) {
+    @include layerOne($i, $rotation, $bgImg);
+    .container:hover div:nth-child(#{$i}) {
+        transform: #{$rotation} translateZ($hoverTranslateZDistance);
+    }
+}
+
+* {
+    /* 初始化 取消页面的内外边距 */
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    /* 弹性布局 让页面元素垂直+水平居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 让页面始终占浏览器总高 */
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    /* 视距 增加盒子的立体感 */
+    perspective: 1000px;
+}
+
+.container {
+    /* 相对定位 */
+    position: relative;
+    width: $containerSize;
+    height: $containerSize;
+    /* 让子元素保留其3D位置 */
+    transform-style: preserve-3d;
+    /* 动画 名称 时长 linear 是匀速运动 infinite是无限次播放 */
+    animation: rotate 5s linear infinite;
+
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        transition: all 1s;
+    }
+}
+
+// 外层面，具备 hover 效果的
+@for $i from 1 through $imageCount {
+    @include layerTwo($i, nth($routateArr, $i), $i);
+}
+
+// 内层面，不具备 hover 效果，就是一个正方体
+@for $i from ($imageCount + 1) through ($imageCount * 2) {
+    @include layerOne($i, nth($routateArr, $i - $imageCount), $i - $imageCount);
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateY(0) rotateX(0);
+    }
+
+    100% {
+        transform: rotateY(360deg) rotateX(360deg);
+    }
+}

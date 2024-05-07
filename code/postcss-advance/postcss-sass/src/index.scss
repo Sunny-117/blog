@@ -1,0 +1,38 @@
+// src/index.scss
+$primary-color: #4caf50;
+$second-color: #ad7609;
+@mixin large-text {
+    font: {
+        family: Arial;
+        size: 20px;
+        weight: bold;
+    }
+    color: #ff0000;
+}
+.container {
+    background-color: $primary-color;
+    padding: 20px;
+    transform: translate(100px);
+    .title {
+        $primary-color: #210aec;
+        font-size: 24px;
+        color: $primary-color;
+        background-color: $second-color;
+    }
+}
+
+.test {
+    color: $second-color;
+}
+
+p {
+    @include large-text;
+    padding: 20px;
+}
+
+div {
+    @include large-text;
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+}

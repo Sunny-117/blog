@@ -1,0 +1,21 @@
+{
+  "name": "cube-3d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node src/build-style.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "cssnano": "^6.0.1",
+    "postcss": "^8.4.24",
+    "sass": "^1.63.6",
+    "stylelint": "^15.9.0",
+    "stylelint-config-standard": "^33.0.0"
+  }
+}
