@@ -39,4 +39,8 @@ export default [
     text: "包管理器",
     link: "/front-end-engineering/PackageManager",
   },
+  {
+    text: "主题切换",
+    link: "/front-end-engineering/theme",
+  },
 ];
