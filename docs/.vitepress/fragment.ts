@@ -112,8 +112,16 @@ export default [
     link: "/fragment/setTimeout",
   },
   {
+    text: "requestIdleCallback和requestAnimationFrame详解",
+    link: "https://juejin.cn/post/6844903848981577735",
+  },
+  {
     text: "如何让 var [a, b] = {a: 1, b: 2} 解构赋值成功？",
     link: "/fragment/var-array",
+  },
+  {
+    text: "尾调用优化",
+    link: "https://www.ruanyifeng.com/blog/2015/04/tail-call.html",
   },
   {
     text: "Git",
