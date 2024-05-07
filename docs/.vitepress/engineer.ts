@@ -8,6 +8,10 @@ export default [
     link: "/front-end-engineering/Rspack",
   },
   {
+    text: "Npm package：npm发包必知必会",
+    link: "https://juejin.cn/post/7093873173128544270",
+  },
+  {
     text: "前端性能优化方法论",
     link: "/front-end-engineering/performance",
   },

@@ -104,8 +104,16 @@ export default [
     link: "/fragment/微内核架构",
   },
   {
+    text: "2023 年了，你为什么还不用 SWR ？",
+    link: "https://juejin.cn/post/7247028435339591740",
+  },
+  {
     text: "如何实现准时的setTimeout",
     link: "/fragment/setTimeout",
+  },
+  {
+    text: "如何让 var [a, b] = {a: 1, b: 2} 解构赋值成功？",
+    link: "/fragment/var-array",
   },
   {
     text: "Git",

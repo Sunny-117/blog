@@ -189,6 +189,31 @@ function sameVnode(a, b) {
 </div>
 ```
 
+### 为什么不用 index 作为 key
+
+```vue
+<template>
+  <div id="app">
+    <ul>
+      <li v-for="item in list" :key="item.index">{{ item }}</li>
+    </ul>
+    <button @click="add">添加</button>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue";
+// 我们发现添加操作导致的整个列表的重新渲染，按道理来说，Diff 算法会复用后面的三项，
+// 因为它们只是位置发生了变化，内容并没有改变。但是我们回过头来发现，
+// 我们在前面添加了一项，导致后面三项的 index 变化，从而导致 key 值发生变化。Diff 算法失效了
+const list = ref(["html", "css", "js"]);
+const add = () => {
+  list.value.unshift("阳阳羊");
+};
+</script>
+```
+
+解决：只要不是索引即可，比如，直接使用 item。这样，key 就是永远不变的，更新前后都是一样的，并且又由于节点的内容本来就没变，所以 Diff 算法完美生效，只需将新节点添加到真实 DOM 就行了。
+
 ## 总结
 
 当组件创建和更新时，vue 均会执行内部的 update 函数，该函数使用 render 函数生成的虚拟 dom 树，将新旧两树进行对比，找到差异点，最终更新到真实 dom
@@ -208,7 +233,6 @@ function sameVnode(a, b) {
 
 这样一直递归的遍历下去，直到整棵树完成对比。
 
-
 ## 注意：
 
 - **在给 _vue_ 中的元素设置 _key_ 值时可以使用 _Math_ 的 _random_ 方法么？**
@@ -218,7 +242,6 @@ function sameVnode(a, b) {
 > 如果是根据数据来生成 _item_，数据具有 _id_ 属性，那么就可以使用 _id_ 来作为 _key_。
 >
 > 如果不是根据数据生成 _item_，那么最好的方式就是使用时间戳来作为 _key_。或者使用诸如 _uuid_ 之类的库来生成唯一的 _id_。
-
 
 - 为什么不建议用 index 作为 key?
 
