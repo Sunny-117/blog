@@ -1,0 +1,5 @@
+header {
+    background-color: $primary-color;
+    color: $secondary-color;
+    @include reset-margin-padding;
+}

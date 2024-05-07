@@ -1,0 +1,35 @@
+$value: 42;
+
+$value-type: type-of($value); // number
+
+$length: 10px;
+$length-unit: unit($length); // "px"
+
+$is-unitless: unitless(42); // true
+
+$can-compare: comparable(1px, 2em); // false
+$can-compare2: comparable(1px, 2px); // true
+
+// 根据 type-of 函数的结果生成样式
+.box {
+  content: "Value type: #{$value-type}";
+}
+
+// 根据 unit 函数的结果生成样式
+.length-label {
+  content: "Length unit: #{$length-unit}";
+}
+
+// 根据 unitless 函数的结果生成样式
+.unitless-label {
+  content: "Is unitless: #{$is-unitless}";
+}
+
+// 根据 comparable 函数的结果生成样式
+.comparable-label {
+  content: "Can compare: #{$can-compare}";
+}
+
+.comparable-label2 {
+  content: "Can compare: #{$can-compare2}";
+}

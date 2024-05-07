@@ -1,0 +1,18 @@
+@mixin scope-test {
+  $test-variable: "mixin";
+
+  .mixin{
+    content: $test-variable
+  }
+
+  @content
+};
+
+.test {
+  $test-variable: "test";
+  @include scope-test {
+    .content {
+      content : $test-variable
+    }
+  }
+}

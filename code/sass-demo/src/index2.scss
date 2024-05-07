@@ -1,0 +1,12 @@
+$dict: (
+  h1: 2em,
+  h2: 1.5em,
+  h3: 1.2em,
+  h4: 1em,
+);
+
+@each $header, $size in $dict {
+  #{$header}{
+    font-size: $size;
+  }
+}

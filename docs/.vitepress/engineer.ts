@@ -20,6 +20,10 @@ export default [
     link: "/front-end-engineering/CSS工程化",
   },
   {
+    text: "CSS 预处理器之SCSS",
+    link: "/front-end-engineering/CSS 预处理器之SCSS",
+  },
+  {
     text: "JS 兼容性",
     link: "/front-end-engineering/jscompatibility",
   },
