@@ -104,6 +104,14 @@ export default [
     link: "/fragment/微内核架构",
   },
   {
+    text: "什么？后端要一次性返回我10万条数据！且看我这8种方案机智应对！",
+    link: "https://juejin.cn/post/7205101745936416829?",
+  },
+  {
+    text: "被裁员了，记录下去年刚入职一个月时在组内关于前端基建的技术分享",
+    link: "https://juejin.cn/post/7256393626682163237",
+  },
+  {
     text: "2023 年了，你为什么还不用 SWR ？",
     link: "https://juejin.cn/post/7247028435339591740",
   },

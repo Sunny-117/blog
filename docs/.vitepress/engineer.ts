@@ -12,6 +12,10 @@ export default [
     link: "https://juejin.cn/post/7093873173128544270",
   },
   {
+    text: "中高级前端必须掌握的package.json最新最全指南",
+    link: "https://juejin.cn/post/7240805459288522808",
+  },
+  {
     text: "前端性能优化方法论",
     link: "/front-end-engineering/performance",
   },
@@ -54,5 +58,9 @@ export default [
   {
     text: "主题切换",
     link: "/front-end-engineering/theme",
+  },
+  {
+    text: "纯原生开发 Web Components 超详细分享",
+    link: "https://juejin.cn/post/7158717654369304612",
   },
 ];
