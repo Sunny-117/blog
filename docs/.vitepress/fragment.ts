@@ -4,10 +4,6 @@ export default [
     link: "/fragment/react-duplicate",
   },
   {
-    text: "面试官：你知道websocket的心跳机制吗？ ",
-    link: "/fragment/websocket-heart",
-  },
-  {
     text: "字节面试官：“Rust在前端工具链里有什么性能优势？” 候选人： “你说得对，但Rust是一门…”",
     link: "https://rapidsu.cn/articles/4997",
   },

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 创建一个 MutationObserver 实例
+        // const observer = new MutationObserver((mutations) => {
+        //     mutations.forEach((mutation) => {
+        //         if (mutation.type === 'childList') {
+        //             // 当子节点发生变化时，检查是否有新增节点或者移除节点
+        //             mutation.addedNodes.forEach((node) => {
+        //                 if (node.nodeType === Node.ELEMENT_NODE) {
+        //                     // 新增节点是一个元素节点
+        //                     console.log('Element added:', node);
+        //                     console.log(node.class)
+        //                     window.node = node;
+        //                     // 在这里执行出现时的操作
+        //                 }
+        //             });
+        //             mutation.removedNodes.forEach((node) => {
+        //                 if (node.nodeType === Node.ELEMENT_NODE) {
+        //                     // 移除节点是一个元素节点
+        //                     console.log('Element removed:', node);
+        //                     // 在这里执行隐藏时的操作
+        //                 }
+        //             });
+        //         }
+        //     });
+        // });
+
+        // // 配置观察选项
+        // const config = { childList: true };
+
+        // 在页面加载完毕后开始监听document.body
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     observer.observe(document.body, config);
+        // });
+
+        // 创建一个函数，用于创建ID为"aaaa"的元素
+        function createAaaaElement() {
+            // 创建一个div元素
+            var newDiv = document.createElement("div");
+            // 设置该div元素的id为"aaaa"
+            newDiv.id = "aaaa";
+            newDiv.classList = 'zzz vvv'
+            newDiv.innerHTML = 'aaaaaa'
+            // 将该div元素添加到页面中
+            document.body.appendChild(newDiv);
+            // 输出提示信息
+            console.log("ID为'aaaa'的元素已创建！");
+        }
+
+        // 在页面加载完毕5秒后执行创建元素的操作
+        window.onload = function () {
+            setTimeout(createAaaaElement, 5000); // 5000毫秒即5秒
+        };
+
+        document.body.querySelector('#aaaa').addEventListener('click', () => {
+            console.log('aaaaaa')
+        })
+
+    </script>
+</body>
+
+</html>
