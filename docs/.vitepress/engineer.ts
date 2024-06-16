@@ -59,4 +59,8 @@ export default [
     text: "纯原生开发 Web Components 超详细分享",
     link: "https://juejin.cn/post/7158717654369304612",
   },
+  {
+    text: "Node 组成原理",
+    link: "/front-end-engineering/node",
+  },
 ];
