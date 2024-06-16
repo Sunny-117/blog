@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as r,a}from"./app.1ee4e414.js";const b=JSON.parse('{"title":"Fiber","description":"","frontmatter":{},"headers":[],"relativePath":"react/Fiber.md","lastUpdated":1675253508000}'),i={name:"react/Fiber.md"},o=a("",6),s=[o];function _(c,n,p,d,l,f){return t(),r("div",null,s)}const u=e(i,[["render",_]]);export{b as __pageData,u as default};
