@@ -98,4 +98,8 @@ pnpm 使用符号链接和硬链接来构建 node_modules 目录
 6.  新版本的 pnpm 为了解决一些书写不规范的包（读取间接依赖）的问题，又将所有的工程非直接依赖，使用符号链接加入到了 .pnpm/node_modules 中。如果 b 依赖 c，a 又要直接用 c，这种不规范的用法现在 pnpm 通过这种方式支持了。但对于那些使用绝对路径的奇葩写法，可能没有办法支持。
 7.  在工程的 node_modules 目录中使用符号链接，放置直接依赖 ![](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5aa84dafe5b249efb565bacb8f7ec67a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp)
 
-> 转载自 https://juejin.cn/post/6916101419703468045
+## 其他资料
+
+https://juejin.cn/post/6916101419703468045
+
+https://www.bilibili.com/video/BV1tg4y1x75Q/?p=3&spm_id_from=pageDriver&vd_source=5ca956a1f37d0ed72cd1c453c15a3c03
