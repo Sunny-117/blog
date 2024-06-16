@@ -637,7 +637,7 @@ const BlogPostWithSubscription = withSubscription(BlogPost,
 
 HOC 的优缺点 ∶
 
-- 优点 ∶ 逻辑服用、不影响被包裹组件的内部逻辑。
+- 优点 ∶ 逻辑复用、不影响被包裹组件的内部逻辑。
 - 缺点 ∶ hoc 传递给被包裹组件的 props 容易和被包裹后的组件重名，进而被覆盖
 
 **（2）Render props** 官方解释 ∶
@@ -784,7 +784,7 @@ const BlogPostWithSubscription = withSubscription(BlogPost,
 
 **1）HOC 的优缺点**
 
-- 优点 ∶ 逻辑服用、不影响被包裹组件的内部逻辑。
+- 优点 ∶ 逻辑复用、不影响被包裹组件的内部逻辑。
 - 缺点 ∶hoc 传递给被包裹组件的 props 容易和被包裹后的组件重名，进而被覆盖
 
 **2）适用场景**
