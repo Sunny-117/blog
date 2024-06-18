@@ -80,6 +80,10 @@ export default [
     link: "/fragment/黑白",
   },
   {
+    text: "前沿技术",
+    link: "/fragment/前沿技术",
+  },
+  {
     text: "手撕babel插件-消灭console！",
     link: "/fragment/babel-console",
   },
