@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as r,a}from"./app.ebc48301.js";const j=JSON.parse('{"title":"前沿技术","description":"","frontmatter":{},"headers":[],"relativePath":"fragment/前沿技术.md","lastUpdated":1718692967000}'),n={name:"fragment/前沿技术.md"},s=a("",6),o=[s];function p(c,_,h,i,f,l){return t(),r("div",null,o)}const u=e(n,[["render",p]]);export{j as __pageData,u as default};
