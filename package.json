@@ -17,6 +17,7 @@
     "vue": "^3.2.45"
   },
   "dependencies": {
-    "@types/node": "^18.11.18"
+    "@types/node": "^18.11.18",
+    "oh-my-live2d": "^0.19.3"
   }
 }
