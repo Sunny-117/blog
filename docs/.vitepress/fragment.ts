@@ -124,6 +124,10 @@ export default [
     link: "https://www.ruanyifeng.com/blog/2015/04/tail-call.html",
   },
   {
+    text: "站点如何防止爬虫？",
+    link: "/fragment/爬虫",
+  },
+  {
     text: "Git",
     link: "/fe-utils/git",
   },
