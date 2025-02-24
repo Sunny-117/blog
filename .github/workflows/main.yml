@@ -1,38 +1,30 @@
-name: Deploy GitHub Pages
+name: Deploy VitePress site to Pages
 
-# 触发条件：在 push 到 main 分支后
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # 拉取代码
       - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+        uses: actions/checkout@master
 
-      # 安装依赖
-      - name: Install dependencies
-        run: npm install
+      - name: Install and Build
+        run: |
+          npm install -g pnpm
+          cd docs
+          pnpm install
+          pnpm docs:build
 
-      # 执行自定义 npm 命令（dep:[name]）
-      - name: Run custom npm script
-        run: npm run dep:${{ secrets.DEP_NAME }} # 这里 DEP_NAME 可以是您设置的自定义名称
-
-      # 生成静态文件
-      - name: Build
-        run: npm run docs:build
-
-      # 部署到 GitHub Pages
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: / # 或者填写实际生成的静态文件路径
+        run: |
+          cd docs/.vitepress/dist
+          git init
+          git add -A
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m 'deploy'
+          git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:gh-pages
