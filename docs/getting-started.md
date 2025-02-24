@@ -1,7 +1,5 @@
 # My Projects
 
-> TODO：分类
-
 ### js-challenges
 
 https://github.com/Sunny-117/js-challenges
@@ -48,20 +46,17 @@ https://github.com/Sunny-117/commencer
 
 Starter template for xxx
 
-
 ### tiny-react
 
 https://github.com/Sunny-117/tiny-react
 
 🌱 The closest implementation to the React source code
 
-
 ### treejs
 
 https://github.com/Sunny-117/treejs
 
 🌱 Easy to learn, high-performance, and highly scalable Tree components, supporting Vuejs and React simultaneously
-
 
 ### lodash-ts
 
@@ -70,7 +65,6 @@ https://github.com/Sunny-117/lodash-ts
 ### tiny-vue
 
 https://github.com/Sunny-117/tiny-vue
-
 
 ### Native-project
 
@@ -88,7 +82,7 @@ https://github.com/Sunny-117/shooks
 
 https://github.com/Sunny-117/mini-webpack
 
-手写一个简易版的webpack
+手写一个简易版的 webpack
 
 ### ts-lib-vite
 
@@ -152,14 +146,13 @@ https://github.com/Sunny-117/vsc-delete-func
 
 https://github.com/Sunny-117/eslint-plugin-reviewget
 
-🚀当用户使用 getXXX get开头的函数的时候 如果不返回值的话 那么就会报错 🐛可以 fix 🎉用户可以自行配置是否 fix
+🚀 当用户使用 getXXX get 开头的函数的时候 如果不返回值的话 那么就会报错 🐛 可以 fix 🎉 用户可以自行配置是否 fix
 
 ### babel-plugin-dev-debug
 
 https://github.com/Sunny-117/babel-plugin-dev-debug
 
 an babel plugin that for dev debug
-
 
 ### webpack-expand-lib
 
