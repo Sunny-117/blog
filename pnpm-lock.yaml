@@ -10,14 +10,14 @@ importers:
     dependencies:
       '@types/node':
         specifier: ^18.11.18
-        version: 18.19.71
+        version: 18.19.76
       oh-my-live2d:
         specifier: ^0.19.3
         version: 0.19.3
     devDependencies:
       vitepress:
         specifier: 1.0.0-alpha.33
-        version: 1.0.0-alpha.33(@algolia/client-search@5.19.0)(@types/node@18.19.71)(search-insights@2.17.3)
+        version: 1.0.0-alpha.33(@algolia/client-search@5.19.0)(@types/node@18.19.76)(search-insights@2.17.3)
       vue:
         specifier: ^3.2.45
         version: 3.5.13
@@ -271,8 +271,8 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.0':
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
 
-  '@types/node@18.19.71':
-    resolution: {integrity: sha512-evXpcgtZm8FY4jqBSN8+DmOTcVkkvTmAayeo4Wf3m1xAruyVGzGuDh/Fb/WWX2yLItUiho42ozyJjB0dw//Tkw==}
+  '@types/node@18.19.76':
+    resolution: {integrity: sha512-yvR7Q9LdPz2vGpmpJX5LolrgRdWvB67MJKDPSgIIzpFbaf9a1j/f5DnLp5VDyHGMR0QZHlTr1afsD87QCXFHKw==}
 
   '@types/web-bluetooth@0.0.16':
     resolution: {integrity: sha512-oh8q2Zc32S6gd/j50GowEjKLoOVOwHP/bWVjKJInBwQqdOYMdPrf1oVlelTlyfFK3CKxL1uahMDAr+vy8T7yMQ==}
@@ -345,7 +345,7 @@ packages:
     hasBin: true
 
   estree-walker@2.0.2:
-    resolution: {integrity: sha1-UvAQF4wqTBF6d1fP6UKtt9LaTKw=}
+    resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -663,15 +663,15 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
 
-  '@types/node@18.19.71':
+  '@types/node@18.19.76':
     dependencies:
       undici-types: 5.26.5
 
   '@types/web-bluetooth@0.0.16': {}
 
-  '@vitejs/plugin-vue@4.6.2(vite@4.5.5(@types/node@18.19.71))(vue@3.5.13)':
+  '@vitejs/plugin-vue@4.6.2(vite@4.5.5(@types/node@18.19.76))(vue@3.5.13)':
     dependencies:
-      vite: 4.5.5(@types/node@18.19.71)
+      vite: 4.5.5(@types/node@18.19.76)
       vue: 3.5.13
 
   '@vue/compiler-core@3.5.13':
@@ -837,25 +837,25 @@ snapshots:
 
   undici-types@5.26.5: {}
 
-  vite@4.5.5(@types/node@18.19.71):
+  vite@4.5.5(@types/node@18.19.76):
     dependencies:
       esbuild: 0.18.20
       postcss: 8.5.1
       rollup: 3.29.5
     optionalDependencies:
-      '@types/node': 18.19.71
+      '@types/node': 18.19.76
       fsevents: 2.3.3
 
-  vitepress@1.0.0-alpha.33(@algolia/client-search@5.19.0)(@types/node@18.19.71)(search-insights@2.17.3):
+  vitepress@1.0.0-alpha.33(@algolia/client-search@5.19.0)(@types/node@18.19.76)(search-insights@2.17.3):
     dependencies:
       '@docsearch/css': 3.8.2
       '@docsearch/js': 3.8.2(@algolia/client-search@5.19.0)(search-insights@2.17.3)
-      '@vitejs/plugin-vue': 4.6.2(vite@4.5.5(@types/node@18.19.71))(vue@3.5.13)
+      '@vitejs/plugin-vue': 4.6.2(vite@4.5.5(@types/node@18.19.76))(vue@3.5.13)
       '@vue/devtools-api': 6.6.4
       '@vueuse/core': 9.13.0(vue@3.5.13)
       body-scroll-lock: 4.0.0-beta.0
       shiki: 0.12.1
-      vite: 4.5.5(@types/node@18.19.71)
+      vite: 4.5.5(@types/node@18.19.76)
       vue: 3.5.13
     transitivePeerDependencies:
       - '@algolia/client-search'
