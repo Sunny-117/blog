@@ -1,5 +1,4 @@
 import { DefaultTheme } from "vitepress";
-import vueConfig from "./vue";
 import engineerConfig from "./engineer";
 import reactConfig from "./react";
 import hcConfig from "./hc";
@@ -26,11 +25,6 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     items: engineerConfig,
   },
 
-  {
-    text: `Vuejs ${vueConfig.length}篇`,
-    collapsible: true,
-    items: vueConfig,
-  },
   {
     text: `React ${reactConfig.length}篇`,
     collapsible: true,
