@@ -29,14 +29,6 @@ export default [
     link: "/vue/lifecycle",
   },
   {
-    text: "computed",
-    link: "/vue/computed",
-  },
-  {
-    text: "keep-alive 与 LRU 算法",
-    link: "/vue/keep-alive-LRU",
-  },
-  {
     text: "Vue3 新特性",
     link: "/vue/vue3-onepage",
   },
@@ -45,11 +37,8 @@ export default [
     link: "/vue/vue-cli",
   },
   { text: "Vue 编译器为什么如此强大", link: "/vue/vue-compile" },
-  { text: "$nextTick 工作原理", link: "/vue/nextTick" },
   { text: "Vue 和 React 的核心区别", link: "/vue/vs" },
-  { text: "一篇精通 slot", link: "/vue/slot" },
   { text: "Vue SSR 服务端渲染", link: "/vue/SSR" },
-  { text: "Vue 指令篇", link: "/vue/directive" },
   { text: "VueRouter 路由从使用到源码", link: "/vue/vue-router" },
   { text: "Vuex 思想和源码", link: "/vue/vuex" },
   { text: "今天我是面试官", link: "/vue/interviewer" },
