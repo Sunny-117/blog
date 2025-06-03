@@ -26,9 +26,7 @@ export default defineConfig({
   themeConfig: {
     outline: [1, 3],
     sidebar: defaultSidebar,
-    nav: [
-      ...defaultSidebar.slice(1, 5),
-    ],
+    nav: defaultSidebar,
     socialLinks: [
       { icon: "github", link: "https://github.com/Sunny-117/blog" },
     ],
