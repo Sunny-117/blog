@@ -1,9 +1,7 @@
-import { DefaultTheme } from "vitepress";
 import engineerConfig from "./engineer";
-import reactConfig from "./react";
 import hcConfig from "./hc";
 import fragment from "./fragment";
-export const defaultSidebar: DefaultTheme.Sidebar = [
+export const defaultSidebar = [
   {
     text: "Introduction",
     collapsible: true,
@@ -25,11 +23,6 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     items: engineerConfig,
   },
 
-  {
-    text: `React ${reactConfig.length}篇`,
-    collapsible: true,
-    items: reactConfig,
-  },
   {
     text: "TypeScript",
     items: [
