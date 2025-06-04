@@ -1,4 +1,3 @@
-import engineerConfig from "./engineer";
 import hcConfig from "./hc";
 import fragment from "./fragment";
 export const defaultSidebar = [
@@ -16,11 +15,6 @@ export const defaultSidebar = [
     text: "知识碎片（部分文章转载）",
     collapsible: true,
     items: fragment,
-  },
-  {
-    text: "前端工程化",
-    collapsible: true,
-    items: engineerConfig,
   },
 
   {
