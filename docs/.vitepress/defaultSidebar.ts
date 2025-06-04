@@ -45,43 +45,4 @@ export const defaultSidebar = [
       ...hcConfig,
     ],
   },
-
-  {
-    text: "算法",
-    collapsible: true,
-    items: [
-      {
-        text: "如何在 10 亿数中找出前 1000 大的数",
-        link: "https://juejin.cn/post/6844903880208171015",
-      },
-      {
-        text: "🔥刷题之探索最优解",
-        link: "/algorithm/🔥刷题之探索最优解",
-      },
-    ],
-  },
-  {
-    text: "面试系列",
-    collapsible: true,
-    items: [
-      {
-        text: "面试官：你还有问题要问我吗",
-        link: "/interview/面试官：你还有问题要问我吗",
-      },
-      {
-        text: "算法笔试",
-        link: "/interview/算法笔试",
-      },
-    ],
-  },
-  {
-    text: "技术之外",
-    collapsible: true,
-    items: [
-      {
-        text: "关于写作，这是我目前能想到最全的",
-        link: "https://mp.weixin.qq.com/s/EAU3u7iVnyK5Gi00mgewLw",
-      },
-    ],
-  },
 ];
