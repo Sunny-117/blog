@@ -10,16 +10,14 @@ export default defineConfig({
     outline: [1, 3],
     sidebar: defaultSidebar,
     nav: defaultSidebar,
-    socialLinks: [
-      { icon: "github", link: "https://github.com/Sunny-117/blog" },
-    ],
-    footer: {
-      copyright: "Copyright © 2022-present sunny-117",
+  },
+  markdown: {
+    anchor: {},
+    toc: { level: [1, 2, 3, 4] },
+    theme: {
+      light: "min-dark",
+      dark: "one-dark-pro",
     },
-    editLink: {
-      pattern: "https://github.com/Sunny-117/blog",
-      text: "Edit this page on Gitlab",
-    },
-    lastUpdatedText: "Last Updated",
+    lineNumbers: true,
   },
 });

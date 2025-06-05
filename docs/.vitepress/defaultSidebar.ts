@@ -1,4 +1,3 @@
-import hcConfig from "./hc";
 export const defaultSidebar = [
   {
     text: "前端三件套",
@@ -16,7 +15,6 @@ export const defaultSidebar = [
         text: "迭代器和生成器",
         link: "/js/迭代器和生成器",
       },
-      ...hcConfig,
     ],
   },
 ];
