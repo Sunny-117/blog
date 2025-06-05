@@ -1,31 +1,5 @@
 import hcConfig from "./hc";
-import fragment from "./fragment";
 export const defaultSidebar = [
-  {
-    text: "Introduction",
-    collapsible: true,
-    items: [
-      {
-        text: "Getting Started",
-        link: "/getting-started",
-      },
-    ],
-  },
-  {
-    text: "知识碎片（部分文章转载）",
-    collapsible: true,
-    items: fragment,
-  },
-
-  {
-    text: "TypeScript",
-    items: [
-      {
-        text: "TypeScript OnePage",
-        link: "/ts/TypeScript-onePage",
-      },
-    ],
-  },
   {
     text: "前端三件套",
     collapsible: true,
