@@ -17,7 +17,7 @@ jobs:
           npm install -g pnpm
           cd docs
           pnpm install
-          pnpm docs:build
+          pnpm build
 
       - name: Deploy
         run: |

@@ -1,19 +1,19 @@
 {
   "name": "docs",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "dep": "sh deploy.sh"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sunny-117",
   "license": "ISC",
   "devDependencies": {
-    "vitepress": "1.0.0-alpha.33",
+    "vitepress": "^1.6.4",
     "vue": "^3.2.45"
   },
   "dependencies": {

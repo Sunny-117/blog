@@ -13,7 +13,6 @@ export default defineConfig({
   description: "composition api form validator for vue",
   // appearance: false,
   lastUpdated: true,
-
   markdown: {
     anchor: {},
     toc: { level: [1, 2, 3, 4] },
@@ -24,6 +23,9 @@ export default defineConfig({
     lineNumbers: true,
   },
   themeConfig: {
+    search: {
+      provider: 'local'
+    },
     outline: [1, 3],
     sidebar: defaultSidebar,
     nav: [
