@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as s}from"./chunks/framework.CuN3vSjt.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"html-css/temop.md","filePath":"html-css/temop.md","lastUpdated":1762679988000}'),a={name:"html-css/temop.md"};function o(c,r,m,p,n,d){return s(),e("div")}const i=t(a,[["render",o]]);export{_ as __pageData,i as default};
