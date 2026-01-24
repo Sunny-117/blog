@@ -16,6 +16,10 @@ export default [
     link: "/front-end-engineering/performance",
   },
   {
+    text: "webpack onePage",
+    link: "/front-end-engineering/webpack",
+  },
+  {
     text: "webpack常用拓展",
     link: "/front-end-engineering/webpack常用拓展",
   },
