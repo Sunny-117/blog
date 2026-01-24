@@ -2,16 +2,16 @@
   <!-- 背景渐变 -->
   <defs>
     <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="codeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
     </linearGradient>
     <linearGradient id="compassGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
     </linearGradient>
   </defs>
   
@@ -54,34 +54,34 @@
     
     <!-- 指南针刻度 -->
     <g opacity="0.4">
-      <line x1="0" y1="-140" x2="0" y2="-130" stroke="#4facfe" stroke-width="2"/>
-      <line x1="140" y1="0" x2="130" y2="0" stroke="#4facfe" stroke-width="2"/>
-      <line x1="0" y1="140" x2="0" y2="130" stroke="#4facfe" stroke-width="2"/>
-      <line x1="-140" y1="0" x2="-130" y2="0" stroke="#4facfe" stroke-width="2"/>
+      <line x1="0" y1="-140" x2="0" y2="-130" stroke="#0ea5e9" stroke-width="2"/>
+      <line x1="140" y1="0" x2="130" y2="0" stroke="#0ea5e9" stroke-width="2"/>
+      <line x1="0" y1="140" x2="0" y2="130" stroke="#0ea5e9" stroke-width="2"/>
+      <line x1="-140" y1="0" x2="-130" y2="0" stroke="#0ea5e9" stroke-width="2"/>
     </g>
     
     <!-- 指南针指针 -->
     <g>
       <path d="M 0 -100 L 15 0 L 0 10 Z" 
-            fill="#f5576c" 
-            opacity="0.8"/>
+            fill="#3b82f6" 
+            opacity="0.9"/>
       <path d="M 0 -100 L -15 0 L 0 10 Z" 
-            fill="#4facfe" 
-            opacity="0.6"/>
-      <circle cx="0" cy="0" r="8" fill="#667eea"/>
+            fill="#0ea5e9" 
+            opacity="0.7"/>
+      <circle cx="0" cy="0" r="8" fill="#1e40af"/>
     </g>
   </g>
   
   <!-- 装饰性代码点 -->
   <g opacity="0.3">
-    <circle cx="80" cy="100" r="4" fill="#f093fb"/>
-    <circle cx="320" cy="120" r="4" fill="#4facfe"/>
-    <circle cx="100" cy="300" r="4" fill="#00f2fe"/>
-    <circle cx="300" cy="280" r="4" fill="#f5576c"/>
+    <circle cx="80" cy="100" r="4" fill="#60a5fa"/>
+    <circle cx="320" cy="120" r="4" fill="#0ea5e9"/>
+    <circle cx="100" cy="300" r="4" fill="#06b6d4"/>
+    <circle cx="300" cy="280" r="4" fill="#3b82f6"/>
   </g>
   
   <!-- 技术标签装饰 -->
-  <g opacity="0.2" font-family="monospace" font-size="12" fill="#667eea">
+  <g opacity="0.2" font-family="monospace" font-size="12" fill="#1e40af">
     <text x="60" y="80">Vue</text>
     <text x="310" y="100">React</text>
     <text x="70" y="330">TS</text>

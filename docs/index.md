@@ -9,7 +9,7 @@ hero:
     alt: 前端历险记
   actions:
     - theme: brand
-      text: 现在开始
+      text: 快速开始 →
       link: ./getting-started
     - theme: alt
       text: View on GitHub

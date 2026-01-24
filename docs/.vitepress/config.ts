@@ -14,7 +14,7 @@ export default defineConfig({
   lastUpdated: true,
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/blog/favicon.svg' }],
-    ['meta', { name: 'theme-color', content: '#667eea' }],
+    ['meta', { name: 'theme-color', content: '#3b82f6' }],
     ['meta', { property: 'og:title', content: "Sunny's blog - 前端历险记" }],
     ['meta', { property: 'og:description', content: '深入前端技术栈，探索工程化实践' }],
   ],
@@ -22,7 +22,7 @@ export default defineConfig({
     anchor: {},
     toc: { level: [1, 2, 3, 4] },
     theme: {
-      light: 'vitesse-light',
+      light: 'dracula',
       dark: 'vitesse-black',
     },
     lineNumbers: true,
