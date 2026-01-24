@@ -1,9 +1,15 @@
 import Theme from "vitepress/theme";
 import "./style/var.css";
 import { EnhanceAppContext } from "vitepress";
+import ProjectList from "./components/ProjectList.vue";
+import ProjectCard from "./components/ProjectCard.vue";
 
 export default {
   ...Theme,
+  enhanceApp({ app }: EnhanceAppContext) {
+    app.component('ProjectList', ProjectList);
+    app.component('ProjectCard', ProjectCard);
+  },
   // async enhanceApp({ app, router }: EnhanceAppContext) {
   //   if (!import.meta.env.SSR) {
   //     const { loadOml2d } = await import("oh-my-live2d");

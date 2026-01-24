@@ -7,7 +7,8 @@
     "dev": "vitepress dev docs",
     "build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "dep": "sh deploy.sh"
+    "dep": "sh deploy.sh",
+    "update:projects": "node scripts/generate-projects.cjs"
   },
   "keywords": [],
   "author": "Sunny-117",
