@@ -61,6 +61,10 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
         text: "迭代器和生成器",
         link: "/js/迭代器和生成器",
       },
+      {
+        text: "ES6+",
+        link: "/js/es6+",
+      },
       ...hcConfig,
     ],
   },
