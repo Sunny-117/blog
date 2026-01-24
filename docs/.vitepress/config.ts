@@ -68,48 +68,18 @@ export default defineConfig({
     build: {
       rollupOptions: {
         output: {
-          // 细粒度分包策略
+          // 简化分包策略，避免循环依赖
           manualChunks(id) {
             // 只对 node_modules 中的依赖进行分包
             if (id.includes('node_modules')) {
-              // Vue 核心 - 单独分包
-              if (id.includes('/vue/dist/')) {
-                return 'vendor-vue';
-              }
-
-              // @vue 生态系统 - 单独分包
-              if (id.includes('@vue/')) {
-                return 'vendor-vue-eco';
-              }
-
-              // @vueuse 工具库 - 单独分包
+              // @vueuse 工具库
               if (id.includes('@vueuse/')) {
                 return 'vendor-vueuse';
               }
 
-              // VitePress 主题 - 单独分包
-              if (id.includes('vitepress') && id.includes('theme-default')) {
-                return 'vendor-vp-theme';
-              }
-
-              // VitePress 核心 - 单独分包
-              if (id.includes('vitepress')) {
-                return 'vendor-vp-core';
-              }
-
               // 搜索功能 - minisearch
               if (id.includes('minisearch')) {
-                return 'vendor-search-mini';
-              }
-
-              // 搜索功能 - mark.js
-              if (id.includes('mark.js')) {
-                return 'vendor-search-mark';
-              }
-
-              // focus-trap 相关
-              if (id.includes('focus-trap') || id.includes('tabbable')) {
-                return 'vendor-focus';
+                return 'vendor-search';
               }
 
               // oh-my-live2d
@@ -117,8 +87,8 @@ export default defineConfig({
                 return 'vendor-live2d';
               }
 
-              // 其他小型依赖统一打包
-              return 'vendor-other';
+              // VitePress 和 Vue 相关的不单独分包，让 Vite 自动处理
+              // 其他依赖也让 Vite 自动处理
             }
           },
         },

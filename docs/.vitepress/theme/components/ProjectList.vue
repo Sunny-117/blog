@@ -59,7 +59,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { projectCategories } from '../../projects'
 import ProjectCard from './ProjectCard.vue'
 
@@ -74,16 +73,6 @@ function getCategoryId(title: string): string {
     .replace(/\s+/g, '-')
     .replace(/&/g, 'and')
 }
-
-// 在组件挂载后，手动更新页面标题以支持目录
-onMounted(() => {
-  // 等待 DOM 更新
-  setTimeout(() => {
-    // 触发 VitePress 重新扫描标题
-    const event = new Event('vitepress:update-outline')
-    window.dispatchEvent(event)
-  }, 100)
-})
 </script>
 
 <style scoped>
