@@ -90,6 +90,30 @@ const iconMap = {
     'oxc-plugins': '🦀', 'doc-render-sdk': '📄', 'gono': '🔧',
 };
 
+// 默认图标池（用于没有自定义图标的项目）
+const defaultIcons = [
+    '📦', '🎁', '🎨', '🔧', '⚙️', '🛠️', '🔨', '⚡', '🚀', '✨',
+    '💎', '🎯', '🎪', '🎭', '🎬', '🎮', '🎲', '🧩', '🔮', '💫',
+    '🌟', '⭐', '🌈', '🔥', '💥', '🎉', '🎊', '🏆', '🥇', '🎖️',
+];
+
+// 根据项目名称生成一致的随机图标
+function getProjectIcon(projectName) {
+    if (iconMap[projectName]) {
+        return iconMap[projectName];
+    }
+
+    // 使用项目名称的哈希值来确保同一个项目总是得到相同的图标
+    let hash = 0;
+    for (let i = 0; i < projectName.length; i++) {
+        hash = ((hash << 5) - hash) + projectName.charCodeAt(i);
+        hash = hash & hash; // Convert to 32bit integer
+    }
+
+    const index = Math.abs(hash) % defaultIcons.length;
+    return defaultIcons[index];
+}
+
 // ==================== 项目分类逻辑 ====================
 function categorizeProject(project) {
     try {
@@ -152,7 +176,7 @@ projects.forEach(project => {
 // ==================== 生成代码 ====================
 function generateProject(project) {
     try {
-        const icon = iconMap[project.name] || '📦';
+        const icon = getProjectIcon(project.name);
         const description = (project.description || project.name)
             .replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"')
             .replace(/\n/g, ' ').replace(/\r/g, '').trim();

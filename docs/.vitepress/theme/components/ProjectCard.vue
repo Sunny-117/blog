@@ -55,12 +55,13 @@ defineProps<{
 <style scoped>
 .project-card {
   position: relative;
-  border-radius: 18px;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--vp-c-bg-soft);
   backdrop-filter: blur(20px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
 }
 
 .dark .project-card {
@@ -95,13 +96,13 @@ defineProps<{
 }
 
 .project-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
   border-color: rgba(59, 130, 246, 0.4);
 }
 
 .dark .project-card:hover {
-  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
 }
 
 .card-link {
@@ -111,32 +112,32 @@ defineProps<{
 }
 
 .card-inner {
-  padding: 24px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 200px;
+  gap: 10px;
+  height: 100%;
 }
 
 .icon-wrapper {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(30, 64, 175, 0.1));
-  border-radius: 14px;
-  margin-bottom: 4px;
+  border-radius: 12px;
+  margin-bottom: 2px;
 }
 
 .icon {
-  font-size: 32px;
+  font-size: 28px;
   line-height: 1;
 }
 
 .project-name {
   margin: 0;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--vp-c-text-1);
@@ -148,56 +149,63 @@ defineProps<{
 
 .project-description {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--vp-c-text-2);
-  line-height: 1.5;
-  flex: 1;
+  line-height: 1.4;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  min-height: 36px;
 }
 
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 8px;
+  padding-top: 6px;
   margin-top: auto;
 }
 
 .stars {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   color: var(--vp-c-text-3);
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .stars svg {
   opacity: 0.6;
+  width: 11px;
+  height: 11px;
 }
 
 .stars img {
-  height: 16px;
+  height: 15px;
   opacity: 0.8;
 }
 
 .links {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .link-icon {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 7px;
   background: rgba(59, 130, 246, 0.1);
   color: #3b82f6;
   transition: all 0.2s;
+}
+
+.link-icon svg {
+  width: 14px;
+  height: 14px;
 }
 
 .link-icon:hover {
@@ -213,18 +221,18 @@ defineProps<{
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 4px;
+  gap: 5px;
+  margin-top: 2px;
 }
 
 .tag {
   display: inline-block;
-  padding: 3px 8px;
-  font-size: 11px;
+  padding: 2px 7px;
+  font-size: 10px;
   font-weight: 500;
   background: rgba(59, 130, 246, 0.08);
   color: #3b82f6;
-  border-radius: 6px;
+  border-radius: 5px;
   letter-spacing: 0.01em;
 }
 

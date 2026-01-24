@@ -4,7 +4,7 @@
     <div class="hero-section">
       <h1 class="hero-title">开源项目集</h1>
       <p class="hero-subtitle">
-        探索 50+ 个精心打造的开源项目，涵盖前端工程化、构建工具、组件库、编译器等多个领域
+        涵盖前端工程化、构建工具、编译器、组件库等领域。从源码实现到工程实践，持续探索技术边界
       </p>
     </div>
 
@@ -18,7 +18,12 @@
         <div class="category-header">
           <div class="category-title-wrapper">
             <span class="category-icon">{{ category.icon }}</span>
-            <h2 class="category-title">{{ category.title }}</h2>
+            <h2 
+              :id="getCategoryId(category.title)" 
+              class="category-title"
+            >
+              {{ category.title }}
+            </h2>
           </div>
           <span class="project-count">{{ category.projects.length }}</span>
         </div>
@@ -36,9 +41,9 @@
     <!-- Footer Section -->
     <div class="footer-section">
       <div class="footer-content">
-        <h2 class="footer-title">参与贡献</h2>
+        <h2 class="footer-title">开源协作</h2>
         <p class="footer-text">
-          如果你对这些项目感兴趣，欢迎 Star、提交 Issue 或 Pull Request
+          所有项目均采用 MIT 协议开源，欢迎 Star、Fork、提交 Issue 或 PR，一起构建更好的开源生态
         </p>
         <div class="footer-actions">
           <a href="https://github.com/Sunny-117" target="_blank" class="footer-btn">
@@ -54,10 +59,31 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { projectCategories } from '../../projects'
 import ProjectCard from './ProjectCard.vue'
 
 const categories = projectCategories
+
+// 生成分类 ID（用于锚点）
+function getCategoryId(title: string): string {
+  return title
+    .replace(/🔥|⭐|🛠️|⚛️|🌲|📦|🔨|🎨|🔍|🦀|🟢|💻|🤖|🎮/g, '') // 移除 emoji
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/&/g, 'and')
+}
+
+// 在组件挂载后，手动更新页面标题以支持目录
+onMounted(() => {
+  // 等待 DOM 更新
+  setTimeout(() => {
+    // 触发 VitePress 重新扫描标题
+    const event = new Event('vitepress:update-outline')
+    window.dispatchEvent(event)
+  }, 100)
+})
 </script>
 
 <style scoped>
@@ -105,58 +131,58 @@ const categories = projectCategories
 .projects-wrapper {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 50px 40px;
 }
 
 .category-section {
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 .category-section:last-child {
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .category-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 32px;
-  padding: 0 8px;
+  margin-bottom: 24px;
+  padding: 0 4px;
 }
 
 .category-title-wrapper {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 .category-icon {
-  font-size: 36px;
+  font-size: 32px;
   line-height: 1;
 }
 
 .category-title {
   margin: 0;
-  font-size: clamp(28px, 4vw, 36px);
+  font-size: clamp(24px, 3.5vw, 32px);
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--vp-c-text-1);
+  scroll-margin-top: 100px;
 }
 
 .project-count {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: var(--vp-c-text-3);
   background: var(--vp-c-bg-soft);
-  padding: 6px 14px;
-  border-radius: 20px;
+  padding: 5px 12px;
+  border-radius: 18px;
   border: 1px solid var(--vp-c-divider);
 }
 
-/* Grid Layout - Optimized for screen space */
+/* Grid Layout - 固定列数，更宽的卡片 */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
 }
 
@@ -166,33 +192,33 @@ const categories = projectCategories
   }
 }
 
-@media (min-width: 1200px) and (max-width: 1399px) {
+@media (min-width: 1024px) and (max-width: 1399px) {
   .projects-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 640px) and (max-width: 1023px) {
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   
   .projects-wrapper {
-    padding: 60px 32px;
+    padding: 50px 28px;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 639px) {
   .projects-grid {
     grid-template-columns: 1fr;
   }
   
   .hero-section {
-    padding: 80px 24px 60px;
+    padding: 80px 20px 60px;
   }
   
   .projects-wrapper {
-    padding: 40px 24px;
+    padding: 40px 20px;
   }
   
   .category-section {
