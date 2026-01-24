@@ -55,13 +55,17 @@ defineProps<{
 <style scoped>
 .project-card {
   position: relative;
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
   background: var(--vp-c-bg-soft);
   backdrop-filter: blur(20px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* 防止在列布局中被截断 */
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .dark .project-card {
@@ -106,106 +110,111 @@ defineProps<{
 }
 
 .card-link {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   text-decoration: none;
   color: inherit;
 }
 
 .card-inner {
-  padding: 18px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  height: 100%;
+  gap: 8px;
+  flex: 1;
 }
 
 .icon-wrapper {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(30, 64, 175, 0.1));
-  border-radius: 12px;
-  margin-bottom: 2px;
+  border-radius: 11px;
+  margin-bottom: 0;
 }
 
 .icon {
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1;
 }
 
 .project-name {
   margin: 0;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--vp-c-text-1);
   line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  /* 标题单行显示，超出用省略号 */
 }
 
 .project-description {
   margin: 0;
   font-size: 13px;
   color: var(--vp-c-text-2);
-  line-height: 1.4;
+  line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 36px;
+  /* 描述最多3行 */
 }
 
 .card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 6px;
+  padding-top: 4px;
   margin-top: auto;
 }
 
 .stars {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   color: var(--vp-c-text-3);
   font-size: 11px;
 }
 
 .stars svg {
   opacity: 0.6;
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
 }
 
 .stars img {
-  height: 15px;
+  height: 14px;
   opacity: 0.8;
 }
 
 .links {
   display: flex;
-  gap: 6px;
+  gap: 5px;
 }
 
 .link-icon {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 7px;
+  border-radius: 6px;
   background: rgba(59, 130, 246, 0.1);
   color: #3b82f6;
   transition: all 0.2s;
 }
 
 .link-icon svg {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
 }
 
 .link-icon:hover {
@@ -221,18 +230,18 @@ defineProps<{
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 2px;
+  gap: 4px;
+  margin-top: 0;
 }
 
 .tag {
   display: inline-block;
-  padding: 2px 7px;
+  padding: 2px 6px;
   font-size: 10px;
   font-weight: 500;
   background: rgba(59, 130, 246, 0.08);
   color: #3b82f6;
-  border-radius: 5px;
+  border-radius: 4px;
   letter-spacing: 0.01em;
 }
 

@@ -120,39 +120,39 @@ function getCategoryId(title: string): string {
 .projects-wrapper {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 50px 40px;
+  padding: 40px 32px;
 }
 
 .category-section {
-  margin-bottom: 80px;
+  margin-bottom: 70px;
 }
 
 .category-section:last-child {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .category-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
-  padding: 0 4px;
+  margin-bottom: 20px;
+  padding: 0 2px;
 }
 
 .category-title-wrapper {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .category-icon {
-  font-size: 32px;
+  font-size: 28px;
   line-height: 1;
 }
 
 .category-title {
   margin: 0;
-  font-size: clamp(24px, 3.5vw, 32px);
+  font-size: clamp(22px, 3vw, 28px);
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--vp-c-text-1);
@@ -160,36 +160,43 @@ function getCategoryId(title: string): string {
 }
 
 .project-count {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: var(--vp-c-text-3);
   background: var(--vp-c-bg-soft);
-  padding: 5px 12px;
-  border-radius: 18px;
+  padding: 4px 10px;
+  border-radius: 16px;
   border: 1px solid var(--vp-c-divider);
 }
 
-/* Grid Layout - 固定列数，更宽的卡片 */
+/* 紧凑的自适应网格 - 标题完整显示 */
 .projects-grid {
   display: grid;
-  gap: 24px;
+  /* 使用 auto-fill 自动填充，列宽在 min 和 max 之间自适应 */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 18px;
+  align-items: start;
 }
 
-@media (min-width: 1400px) {
+/* 响应式调整 - 优化屏效 */
+@media (min-width: 1600px) {
   .projects-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1399px) {
+@media (min-width: 1200px) and (max-width: 1599px) {
   .projects-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
   }
 }
 
-@media (min-width: 640px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1199px) {
   .projects-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
   }
   
   .projects-wrapper {
@@ -197,27 +204,39 @@ function getCategoryId(title: string): string {
   }
 }
 
-@media (max-width: 639px) {
+@media (min-width: 480px) and (max-width: 767px) {
   .projects-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .hero-section {
-    padding: 80px 20px 60px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
   }
   
   .projects-wrapper {
-    padding: 40px 20px;
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width: 479px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .hero-section {
+    padding: 60px 20px 40px;
+  }
+  
+  .projects-wrapper {
+    padding: 30px 20px;
   }
   
   .category-section {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
   }
   
   .category-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
   }
 }
 
