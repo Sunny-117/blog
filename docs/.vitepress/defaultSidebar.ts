@@ -4,7 +4,7 @@ import engineerConfig from "./engineer";
 import reactConfig from "./react";
 import hcConfig from "./hc";
 import fragment from "./fragment";
-export const defaultSidebar: DefaultTheme.Sidebar = [
+export const defaultSidebar = [
   {
     text: "Introduction",
     collapsible: true,
@@ -16,34 +16,24 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
     ],
   },
   {
-    text: "知识碎片（部分文章转载）",
-    collapsible: true,
-    items: fragment,
-  },
-  {
     text: "前端工程化",
     collapsible: true,
     items: engineerConfig,
   },
 
   {
-    text: `Vuejs ${vueConfig.length}篇`,
+    text: `Vue.js`,
     collapsible: true,
     items: vueConfig,
   },
   {
-    text: `React ${reactConfig.length}篇`,
+    text: `React`,
     collapsible: true,
     items: reactConfig,
   },
   {
     text: "TypeScript",
-    items: [
-      {
-        text: "TypeScript OnePage",
-        link: "/ts/TypeScript-onePage",
-      },
-    ],
+    link: "/ts/TypeScript-onePage",
   },
   {
     text: "前端三件套",
@@ -68,7 +58,11 @@ export const defaultSidebar: DefaultTheme.Sidebar = [
       ...hcConfig,
     ],
   },
-
+  {
+    text: "知识碎片",
+    collapsible: true,
+    items: fragment,
+  },
   {
     text: "算法",
     collapsible: true,

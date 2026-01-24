@@ -2,29 +2,35 @@ import { resolve } from "path";
 import type { DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
 import { defaultSidebar } from "./defaultSidebar";
-import { generateFileSidebar } from "./file-sidebar";
 
 const r = (p: string) => resolve(__dirname, p);
 
 // generateFileSidebar(r('../useForm'))
 export default defineConfig({
   base: "/blog/",
-  title: "Sunny's blog",
-  description: "composition api form validator for vue",
+  title: "Sunny-117",
+  description: "深入前端技术栈，探索工程化实践，记录成长历程",
   // appearance: false,
   lastUpdated: true,
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/blog/favicon.svg' }],
+    ['meta', { name: 'theme-color', content: '#667eea' }],
+    ['meta', { property: 'og:title', content: "Sunny's blog - 前端历险记" }],
+    ['meta', { property: 'og:description', content: '深入前端技术栈，探索工程化实践' }],
+  ],
   markdown: {
     anchor: {},
     toc: { level: [1, 2, 3, 4] },
     theme: {
-      light: "min-dark",
-      dark: "vitesse-light",
+      light: 'vitesse-light',
+      dark: 'vitesse-black',
     },
     lineNumbers: true,
   },
   themeConfig: {
-    // 隐藏导航栏标题
-    siteTitle: false,
+    // 使用 Logo 替代文字标题
+    logo: '/logo.svg',
+    siteTitle: 'Sunny-117',
     search: {
       provider: 'local',
       options: {
