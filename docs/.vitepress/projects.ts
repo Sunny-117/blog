@@ -26,7 +26,7 @@ export const projectCategories: ProjectCategory[] = [
                 description: '✨✨✨ Challenge your JavaScript programming limits step by step 前端手写题，一步步提升 JavaScript 编程水平',
                 icon: '💪',
                 homepage: 'https://deepwiki.com/Sunny-117/js-challenges',
-                stars: 2315,
+                stars: 2318,
                 tags: ['Html-css-javascript', 'Javascript', 'Nodejs'],
                 featured: true,
             },
@@ -116,6 +116,14 @@ export const projectCategories: ProjectCategory[] = [
                 stars: 5,
             },
             {
+                name: 'webassembly-bundler',
+                repo: 'Sunny-117/webassembly-bundler',
+                description: 'Rust WebAssembly 集成构建工具',
+                icon: '✨',
+                stars: 5,
+                tags: ['Rollup', 'Rspack', 'Rust'],
+            },
+            {
                 name: 'robuild',
                 repo: 'Sunny-117/robuild',
                 description: '⚡️ Zero-config ESM/TS package builder. Powered by Oxc, Rolldown and rolldown-plugin-dts. 零配置 ESM/TS 包构建器 基于 Oxc、Rolldown 和 rolldown-plugin-dts 构建，专注于 ESM 兼容性和极速构建',
@@ -139,20 +147,6 @@ export const projectCategories: ProjectCategory[] = [
                 icon: '🔧',
                 stars: 3,
                 tags: ['Ai', 'Ai-doctor', 'Devtools'],
-            },
-            {
-                name: 'bundle-go',
-                repo: 'Sunny-117/bundle-go',
-                description: '📦️ js packager by golang',
-                icon: '🐹',
-                stars: 2,
-            },
-            {
-                name: 'webassembly-bundler',
-                repo: 'Sunny-117/webassembly-bundler',
-                description: 'webassembly-bundler',
-                icon: '✨',
-                stars: 1,
             }
         ],
     },
@@ -339,13 +333,6 @@ export const projectCategories: ProjectCategory[] = [
                 homepage: 'https://sunny-117.github.io/text-image/',
                 stars: 4,
                 tags: ['Ai', 'Code-formatter', 'Detector'],
-            },
-            {
-                name: 'chart',
-                repo: 'Sunny-117/chart',
-                description: '业务开发常用图表',
-                icon: '📊',
-                stars: 0,
             }
         ],
     },
@@ -386,13 +373,6 @@ export const projectCategories: ProjectCategory[] = [
                 icon: '⭐',
                 stars: 3,
                 tags: ['Cli', 'Lib', 'Nodejs'],
-            },
-            {
-                name: 'commit-genius-js',
-                repo: 'Sunny-117/commit-genius-js',
-                description: 'Commit Genius 是一个简单的命令行工具，它会读取你暂存区（staged）的代码变更，利用 Google Gemini AI 模型自动生成一条符合 Conventional Commits 规范的提交信息。 🌟 功能亮点 全自动分析：自动读取 git diff --staged 的内容，无需手动复制粘贴。',
-                icon: '💡',
-                stars: 0,
             }
         ],
     },
@@ -454,25 +434,11 @@ export const projectCategories: ProjectCategory[] = [
         icon: '🟢',
         projects: [
             {
-                name: 'go100',
-                repo: 'Sunny-117/go100',
-                description: 'go100',
-                icon: '🎖️',
-                stars: 1,
-            },
-            {
-                name: 'im',
-                repo: 'Sunny-117/im',
-                description: 'Instant messaging system by golang',
-                icon: '⚙️',
-                stars: 1,
-            },
-            {
-                name: 'go-enjoy',
-                repo: 'Sunny-117/go-enjoy',
-                description: 'go-enjoy',
-                icon: '📚',
-                stars: 0,
+                name: 'golang',
+                repo: 'Sunny-117/golang',
+                description: '📦️ js packager by golang',
+                icon: '🎬',
+                stars: 2,
             }
         ],
     },
@@ -560,13 +526,6 @@ export const projectCategories: ProjectCategory[] = [
                 tags: ['Napi-rs', 'Node', 'Nodemon'],
             },
             {
-                name: 'everyday',
-                repo: 'Sunny-117/everyday',
-                description: '使用 Github Actions 来完成自动创建 issues 任务',
-                icon: '⭐',
-                stars: 4,
-            },
-            {
                 name: 'json-visual-diff',
                 repo: 'Sunny-117/json-visual-diff',
                 description: '一个强大且灵活的 JSON 可视化差异对比 SDK，采用可插拔的渲染器架构设计，支持实时编辑预览和多种扩展类型。',
@@ -605,7 +564,7 @@ export const projectCategories: ProjectCategory[] = [
                 description: 'A component that maintains component state and avoids repeated re-rendering.',
                 icon: '🔮',
                 stars: 3,
-                tags: ['Cache', 'React-keepalive', 'Reactjs'],
+                tags: ['Cache', 'Keep-alive', 'React-keepalive'],
             },
             {
                 name: 'rspack-circular-dependency-plugin',
@@ -622,13 +581,6 @@ export const projectCategories: ProjectCategory[] = [
                 icon: '🔧',
                 stars: 2,
                 tags: ['Esbuild', 'Esno', 'Execute'],
-            },
-            {
-                name: 'oxbuild',
-                repo: 'Sunny-117/oxbuild',
-                description: 'An ultra fast and easy-to-use TypeScript/JavaScript compiler',
-                icon: '🎮',
-                stars: 0,
             }
         ],
     }

@@ -1,9 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
+// https://api.github.com/users/Sunny-117/repos?per_page=1000
+
 // ==================== 配置 ====================
 const CONFIG = {
-    inputFile: path.join(__dirname, '../docs/FeHelper-20260124141556.json'),
+    inputFile: path.join(__dirname, '../docs/FeHelper-20260219100156.json'),
     outputFile: path.join(__dirname, '../docs/.vitepress/projects.ts'),
     minStarsForFeatured: 20,
     maxTagsPerProject: 3,
