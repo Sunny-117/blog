@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.14",
-    "cssnano": "^6.0.1",
+    "cssnano": "^7.0.0",
     "postcss": "^8.4.24",
     "sass": "^1.63.6",
     "stylelint": "^15.9.0",
